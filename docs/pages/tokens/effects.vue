@@ -27,9 +27,9 @@ async function copy(text: string) {
         </div>
 
         <!-- Preview -->
-        <div class="flex items-center justify-center p-12 bg-[var(--color-fill-tertiary)]">
+        <div class="flex items-center justify-center p-12 bg-[var(--color-fill-secondary)]">
           <div
-            class="w-28 h-28 rounded-lg bg-[var(--color-fill-primary)]"
+            class="w-28 h-28 rounded-lg bg-[var(--color-fill-surfacebright)]"
             :style="{
               boxShadow: activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow,
               backdropFilter: activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter
