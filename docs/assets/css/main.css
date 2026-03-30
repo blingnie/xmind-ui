@@ -104,7 +104,14 @@ main .divide-y h1,
 main .divide-y h2,
 main .divide-y h3,
 main .divide-y span,
-main .divide-y div {
+main .divide-y div,
+main .border-b p,
+main .border-b h1,
+main .border-b h2,
+main .border-b h3,
+main .border-b span,
+main .border-b div,
+main .border-b button {
   margin: 0;
 }
 

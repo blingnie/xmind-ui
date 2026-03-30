@@ -18,10 +18,10 @@ async function copy(text: string) {
 <template>
   <div>
     <h1 class="text-xl font-semibold">Typography</h1>
-    <p class="text-sm text-[var(--color-text-tertiary)]">Typography scale and specifications using the NeverMind UI font family. Each token defines font size, line height, letter spacing, and weight for consistent text styling across interfaces.</p>
+    <div class="text-sm text-[var(--color-text-tertiary)]">Typography scale and specifications using the NeverMind UI font family. Each token defines font size, line height, letter spacing, and weight for consistent text styling across interfaces.</div>
     <Tabs v-model="activeGroup" :tabs="typoGroups.map(g => g.group)" />
-    <div v-for="{ group, tokens } in typoGroups" v-show="activeGroup === group" :key="group" class="mt-0">
-      <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden mt-0">
+    <div v-for="{ group, tokens } in typoGroups" v-show="activeGroup === group" :key="group" class="mt-4">
+      <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden">
         <div class="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_2fr] gap-4 px-4 py-2 bg-[var(--color-fill-secondary)] text-xs text-[var(--color-text-tertiary)] font-medium">
           <span>Preview / Name</span><span>Size</span><span>Line Height</span><span>Letter Spacing</span><span>Weight</span><span>Token</span>
         </div>
