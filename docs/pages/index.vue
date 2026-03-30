@@ -3,9 +3,9 @@ definePageMeta({ layout: 'default' })
 </script>
 
 <template>
-  <div class="p-12 max-w-2xl">
-    <h1 class="text-3xl font-bold mb-3">Xmind UI Kit</h1>
-    <p class="text-[var(--color-text-secondary)] text-base leading-relaxed mb-8">
+  <div>
+    <h1 class="text-3xl font-bold">Xmind UI Kit</h1>
+    <p class="text-[var(--color-text-secondary)] text-base">
       Xmind 设计系统文档。产品、设计、开发共享同一份真相。
     </p>
 

@@ -10,9 +10,9 @@ async function copy(text) {
 }
 </script>
 <template>
-  <div class="px-10 py-8 max-w-5xl">
-    <h1 class="text-xl font-semibold mb-1">Radius</h1>
-    <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Border radius tokens for creating rounded corners with consistent curvature across components. All values are measured in pixels.</p>
+  <div>
+    <h1 class="text-xl font-semibold">Radius</h1>
+    <p class="text-sm text-[var(--color-text-tertiary)]">Border radius tokens for creating rounded corners with consistent curvature across components. All values are measured in pixels.</p>
     <div class="grid grid-cols-4 gap-6">
       <button v-for="token in tokens" :key="token.varName" class="flex flex-col items-center gap-2 px-6 py-6 rounded-xl border border-[var(--color-border-translucent)] bg-[var(--color-fill-surfacebright)] hover:shadow-[var(--shadow-l2)] transition-shadow" @click="copy(`var(${token.varName})`)">
         <div class="w-16 h-16 border-2 border-[var(--color-fill-accent-normal)]" :style="{ borderRadius: `${token.value}px` }" />

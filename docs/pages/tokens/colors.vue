@@ -23,9 +23,9 @@ function capitalize(str: string) {
 }
 </script>
 <template>
-  <div class="px-10 py-8 max-w-5xl">
-    <h1 class="text-xl font-semibold mb-1">Colors</h1>
-    <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Semantic color tokens that automatically adapt between light and dark themes. Click any token to copy the CSS variable name to your clipboard.</p>
+  <div>
+    <h1 class="text-xl font-semibold">Colors</h1>
+    <p class="text-sm text-[var(--color-text-tertiary)]">Semantic color tokens that automatically adapt between light and dark themes. Click any token to copy the CSS variable name to your clipboard.</p>
     <div v-for="{ group, tokens } in aliasGroups" :key="group" class="mb-6">
       <p class="text-xs font-medium text-[var(--color-text-tertiary)] tracking-wider mb-2">{{ capitalize(group) }}</p>
       <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden divide-y divide-[var(--color-border-translucent)]">
