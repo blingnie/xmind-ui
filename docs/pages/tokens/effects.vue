@@ -64,10 +64,10 @@ async function copy(level: string, elevation: any) {
         <!-- Code Block -->
         <div class="p-4">
           <div class="relative group rounded-lg overflow-hidden">
-            <pre class="code-block text-xs font-mono bg-[var(--color-fill-surfacedim)] p-3 pr-12 leading-relaxed whitespace-pre-wrap break-all h-32 overflow-y-auto" v-html="highlightCss(formatCssCode(elevation))" />
+            <pre class="code-block text-xs font-mono bg-[var(--color-mask-overlaym)] p-3 pr-12 leading-relaxed whitespace-pre-wrap break-all h-32 overflow-y-auto" v-html="highlightCss(formatCssCode(elevation))" />
             <button
               @click="copy(elevation.level, elevation)"
-              class="absolute top-3 right-3 p-1.5 rounded hover:bg-[var(--color-mask-overlays)] transition-colors"
+              class="absolute top-3 right-3 p-1.5 rounded hover:bg-[var(--color-mask-overlaym)] transition-colors"
               :title="'Copy CSS code'"
             >
               <svg v-if="copiedLevel !== elevation.level" class="w-4 h-4 text-[var(--color-text-tertiary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
