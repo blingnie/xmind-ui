@@ -52,7 +52,7 @@ async function copy(level: string, elevation: any) {
         <!-- Code Block -->
         <div class="p-4">
           <div class="relative group">
-            <pre class="text-xs font-mono text-[var(--color-text-secondary)] bg-[var(--color-fill-surfacedim)] rounded-lg p-3 pr-12 overflow-x-auto leading-relaxed">{{ formatCssCode(elevation) }}</pre>
+            <pre class="text-xs font-mono text-[var(--color-text-secondary)] bg-[var(--color-fill-surfacedim)] rounded-lg p-3 pr-12 leading-relaxed whitespace-pre-wrap break-all h-32 overflow-y-auto">{{ formatCssCode(elevation) }}</pre>
             <button
               @click="copy(elevation.level, elevation)"
               class="absolute top-3 right-3 p-1.5 rounded hover:bg-[var(--color-fill-surfacebright)] transition-colors"
