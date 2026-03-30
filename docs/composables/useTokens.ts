@@ -139,11 +139,16 @@ export function useTokens() {
 
     for (const v of col.modes[0].variables) {
       const parts = v.name.split('/')
-      const group = parts.slice(0, 2).join('/')
+      // Use first level as group (Interface, Markdown)
+      const group = parts[0]
+
+      // Skip Web Expressive category
+      if (group === 'Web Expressive') continue
+
       const t = v.value
       if (!map.has(group)) map.set(group, [])
       map.get(group)!.push({
-        name: parts.slice(2).join('/') || parts[parts.length - 1],
+        name: parts.slice(1).join('/') || parts[parts.length - 1],
         varName: `--typo-${nameToVar(v.name)}`,
         fontSize: t.fontSize,
         lineHeight: t.lineHeight,
