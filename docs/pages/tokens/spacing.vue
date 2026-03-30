@@ -22,7 +22,7 @@ function capitalize(str: string) {
 }
 </script>
 <template>
-  <div class="px-10 py-8 max-w-3xl">
+  <div class="px-10 py-8 max-w-5xl">
     <h1 class="text-xl font-semibold mb-1">Spacing</h1>
     <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Spacing tokens define consistent margin and padding values throughout the interface. All values are measured in pixels for precise layout control.</p>
     <div v-for="{ group, items } in groups" :key="group" class="mb-8">

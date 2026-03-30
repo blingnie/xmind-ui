@@ -12,7 +12,7 @@ async function copy(text: string) {
 }
 </script>
 <template>
-  <div class="px-10 py-8 max-w-6xl">
+  <div class="px-10 py-8 max-w-5xl">
     <h1 class="text-xl font-semibold mb-1">Elevation</h1>
     <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Elevation tokens define shadow and blur effects to create depth hierarchy across UI layers. Each level corresponds to specific component types and interaction states.</p>
 
