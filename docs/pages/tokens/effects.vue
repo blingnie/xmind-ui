@@ -87,6 +87,8 @@ async function copy(level: string, elevation: any) {
 <style scoped>
 .code-block {
   color: var(--color-text-secondary);
+  direction: ltr;
+  text-align: left;
 }
 
 /* 滚动条样式 */
