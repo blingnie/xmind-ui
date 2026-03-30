@@ -15,6 +15,18 @@ function formatCssCode(elevation: any) {
   return code
 }
 
+function highlightCss(code: string) {
+  return code
+    // Property names
+    .replace(/(box-shadow|backdrop-filter):/g, '<span class="syntax-property">$1</span><span class="syntax-punctuation">:</span>')
+    // Functions (rgba, blur)
+    .replace(/\b(rgba|blur)\(/g, '<span class="syntax-function">$1</span><span class="syntax-punctuation">(</span>')
+    // Numbers with units
+    .replace(/(\d+(?:\.\d+)?)(px|%)?/g, '<span class="syntax-number">$1</span><span class="syntax-unit">$2</span>')
+    // Punctuation
+    .replace(/([;,\)])/g, '<span class="syntax-punctuation">$1</span>')
+}
+
 async function copy(level: string, elevation: any) {
   const code = formatCssCode(elevation)
   await navigator.clipboard.writeText(code)
@@ -52,7 +64,7 @@ async function copy(level: string, elevation: any) {
         <!-- Code Block -->
         <div class="p-4">
           <div class="relative group">
-            <pre class="text-xs font-mono text-[var(--color-text-secondary)] bg-[var(--color-fill-surfacedim)] rounded-lg p-3 pr-12 leading-relaxed whitespace-pre-wrap break-all h-32 overflow-y-auto">{{ formatCssCode(elevation) }}</pre>
+            <pre class="code-block text-xs font-mono bg-[var(--color-fill-surfacedim)] rounded-lg p-3 pr-12 leading-relaxed whitespace-pre-wrap break-all h-32 overflow-y-auto" v-html="highlightCss(formatCssCode(elevation))" />
             <button
               @click="copy(elevation.level, elevation)"
               class="absolute top-3 right-3 p-1.5 rounded hover:bg-[var(--color-fill-surfacebright)] transition-colors"
@@ -71,3 +83,30 @@ async function copy(level: string, elevation: any) {
     </div>
   </div>
 </template>
+
+<style scoped>
+.code-block {
+  color: var(--color-text-secondary);
+}
+
+.code-block :deep(.syntax-property) {
+  color: var(--color-fill-accent-normal);
+  font-weight: 500;
+}
+
+.code-block :deep(.syntax-function) {
+  color: #9333ea;
+}
+
+.code-block :deep(.syntax-number) {
+  color: #ea580c;
+}
+
+.code-block :deep(.syntax-unit) {
+  color: #ea580c;
+}
+
+.code-block :deep(.syntax-punctuation) {
+  color: var(--color-text-tertiary);
+}
+</style>
