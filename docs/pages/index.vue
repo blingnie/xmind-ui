@@ -1,0 +1,29 @@
+<script setup lang="ts">
+definePageMeta({ layout: 'default' })
+</script>
+
+<template>
+  <div class="p-12 max-w-2xl">
+    <h1 class="text-3xl font-bold mb-3">Xmind UI Kit</h1>
+    <p class="text-[var(--color-text-secondary)] text-base leading-relaxed mb-8">
+      Xmind 设计系统文档。产品、设计、开发共享同一份真相。
+    </p>
+
+    <div class="grid grid-cols-2 gap-3">
+      <NuxtLink
+        to="/tokens/colors"
+        class="p-4 rounded-xl border border-[var(--color-border-translucent)] hover:border-[var(--color-border-default)] transition-colors"
+      >
+        <p class="text-sm font-medium mb-1">Foundation</p>
+        <p class="text-xs text-[var(--color-text-tertiary)]">色板、字体、间距、圆角</p>
+      </NuxtLink>
+      <NuxtLink
+        to="/components/button"
+        class="p-4 rounded-xl border border-[var(--color-border-translucent)] hover:border-[var(--color-border-default)] transition-colors"
+      >
+        <p class="text-sm font-medium mb-1">Components</p>
+        <p class="text-xs text-[var(--color-text-tertiary)]">可复用 UI 组件</p>
+      </NuxtLink>
+    </div>
+  </div>
+</template>

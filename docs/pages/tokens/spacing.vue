@@ -1,0 +1,41 @@
+<script setup lang="ts">
+definePageMeta({ layout: 'default' })
+const { getSpacingTokens } = useTokens()
+const tokens = getSpacingTokens()
+const groups = computed(() => {
+  const map = new Map()
+  for (const t of tokens) {
+    const group = t.name.split('/')[0]
+    if (!map.has(group)) map.set(group, [])
+    map.get(group).push(t)
+  }
+  return Array.from(map.entries()).map(([group, items]) => ({ group, items }))
+})
+const copied = ref('')
+async function copy(text) {
+  await navigator.clipboard.writeText(text)
+  copied.value = text
+  setTimeout(() => { copied.value = '' }, 1200)
+}
+</script>
+<template>
+  <div class="px-10 py-8 max-w-3xl">
+    <h1 class="text-xl font-semibold mb-1">Spacing</h1>
+    <p class="text-sm text-[var(--color-text-tertiary)] mb-6">间距 token，单位 px。</p>
+    <div v-for="{ group, items } in groups" :key="group" class="mb-8">
+      <p class="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-wider mb-2">{{ group }}</p>
+      <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden divide-y divide-[var(--color-border-translucent)]">
+        <div v-for="token in items" :key="token.varName" class="flex items-center gap-4 px-4 py-2.5 hover:bg-[var(--color-fill-secondary)] transition-colors">
+          <div class="w-24 shrink-0 flex items-center">
+            <div class="h-4 rounded bg-[var(--color-fill-brand)] opacity-60" :style="{ width: `${Math.min(token.value * 1.5, 96)}px` }" />
+          </div>
+          <span class="text-sm font-mono w-10 shrink-0">{{ token.value }}px</span>
+          <span class="text-sm text-[var(--color-text-secondary)] flex-1">{{ token.name.split('/')[1] ?? token.name }}</span>
+          <button class="text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]" @click="copy(`var(${token.varName})`)">
+            {{ copied === `var(${token.varName})` ? '✓ copied' : token.varName }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

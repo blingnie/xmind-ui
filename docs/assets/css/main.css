@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}

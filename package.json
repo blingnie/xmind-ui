@@ -1,0 +1,10 @@
+{
+  "name": "xmind-ui",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter docs dev",
+    "build": "pnpm --filter docs build",
+    "build:tokens": "pnpm --filter @xmind-ui/tokens build",
+    "preview": "pnpm --filter docs preview"
+  }
+}

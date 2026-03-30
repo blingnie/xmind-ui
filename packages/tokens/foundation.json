@@ -1,0 +1,4861 @@
+{
+  "version": "1.0.4",
+  "metadata": {},
+  "collections": [
+    {
+      "name": "colorPalette",
+      "modes": [
+        {
+          "name": "Mode",
+          "variables": [
+            {
+              "name": "base/white",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "gray/25"
+              }
+            },
+            {
+              "name": "base/black",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "gray/950"
+              }
+            },
+            {
+              "name": "base/gray",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "gray/350"
+              }
+            },
+            {
+              "name": "base/dark_gray",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "gray/750"
+              }
+            },
+            {
+              "name": "base/red",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "red/500"
+              }
+            },
+            {
+              "name": "base/x-red",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "x-red/500"
+              }
+            },
+            {
+              "name": "base/AI-purple",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "ai-purple/500"
+              }
+            },
+            {
+              "name": "base/orange",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "orange/500"
+              }
+            },
+            {
+              "name": "base/yellow",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "yellow/500"
+              }
+            },
+            {
+              "name": "base/light-green",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "lime/500"
+              }
+            },
+            {
+              "name": "base/green",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "green/500"
+              }
+            },
+            {
+              "name": "base/teal",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "teal/500"
+              }
+            },
+            {
+              "name": "base/cyan",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "cyan/500"
+              }
+            },
+            {
+              "name": "base/blue",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "blue/500"
+              }
+            },
+            {
+              "name": "base/indigo",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "indigo/500"
+              }
+            },
+            {
+              "name": "base/violet",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "violet/500"
+              }
+            },
+            {
+              "name": "base/purple",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "purple/500"
+              }
+            },
+            {
+              "name": "base/pink",
+              "type": "color",
+              "isAlias": true,
+              "value": {
+                "collection": "colorPalette",
+                "name": "pink/500"
+              }
+            },
+            {
+              "name": "red/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FCEBEB"
+            },
+            {
+              "name": "red/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FBDDDD"
+            },
+            {
+              "name": "red/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F6BBBB"
+            },
+            {
+              "name": "red/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F29999"
+            },
+            {
+              "name": "red/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#EE7676"
+            },
+            {
+              "name": "red/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E95454"
+            },
+            {
+              "name": "red/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E53232"
+            },
+            {
+              "name": "red/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#BF2A2A"
+            },
+            {
+              "name": "red/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#992121"
+            },
+            {
+              "name": "red/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#731919"
+            },
+            {
+              "name": "red/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#4C1111"
+            },
+            {
+              "name": "red/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#260808"
+            },
+            {
+              "name": "x-red/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFEDE9"
+            },
+            {
+              "name": "x-red/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FEE1DA"
+            },
+            {
+              "name": "x-red/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FDC3B4"
+            },
+            {
+              "name": "x-red/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FDA58F"
+            },
+            {
+              "name": "x-red/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FC8669"
+            },
+            {
+              "name": "x-red/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FB6843"
+            },
+            {
+              "name": "x-red/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FA4A1E"
+            },
+            {
+              "name": "x-red/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#D13E19"
+            },
+            {
+              "name": "x-red/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#A73114"
+            },
+            {
+              "name": "x-red/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#7D250F"
+            },
+            {
+              "name": "x-red/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#54190A"
+            },
+            {
+              "name": "x-red/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#290C05"
+            },
+            {
+              "name": "ai-purple/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F4EDFF"
+            },
+            {
+              "name": "ai-purple/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E9DAFF"
+            },
+            {
+              "name": "ai-purple/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#DAC2FF"
+            },
+            {
+              "name": "ai-purple/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#C39DFD"
+            },
+            {
+              "name": "ai-purple/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#AC7AF8"
+            },
+            {
+              "name": "ai-purple/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#9453F7"
+            },
+            {
+              "name": "ai-purple/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#802FFB"
+            },
+            {
+              "name": "ai-purple/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#691AE0"
+            },
+            {
+              "name": "ai-purple/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#591BB7"
+            },
+            {
+              "name": "ai-purple/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#42138B"
+            },
+            {
+              "name": "ai-purple/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#301061"
+            },
+            {
+              "name": "ai-purple/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#200B40"
+            },
+            {
+              "name": "orange/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FEF2E7"
+            },
+            {
+              "name": "orange/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FDE9D8"
+            },
+            {
+              "name": "orange/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FBD3B0"
+            },
+            {
+              "name": "orange/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F9BD89"
+            },
+            {
+              "name": "orange/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F6A762"
+            },
+            {
+              "name": "orange/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F4913A"
+            },
+            {
+              "name": "orange/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F27B13"
+            },
+            {
+              "name": "orange/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#CA6710"
+            },
+            {
+              "name": "orange/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#A1520D"
+            },
+            {
+              "name": "orange/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#793E0A"
+            },
+            {
+              "name": "orange/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#512906"
+            },
+            {
+              "name": "orange/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#281403"
+            },
+            {
+              "name": "yellow/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFAE8"
+            },
+            {
+              "name": "yellow/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFF4D1"
+            },
+            {
+              "name": "yellow/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FEE89A"
+            },
+            {
+              "name": "yellow/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FEDF76"
+            },
+            {
+              "name": "yellow/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FCD445"
+            },
+            {
+              "name": "yellow/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FCCC22"
+            },
+            {
+              "name": "yellow/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F7C103"
+            },
+            {
+              "name": "yellow/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#D2A811"
+            },
+            {
+              "name": "yellow/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#A8860D"
+            },
+            {
+              "name": "yellow/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#7E650A"
+            },
+            {
+              "name": "yellow/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#544307"
+            },
+            {
+              "name": "yellow/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#2A2103"
+            },
+            {
+              "name": "lime/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F3FAEA"
+            },
+            {
+              "name": "lime/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#EBF6DC"
+            },
+            {
+              "name": "lime/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#D7EDB9"
+            },
+            {
+              "name": "lime/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#C3E496"
+            },
+            {
+              "name": "lime/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#AFDA73"
+            },
+            {
+              "name": "lime/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#9BD150"
+            },
+            {
+              "name": "lime/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#87C82D"
+            },
+            {
+              "name": "lime/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#71A726"
+            },
+            {
+              "name": "lime/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#5A851E"
+            },
+            {
+              "name": "lime/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#446417"
+            },
+            {
+              "name": "lime/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#2D430F"
+            },
+            {
+              "name": "lime/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#162107"
+            },
+            {
+              "name": "green/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#EAF5EE"
+            },
+            {
+              "name": "green/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#DCEEE2"
+            },
+            {
+              "name": "green/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#BADDC5"
+            },
+            {
+              "name": "green/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#97CCA9"
+            },
+            {
+              "name": "green/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#74BB8C"
+            },
+            {
+              "name": "green/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#52AA6F"
+            },
+            {
+              "name": "green/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#2F9952"
+            },
+            {
+              "name": "green/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#278044"
+            },
+            {
+              "name": "green/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#1F6637"
+            },
+            {
+              "name": "green/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#184D29"
+            },
+            {
+              "name": "green/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#10331B"
+            },
+            {
+              "name": "green/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#08190E"
+            },
+            {
+              "name": "teal/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E6F5F5"
+            },
+            {
+              "name": "teal/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#D5EFEE"
+            },
+            {
+              "name": "teal/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#AADFDE"
+            },
+            {
+              "name": "teal/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#80CFCD"
+            },
+            {
+              "name": "teal/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#55BEBC"
+            },
+            {
+              "name": "teal/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#2AAEAC"
+            },
+            {
+              "name": "teal/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#009E9B"
+            },
+            {
+              "name": "teal/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#008481"
+            },
+            {
+              "name": "teal/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#006967"
+            },
+            {
+              "name": "teal/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#004F4E"
+            },
+            {
+              "name": "teal/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#003534"
+            },
+            {
+              "name": "teal/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#001A1A"
+            },
+            {
+              "name": "cyan/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E9F9FA"
+            },
+            {
+              "name": "cyan/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#DAF4F7"
+            },
+            {
+              "name": "cyan/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#B6E8EE"
+            },
+            {
+              "name": "cyan/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#92DBE5"
+            },
+            {
+              "name": "cyan/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#6DCEDB"
+            },
+            {
+              "name": "cyan/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#49C3D2"
+            },
+            {
+              "name": "cyan/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#2AB3C4"
+            },
+            {
+              "name": "cyan/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#1E99A9"
+            },
+            {
+              "name": "cyan/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#187A86"
+            },
+            {
+              "name": "cyan/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0F5F68"
+            },
+            {
+              "name": "cyan/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0C3E44"
+            },
+            {
+              "name": "cyan/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#061F21"
+            },
+            {
+              "name": "blue/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#EBF4FC"
+            },
+            {
+              "name": "system-blue/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E9F1FF"
+            },
+            {
+              "name": "system-blue/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#D0E4FF"
+            },
+            {
+              "name": "system-blue/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#B6D5FF"
+            },
+            {
+              "name": "system-blue/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#8BBBFF"
+            },
+            {
+              "name": "system-blue/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#63A4FF"
+            },
+            {
+              "name": "system-blue/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#3394FF"
+            },
+            {
+              "name": "system-blue/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#007AFF"
+            },
+            {
+              "name": "blue/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#DDECFB"
+            },
+            {
+              "name": "blue/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#BBDAF6"
+            },
+            {
+              "name": "blue/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#99C7F2"
+            },
+            {
+              "name": "blue/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#69AEEE"
+            },
+            {
+              "name": "blue/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#479EED"
+            },
+            {
+              "name": "blue/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#328FE5"
+            },
+            {
+              "name": "system-blue/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#006DE3"
+            },
+            {
+              "name": "system-blue/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0E48B9"
+            },
+            {
+              "name": "system-blue/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0339A4"
+            },
+            {
+              "name": "system-blue/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0D2F72"
+            },
+            {
+              "name": "system-blue/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#041331"
+            },
+            {
+              "name": "blue/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#2A77BF"
+            },
+            {
+              "name": "blue/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#215F99"
+            },
+            {
+              "name": "blue/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#194873"
+            },
+            {
+              "name": "blue/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#11304C"
+            },
+            {
+              "name": "blue/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#081826"
+            },
+            {
+              "name": "indigo/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F1F2FD"
+            },
+            {
+              "name": "indigo/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E1E3FD"
+            },
+            {
+              "name": "indigo/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#C9CEF9"
+            },
+            {
+              "name": "indigo/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#AAAFFA"
+            },
+            {
+              "name": "indigo/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#8F90F3"
+            },
+            {
+              "name": "indigo/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#746CF7"
+            },
+            {
+              "name": "indigo/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#6751F6"
+            },
+            {
+              "name": "indigo/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#593AE9"
+            },
+            {
+              "name": "indigo/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#4F20DF"
+            },
+            {
+              "name": "indigo/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#4008BA"
+            },
+            {
+              "name": "indigo/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#290A85"
+            },
+            {
+              "name": "indigo/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#140542"
+            },
+            {
+              "name": "violet/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F3EEFC"
+            },
+            {
+              "name": "violet/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E7DDF8"
+            },
+            {
+              "name": "violet/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#D5C4F3"
+            },
+            {
+              "name": "violet/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#BDA2ED"
+            },
+            {
+              "name": "violet/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#A883E7"
+            },
+            {
+              "name": "violet/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#9263E3"
+            },
+            {
+              "name": "violet/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#8049DF"
+            },
+            {
+              "name": "violet/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#6939B6"
+            },
+            {
+              "name": "violet/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#532F93"
+            },
+            {
+              "name": "violet/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#3D246C"
+            },
+            {
+              "name": "violet/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#281848"
+            },
+            {
+              "name": "violet/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#190F2E"
+            },
+            {
+              "name": "purple/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F6ECFA"
+            },
+            {
+              "name": "purple/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F0DFF6"
+            },
+            {
+              "name": "purple/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E0C0ED"
+            },
+            {
+              "name": "purple/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#D1A0E5"
+            },
+            {
+              "name": "purple/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#C180DC"
+            },
+            {
+              "name": "purple/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#B161D3"
+            },
+            {
+              "name": "purple/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#A241CA"
+            },
+            {
+              "name": "purple/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#8736A8"
+            },
+            {
+              "name": "purple/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#6C2B87"
+            },
+            {
+              "name": "purple/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#512165"
+            },
+            {
+              "name": "purple/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#361643"
+            },
+            {
+              "name": "purple/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#1F0C27"
+            },
+            {
+              "name": "pink/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FBECF4"
+            },
+            {
+              "name": "pink/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F8DFEC"
+            },
+            {
+              "name": "pink/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F1BFD9"
+            },
+            {
+              "name": "pink/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#EA9FC6"
+            },
+            {
+              "name": "pink/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E37FB2"
+            },
+            {
+              "name": "pink/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#DD64A2"
+            },
+            {
+              "name": "pink/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#D94F96"
+            },
+            {
+              "name": "pink/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#B23575"
+            },
+            {
+              "name": "pink/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#8E2A5D"
+            },
+            {
+              "name": "pink/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#6B2046"
+            },
+            {
+              "name": "pink/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#47152F"
+            },
+            {
+              "name": "pink/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#230A17"
+            },
+            {
+              "name": "gray/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF"
+            },
+            {
+              "name": "gray/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FAFBFC"
+            },
+            {
+              "name": "gray/100",
+              "type": "color",
+              "isAlias": false,
+              "value": "#F5F6F7"
+            },
+            {
+              "name": "gray/150",
+              "type": "color",
+              "isAlias": false,
+              "value": "#EDF0F2"
+            },
+            {
+              "name": "gray/200",
+              "type": "color",
+              "isAlias": false,
+              "value": "#E4E7EB"
+            },
+            {
+              "name": "gray/250",
+              "type": "color",
+              "isAlias": false,
+              "value": "#D3D7DB"
+            },
+            {
+              "name": "gray/300",
+              "type": "color",
+              "isAlias": false,
+              "value": "#BDC2C7"
+            },
+            {
+              "name": "gray/350",
+              "type": "color",
+              "isAlias": false,
+              "value": "#9EA3A8"
+            },
+            {
+              "name": "gray/400",
+              "type": "color",
+              "isAlias": false,
+              "value": "#878C92"
+            },
+            {
+              "name": "gray/450",
+              "type": "color",
+              "isAlias": false,
+              "value": "#747A80"
+            },
+            {
+              "name": "gray/500",
+              "type": "color",
+              "isAlias": false,
+              "value": "#676E74"
+            },
+            {
+              "name": "gray/550",
+              "type": "color",
+              "isAlias": false,
+              "value": "#596066"
+            },
+            {
+              "name": "gray/600",
+              "type": "color",
+              "isAlias": false,
+              "value": "#4E5459"
+            },
+            {
+              "name": "gray/650",
+              "type": "color",
+              "isAlias": false,
+              "value": "#43484D"
+            },
+            {
+              "name": "gray/700",
+              "type": "color",
+              "isAlias": false,
+              "value": "#383C40"
+            },
+            {
+              "name": "gray/750",
+              "type": "color",
+              "isAlias": false,
+              "value": "#2B2F33"
+            },
+            {
+              "name": "gray/800",
+              "type": "color",
+              "isAlias": false,
+              "value": "#1F2326"
+            },
+            {
+              "name": "gray/850",
+              "type": "color",
+              "isAlias": false,
+              "value": "#191C1F"
+            },
+            {
+              "name": "gray/900",
+              "type": "color",
+              "isAlias": false,
+              "value": "#121416"
+            },
+            {
+              "name": "gray/950",
+              "type": "color",
+              "isAlias": false,
+              "value": "#000000"
+            },
+            {
+              "name": "white/3",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF08"
+            },
+            {
+              "name": "white/5",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF0D"
+            },
+            {
+              "name": "white/6",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF0F"
+            },
+            {
+              "name": "white/8",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF14"
+            },
+            {
+              "name": "white/10",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF1A"
+            },
+            {
+              "name": "white/12",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF1F"
+            },
+            {
+              "name": "white/15",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF26"
+            },
+            {
+              "name": "white/20",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF33"
+            },
+            {
+              "name": "white/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF40"
+            },
+            {
+              "name": "white/30",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF4D"
+            },
+            {
+              "name": "white/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFF80"
+            },
+            {
+              "name": "white/70",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFFB3"
+            },
+            {
+              "name": "white/90",
+              "type": "color",
+              "isAlias": false,
+              "value": "#FFFFFFE6"
+            },
+            {
+              "name": "black/3",
+              "type": "color",
+              "isAlias": false,
+              "value": "#00000008"
+            },
+            {
+              "name": "black/5",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0000000D"
+            },
+            {
+              "name": "black/6",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0000000D"
+            },
+            {
+              "name": "black/8",
+              "type": "color",
+              "isAlias": false,
+              "value": "#00000014"
+            },
+            {
+              "name": "black/10",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0000001A"
+            },
+            {
+              "name": "black/12",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0000001F"
+            },
+            {
+              "name": "black/15",
+              "type": "color",
+              "isAlias": false,
+              "value": "#00000026"
+            },
+            {
+              "name": "black/20",
+              "type": "color",
+              "isAlias": false,
+              "value": "#00000033"
+            },
+            {
+              "name": "black/25",
+              "type": "color",
+              "isAlias": false,
+              "value": "#00000040"
+            },
+            {
+              "name": "black/30",
+              "type": "color",
+              "isAlias": false,
+              "value": "#0000004D"
+            },
+            {
+              "name": "black/50",
+              "type": "color",
+              "isAlias": false,
+              "value": "#00000080"
+            },
+            {
+              "name": "black/70",
+              "type": "color",
+              "isAlias": false,
+              "value": "#000000B3"
+            },
+            {
+              "name": "black/90",
+              "type": "color",
+              "isAlias": false,
+              "value": "#000000E6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "spacing",
+      "modes": [
+        {
+          "name": "default",
+          "variables": [
+            {
+              "name": "padding/6xl_48",
+              "type": "number",
+              "isAlias": false,
+              "value": 48
+            },
+            {
+              "name": "padding/5xl_40",
+              "type": "number",
+              "isAlias": false,
+              "value": 40
+            },
+            {
+              "name": "padding/4xl_36",
+              "type": "number",
+              "isAlias": false,
+              "value": 36
+            },
+            {
+              "name": "padding/3xl_32",
+              "type": "number",
+              "isAlias": false,
+              "value": 32
+            },
+            {
+              "name": "padding/xxl_24",
+              "type": "number",
+              "isAlias": false,
+              "value": 24
+            },
+            {
+              "name": "padding/xl_20",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "padding/l_16",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "padding/m_12",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
+            },
+            {
+              "name": "padding/s_8",
+              "type": "number",
+              "isAlias": false,
+              "value": 8
+            },
+            {
+              "name": "padding/xs_4",
+              "type": "number",
+              "isAlias": false,
+              "value": 4
+            },
+            {
+              "name": "padding/none_0",
+              "type": "number",
+              "isAlias": false,
+              "value": 0
+            },
+            {
+              "name": "margin/bottom",
+              "type": "number",
+              "isAlias": false,
+              "value": 48
+            },
+            {
+              "name": "margin/margin_none_0",
+              "type": "number",
+              "isAlias": false,
+              "value": 0
+            },
+            {
+              "name": "margin/margin_xxs_4",
+              "type": "number",
+              "isAlias": false,
+              "value": 4
+            },
+            {
+              "name": "margin/margin_xs_8",
+              "type": "number",
+              "isAlias": false,
+              "value": 8
+            },
+            {
+              "name": "margin/margin_s_12",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
+            },
+            {
+              "name": "margin/margin_m_16",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "margin/margin_l_24",
+              "type": "number",
+              "isAlias": false,
+              "value": 24
+            },
+            {
+              "name": "margin/margin_xl_32",
+              "type": "number",
+              "isAlias": false,
+              "value": 32
+            },
+            {
+              "name": "margin/margin_xxl_40",
+              "type": "number",
+              "isAlias": false,
+              "value": 40
+            },
+            {
+              "name": "margin/margin_xxxl_48",
+              "type": "number",
+              "isAlias": false,
+              "value": 48
+            },
+            {
+              "name": "size/8xl_64",
+              "type": "number",
+              "isAlias": false,
+              "value": 64
+            },
+            {
+              "name": "size/7xl_56",
+              "type": "number",
+              "isAlias": false,
+              "value": 56
+            },
+            {
+              "name": "size/6xl_48",
+              "type": "number",
+              "isAlias": false,
+              "value": 48
+            },
+            {
+              "name": "size/5xl_40",
+              "type": "number",
+              "isAlias": false,
+              "value": 40
+            },
+            {
+              "name": "size/4xl_36",
+              "type": "number",
+              "isAlias": false,
+              "value": 36
+            },
+            {
+              "name": "size/3xl_32",
+              "type": "number",
+              "isAlias": false,
+              "value": 32
+            },
+            {
+              "name": "size/xxl_28",
+              "type": "number",
+              "isAlias": false,
+              "value": 28
+            },
+            {
+              "name": "size/xl_24",
+              "type": "number",
+              "isAlias": false,
+              "value": 24
+            },
+            {
+              "name": "size/l_20",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "size/m_16",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "size/s_8",
+              "type": "number",
+              "isAlias": false,
+              "value": 8
+            },
+            {
+              "name": "size/xs_4",
+              "type": "number",
+              "isAlias": false,
+              "value": 4
+            },
+            {
+              "name": "size/none_0",
+              "type": "number",
+              "isAlias": false,
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "radius",
+      "modes": [
+        {
+          "name": "Default",
+          "variables": [
+            {
+              "name": "3_onlyForCheckbox",
+              "type": "number",
+              "isAlias": false,
+              "value": 3
+            },
+            {
+              "name": "xxs_4",
+              "type": "number",
+              "isAlias": false,
+              "value": 4
+            },
+            {
+              "name": "xs_6",
+              "type": "number",
+              "isAlias": false,
+              "value": 6
+            },
+            {
+              "name": "s_8",
+              "type": "number",
+              "isAlias": false,
+              "value": 8
+            },
+            {
+              "name": "m_12",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
+            },
+            {
+              "name": "l_16",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "xl_24",
+              "type": "number",
+              "isAlias": false,
+              "value": 24
+            },
+            {
+              "name": "xxl_36",
+              "type": "number",
+              "isAlias": false,
+              "value": 36
+            },
+            {
+              "name": "xxxl_48",
+              "type": "number",
+              "isAlias": false,
+              "value": 48
+            },
+            {
+              "name": "infinite_300",
+              "type": "number",
+              "isAlias": false,
+              "value": 300
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wording (comming soon)",
+      "modes": [
+        {
+          "name": "English",
+          "variables": [
+            {
+              "name": "Format/ExtraLight Italic",
+              "type": "string",
+              "isAlias": false,
+              "value": "String value"
+            },
+            {
+              "name": "Format/No Border",
+              "type": "string",
+              "isAlias": false,
+              "value": "No Border"
+            },
+            {
+              "name": "Format/Rounded Rectangle",
+              "type": "string",
+              "isAlias": false,
+              "value": "Rounded Rectangle"
+            },
+            {
+              "name": "Format/Dash-Dot-Dot Border",
+              "type": "string",
+              "isAlias": false,
+              "value": "Dash-Dot-Dot Border"
+            },
+            {
+              "name": "Format/Multi Branch Color",
+              "type": "string",
+              "isAlias": false,
+              "value": "Multi Branch Color"
+            },
+            {
+              "name": "Format/Enable Tapered Line",
+              "type": "string",
+              "isAlias": false,
+              "value": "Enable Tapered Line"
+            },
+            {
+              "name": "Format/Topic Shape",
+              "type": "string",
+              "isAlias": false,
+              "value": "Topic Shape"
+            },
+            {
+              "name": "Format/Fill Color",
+              "type": "string",
+              "isAlias": false,
+              "value": "Fill Color"
+            },
+            {
+              "name": "Format/Length",
+              "type": "string",
+              "isAlias": false,
+              "value": "Length"
+            },
+            {
+              "name": "Format/Text",
+              "type": "string",
+              "isAlias": false,
+              "value": "Text"
+            },
+            {
+              "name": "Format/Structure",
+              "type": "string",
+              "isAlias": false,
+              "value": "Structure"
+            },
+            {
+              "name": "Format/Branch",
+              "type": "string",
+              "isAlias": false,
+              "value": "Branch"
+            },
+            {
+              "name": "Format/Styles",
+              "type": "string",
+              "isAlias": false,
+              "value": "Styles"
+            },
+            {
+              "name": "Format/End",
+              "type": "string",
+              "isAlias": false,
+              "value": "End"
+            },
+            {
+              "name": "Format/Colorful",
+              "type": "string",
+              "isAlias": false,
+              "value": "Colorful"
+            },
+            {
+              "name": "Format/Classic",
+              "type": "string",
+              "isAlias": false,
+              "value": "Classic"
+            },
+            {
+              "name": "Format/Map",
+              "type": "string",
+              "isAlias": false,
+              "value": "Map"
+            },
+            {
+              "name": "Format/Marker",
+              "type": "string",
+              "isAlias": false,
+              "value": "Marker"
+            },
+            {
+              "name": "Format/Sticker",
+              "type": "string",
+              "isAlias": false,
+              "value": "Sticker"
+            },
+            {
+              "name": "Format/Illustration",
+              "type": "string",
+              "isAlias": false,
+              "value": "Illustration"
+            },
+            {
+              "name": "Map/Central Topic",
+              "type": "string",
+              "isAlias": false,
+              "value": "Central Topic"
+            },
+            {
+              "name": "Map/Main Topic 1",
+              "type": "string",
+              "isAlias": false,
+              "value": "Main Topic 1"
+            },
+            {
+              "name": "Map/CallOut",
+              "type": "string",
+              "isAlias": false,
+              "value": "CallOut"
+            },
+            {
+              "name": "Map/Reset Zoom",
+              "type": "string",
+              "isAlias": false,
+              "value": "Reset Zoom"
+            },
+            {
+              "name": "Map/Scale",
+              "type": "string",
+              "isAlias": false,
+              "value": "Scale"
+            },
+            {
+              "name": "Map/Possible Research Opportunities",
+              "type": "string",
+              "isAlias": false,
+              "value": "Possible Research Opportunities"
+            },
+            {
+              "name": "Map/Thesis Proposal",
+              "type": "string",
+              "isAlias": false,
+              "value": "Thesis Proposal"
+            },
+            {
+              "name": "Map/Topics:",
+              "type": "string",
+              "isAlias": false,
+              "value": "Topics:"
+            },
+            {
+              "name": "Share/Saving file from Xmind",
+              "type": "string",
+              "isAlias": false,
+              "value": "Saving file from Xmind"
+            },
+            {
+              "name": "Share/Export Image",
+              "type": "string",
+              "isAlias": false,
+              "value": "Export Image"
+            },
+            {
+              "name": "File/Find & Replace",
+              "type": "string",
+              "isAlias": false,
+              "value": "Find & Replace"
+            },
+            {
+              "name": "My Profile",
+              "type": "string",
+              "isAlias": false,
+              "value": "My Profile"
+            },
+            {
+              "name": "File/No matchs found",
+              "type": "string",
+              "isAlias": false,
+              "value": "No matchs found"
+            },
+            {
+              "name": "File/This file does not exist",
+              "type": "string",
+              "isAlias": false,
+              "value": "This file does not exist, it may have been deleted or in another account."
+            },
+            {
+              "name": "File/Outline",
+              "type": "string",
+              "isAlias": false,
+              "value": "Outline"
+            },
+            {
+              "name": "File/Notes",
+              "type": "string",
+              "isAlias": false,
+              "value": "Notes"
+            },
+            {
+              "name": "File/Tags",
+              "type": "string",
+              "isAlias": false,
+              "value": "Tags"
+            },
+            {
+              "name": "Action/Save to",
+              "type": "string",
+              "isAlias": false,
+              "value": "Save to"
+            },
+            {
+              "name": "Learn More",
+              "type": "string",
+              "isAlias": false,
+              "value": "Learn More"
+            },
+            {
+              "name": "Action/Save as",
+              "type": "string",
+              "isAlias": false,
+              "value": "Save as"
+            },
+            {
+              "name": "Action/Set Default",
+              "type": "string",
+              "isAlias": false,
+              "value": "Set Default"
+            },
+            {
+              "name": "Action/Switch to List View",
+              "type": "string",
+              "isAlias": false,
+              "value": "Switch to List View"
+            },
+            {
+              "name": "Action/Share To",
+              "type": "string",
+              "isAlias": false,
+              "value": "Share To"
+            },
+            {
+              "name": "Action/Show Tips",
+              "type": "string",
+              "isAlias": false,
+              "value": "Show Tips"
+            },
+            {
+              "name": "Action/Show Password Hint",
+              "type": "string",
+              "isAlias": false,
+              "value": "Show Password Hint"
+            },
+            {
+              "name": "Action/Activate",
+              "type": "string",
+              "isAlias": false,
+              "value": "Activate"
+            },
+            {
+              "name": "Action/Install Update",
+              "type": "string",
+              "isAlias": false,
+              "value": "Install Update"
+            },
+            {
+              "name": "Action/Get one",
+              "type": "string",
+              "isAlias": false,
+              "value": "Get one"
+            },
+            {
+              "name": "Action/Bind",
+              "type": "string",
+              "isAlias": false,
+              "value": "Bind"
+            },
+            {
+              "name": "Action/Subscribe Now",
+              "type": "string",
+              "isAlias": false,
+              "value": "Subscribe Now"
+            },
+            {
+              "name": "Action/Done",
+              "type": "string",
+              "isAlias": false,
+              "value": "Done"
+            },
+            {
+              "name": "Title/Set a password",
+              "type": "string",
+              "isAlias": false,
+              "value": "Set a password to protect this xmind file."
+            },
+            {
+              "name": "Title/Forgot password?",
+              "type": "string",
+              "isAlias": false,
+              "value": "Forgot password?"
+            },
+            {
+              "name": "Title/New Folder",
+              "type": "string",
+              "isAlias": false,
+              "value": "New Folder"
+            },
+            {
+              "name": "Title/Share mind maps to social",
+              "type": "string",
+              "isAlias": false,
+              "value": "Share mind maps to social and subscribe to full version."
+            },
+            {
+              "name": "Title/Warning",
+              "type": "string",
+              "isAlias": false,
+              "value": "Warning"
+            },
+            {
+              "name": "Title/Need to Adjust",
+              "type": "string",
+              "isAlias": false,
+              "value": "Need to Adjust Direction of Research?"
+            },
+            {
+              "name": "Copyright (C) XMIND LTD",
+              "type": "string",
+              "isAlias": false,
+              "value": "Copyright (C) XMIND LTD. All rights reserved."
+            },
+            {
+              "name": "Auto",
+              "type": "string",
+              "isAlias": false,
+              "value": "Auto"
+            },
+            {
+              "name": "Trial Version",
+              "type": "string",
+              "isAlias": false,
+              "value": "Trial Version"
+            },
+            {
+              "name": "Trial Ended",
+              "type": "string",
+              "isAlias": false,
+              "value": "Trial Ended"
+            },
+            {
+              "name": "Upgrade to Pro",
+              "type": "string",
+              "isAlias": false,
+              "value": "Upgrade to Pro"
+            }
+          ]
+        },
+        {
+          "name": "Spainish",
+          "variables": [
+            {
+              "name": "Format/ExtraLight Italic",
+              "type": "string",
+              "isAlias": false,
+              "value": "ExtraLight cursiva"
+            },
+            {
+              "name": "Format/No Border",
+              "type": "string",
+              "isAlias": false,
+              "value": "Sin borde"
+            },
+            {
+              "name": "Format/Rounded Rectangle",
+              "type": "string",
+              "isAlias": false,
+              "value": "Rectángulo redondeado"
+            },
+            {
+              "name": "Format/Dash-Dot-Dot Border",
+              "type": "string",
+              "isAlias": false,
+              "value": "Borde de raya-punto-punto"
+            },
+            {
+              "name": "Format/Multi Branch Color",
+              "type": "string",
+              "isAlias": false,
+              "value": "Color de múltiples ramificaciones"
+            },
+            {
+              "name": "Format/Enable Tapered Line",
+              "type": "string",
+              "isAlias": false,
+              "value": "Habilitar línea cónica"
+            },
+            {
+              "name": "Format/Topic Shape",
+              "type": "string",
+              "isAlias": false,
+              "value": "Forma de tema"
+            },
+            {
+              "name": "Format/Fill Color",
+              "type": "string",
+              "isAlias": false,
+              "value": "Color de relleno"
+            },
+            {
+              "name": "Format/Length",
+              "type": "string",
+              "isAlias": false,
+              "value": "Longitud"
+            },
+            {
+              "name": "Format/Text",
+              "type": "string",
+              "isAlias": false,
+              "value": "Texto"
+            },
+            {
+              "name": "Format/Structure",
+              "type": "string",
+              "isAlias": false,
+              "value": "Estructura"
+            },
+            {
+              "name": "Format/Branch",
+              "type": "string",
+              "isAlias": false,
+              "value": "Ramificación"
+            },
+            {
+              "name": "Format/Styles",
+              "type": "string",
+              "isAlias": false,
+              "value": "Límite"
+            },
+            {
+              "name": "Format/End",
+              "type": "string",
+              "isAlias": false,
+              "value": "Fin"
+            },
+            {
+              "name": "Format/Colorful",
+              "type": "string",
+              "isAlias": false,
+              "value": "Colorido"
+            },
+            {
+              "name": "Format/Classic",
+              "type": "string",
+              "isAlias": false,
+              "value": "Clásico"
+            },
+            {
+              "name": "Format/Map",
+              "type": "string",
+              "isAlias": false,
+              "value": "Mapa"
+            },
+            {
+              "name": "Format/Marker",
+              "type": "string",
+              "isAlias": false,
+              "value": "Marcador "
+            },
+            {
+              "name": "Format/Sticker",
+              "type": "string",
+              "isAlias": false,
+              "value": "Pegatina"
+            },
+            {
+              "name": "Format/Illustration",
+              "type": "string",
+              "isAlias": false,
+              "value": "Ilustración"
+            },
+            {
+              "name": "Map/Central Topic",
+              "type": "string",
+              "isAlias": false,
+              "value": "Tema central"
+            },
+            {
+              "name": "Map/Main Topic 1",
+              "type": "string",
+              "isAlias": false,
+              "value": "Tema principal 1"
+            },
+            {
+              "name": "Map/CallOut",
+              "type": "string",
+              "isAlias": false,
+              "value": "Globo"
+            },
+            {
+              "name": "Map/Reset Zoom",
+              "type": "string",
+              "isAlias": false,
+              "value": "Restablecer zoom"
+            },
+            {
+              "name": "Map/Scale",
+              "type": "string",
+              "isAlias": false,
+              "value": "Escala"
+            },
+            {
+              "name": "Map/Possible Research Opportunities",
+              "type": "string",
+              "isAlias": false,
+              "value": "Posibles oportunidades de investigación"
+            },
+            {
+              "name": "Map/Thesis Proposal",
+              "type": "string",
+              "isAlias": false,
+              "value": "Propuesta de tesis"
+            },
+            {
+              "name": "Map/Topics:",
+              "type": "string",
+              "isAlias": false,
+              "value": "Temas:"
+            },
+            {
+              "name": "Share/Saving file from Xmind",
+              "type": "string",
+              "isAlias": false,
+              "value": "Guardando archivo desde Xmind"
+            },
+            {
+              "name": "Share/Export Image",
+              "type": "string",
+              "isAlias": false,
+              "value": "Exportar imagen"
+            },
+            {
+              "name": "File/Find & Replace",
+              "type": "string",
+              "isAlias": false,
+              "value": "Encontrar y reemplazar"
+            },
+            {
+              "name": "My Profile",
+              "type": "string",
+              "isAlias": false,
+              "value": "Mi perfil"
+            },
+            {
+              "name": "File/No matchs found",
+              "type": "string",
+              "isAlias": false,
+              "value": "No se han encontrado coincidencias"
+            },
+            {
+              "name": "File/This file does not exist",
+              "type": "string",
+              "isAlias": false,
+              "value": "El archivo no existe. Puede que se haya eliminado o que pertenezca a otra cuenta."
+            },
+            {
+              "name": "File/Outline",
+              "type": "string",
+              "isAlias": false,
+              "value": "Esquema"
+            },
+            {
+              "name": "File/Notes",
+              "type": "string",
+              "isAlias": false,
+              "value": "Notas"
+            },
+            {
+              "name": "File/Tags",
+              "type": "string",
+              "isAlias": false,
+              "value": "Etiquetas"
+            },
+            {
+              "name": "Action/Save to",
+              "type": "string",
+              "isAlias": false,
+              "value": "Guardar en"
+            },
+            {
+              "name": "Learn More",
+              "type": "string",
+              "isAlias": false,
+              "value": "Más información"
+            },
+            {
+              "name": "Action/Save as",
+              "type": "string",
+              "isAlias": false,
+              "value": "Guardar como"
+            },
+            {
+              "name": "Action/Set Default",
+              "type": "string",
+              "isAlias": false,
+              "value": "Establecer predeterminado"
+            },
+            {
+              "name": "Action/Switch to List View",
+              "type": "string",
+              "isAlias": false,
+              "value": "Cambiar a vista de lista"
+            },
+            {
+              "name": "Action/Share To",
+              "type": "string",
+              "isAlias": false,
+              "value": "Compartir en"
+            },
+            {
+              "name": "Action/Show Tips",
+              "type": "string",
+              "isAlias": false,
+              "value": "Mostrar consejos"
+            },
+            {
+              "name": "Action/Show Password Hint",
+              "type": "string",
+              "isAlias": false,
+              "value": "Mostrar indicio de la contraseña"
+            },
+            {
+              "name": "Action/Activate",
+              "type": "string",
+              "isAlias": false,
+              "value": "Activar"
+            },
+            {
+              "name": "Action/Install Update",
+              "type": "string",
+              "isAlias": false,
+              "value": "Instalar actualización"
+            },
+            {
+              "name": "Action/Get one",
+              "type": "string",
+              "isAlias": false,
+              "value": "Obtener una"
+            },
+            {
+              "name": "Action/Bind",
+              "type": "string",
+              "isAlias": false,
+              "value": "Enlazar"
+            },
+            {
+              "name": "Action/Subscribe Now",
+              "type": "string",
+              "isAlias": false,
+              "value": "Suscribirse ahora"
+            },
+            {
+              "name": "Action/Done",
+              "type": "string",
+              "isAlias": false,
+              "value": "Hecho"
+            },
+            {
+              "name": "Title/Set a password",
+              "type": "string",
+              "isAlias": false,
+              "value": "Establezca una contraseña para proteger este archivo de Xmind."
+            },
+            {
+              "name": "Title/Forgot password?",
+              "type": "string",
+              "isAlias": false,
+              "value": "¿Ha olvidado la contraseña?"
+            },
+            {
+              "name": "Title/New Folder",
+              "type": "string",
+              "isAlias": false,
+              "value": "Nueva carpeta"
+            },
+            {
+              "name": "Title/Share mind maps to social",
+              "type": "string",
+              "isAlias": false,
+              "value": "Comparta mapas de ideas en las redes sociales y suscríbase para obtener la versión completa."
+            },
+            {
+              "name": "Title/Warning",
+              "type": "string",
+              "isAlias": false,
+              "value": "Aviso"
+            },
+            {
+              "name": "Title/Need to Adjust",
+              "type": "string",
+              "isAlias": false,
+              "value": "¿Necesita ajustar la dirección de la investigación?"
+            },
+            {
+              "name": "Copyright (C) XMIND LTD",
+              "type": "string",
+              "isAlias": false,
+              "value": "Copyright (C) XMIND LTD. Todos los derechos reservados."
+            },
+            {
+              "name": "Auto",
+              "type": "string",
+              "isAlias": false,
+              "value": "Automático"
+            },
+            {
+              "name": "Trial Version",
+              "type": "string",
+              "isAlias": false,
+              "value": "Versión de prueba"
+            },
+            {
+              "name": "Trial Ended",
+              "type": "string",
+              "isAlias": false,
+              "value": "Prueba finalizada"
+            },
+            {
+              "name": "Upgrade to Pro",
+              "type": "string",
+              "isAlias": false,
+              "value": "Actualizar a Pro"
+            }
+          ]
+        },
+        {
+          "name": "Russian",
+          "variables": [
+            {
+              "name": "Format/ExtraLight Italic",
+              "type": "string",
+              "isAlias": false,
+              "value": "Суперлегкий курсив"
+            },
+            {
+              "name": "Format/No Border",
+              "type": "string",
+              "isAlias": false,
+              "value": "Без границы"
+            },
+            {
+              "name": "Format/Rounded Rectangle",
+              "type": "string",
+              "isAlias": false,
+              "value": "Прямоугольник со скругленными углами"
+            },
+            {
+              "name": "Format/Dash-Dot-Dot Border",
+              "type": "string",
+              "isAlias": false,
+              "value": "Штрих-пунктир-пунктирная граница"
+            },
+            {
+              "name": "Format/Multi Branch Color",
+              "type": "string",
+              "isAlias": false,
+              "value": "Цвет для нескольких ответвлений"
+            },
+            {
+              "name": "Format/Enable Tapered Line",
+              "type": "string",
+              "isAlias": false,
+              "value": "Активировать сужающуюся линию"
+            },
+            {
+              "name": "Format/Topic Shape",
+              "type": "string",
+              "isAlias": false,
+              "value": "Вид темы"
+            },
+            {
+              "name": "Format/Fill Color",
+              "type": "string",
+              "isAlias": false,
+              "value": "Заливка цветом"
+            },
+            {
+              "name": "Format/Length",
+              "type": "string",
+              "isAlias": false,
+              "value": "Длина"
+            },
+            {
+              "name": "Format/Text",
+              "type": "string",
+              "isAlias": false,
+              "value": "текст"
+            },
+            {
+              "name": "Format/Structure",
+              "type": "string",
+              "isAlias": false,
+              "value": "Компании"
+            },
+            {
+              "name": "Format/Branch",
+              "type": "string",
+              "isAlias": false,
+              "value": "Ответвлени"
+            },
+            {
+              "name": "Format/Styles",
+              "type": "string",
+              "isAlias": false,
+              "value": "границ"
+            },
+            {
+              "name": "Format/End",
+              "type": "string",
+              "isAlias": false,
+              "value": "Конец"
+            },
+            {
+              "name": "Format/Colorful",
+              "type": "string",
+              "isAlias": false,
+              "value": "Цветная"
+            },
+            {
+              "name": "Format/Classic",
+              "type": "string",
+              "isAlias": false,
+              "value": "Классика"
+            },
+            {
+              "name": "Format/Map",
+              "type": "string",
+              "isAlias": false,
+              "value": "Карта"
+            },
+            {
+              "name": "Format/Marker",
+              "type": "string",
+              "isAlias": false,
+              "value": "Mаркер"
+            },
+            {
+              "name": "Format/Sticker",
+              "type": "string",
+              "isAlias": false,
+              "value": "Kолючкаа"
+            },
+            {
+              "name": "Format/Illustration",
+              "type": "string",
+              "isAlias": false,
+              "value": "Иллюстрация"
+            },
+            {
+              "name": "Map/Central Topic",
+              "type": "string",
+              "isAlias": false,
+              "value": "Центральная тема"
+            },
+            {
+              "name": "Map/Main Topic 1",
+              "type": "string",
+              "isAlias": false,
+              "value": "Основная тема 1"
+            },
+            {
+              "name": "Map/CallOut",
+              "type": "string",
+              "isAlias": false,
+              "value": "Выноска"
+            },
+            {
+              "name": "Map/Reset Zoom",
+              "type": "string",
+              "isAlias": false,
+              "value": "Сбросить настройки масштаба"
+            },
+            {
+              "name": "Map/Scale",
+              "type": "string",
+              "isAlias": false,
+              "value": "Масштаб"
+            },
+            {
+              "name": "Map/Possible Research Opportunities",
+              "type": "string",
+              "isAlias": false,
+              "value": "Возможности для исследований"
+            },
+            {
+              "name": "Map/Thesis Proposal",
+              "type": "string",
+              "isAlias": false,
+              "value": "План диссертации"
+            },
+            {
+              "name": "Map/Topics:",
+              "type": "string",
+              "isAlias": false,
+              "value": "Темы:"
+            },
+            {
+              "name": "Share/Saving file from Xmind",
+              "type": "string",
+              "isAlias": false,
+              "value": "Сохранение файла, полученного от Xmind"
+            },
+            {
+              "name": "Share/Export Image",
+              "type": "string",
+              "isAlias": false,
+              "value": "Экспорт изображения"
+            },
+            {
+              "name": "File/Find & Replace",
+              "type": "string",
+              "isAlias": false,
+              "value": "Поиск и замена"
+            },
+            {
+              "name": "My Profile",
+              "type": "string",
+              "isAlias": false,
+              "value": "Мой профиль"
+            },
+            {
+              "name": "File/No matchs found",
+              "type": "string",
+              "isAlias": false,
+              "value": "Совпадения не найдены"
+            },
+            {
+              "name": "File/This file does not exist",
+              "type": "string",
+              "isAlias": false,
+              "value": "Файл не существует. Возможно, он был удален или относится к другой учетной записи."
+            },
+            {
+              "name": "File/Outline",
+              "type": "string",
+              "isAlias": false,
+              "value": "Схема"
+            },
+            {
+              "name": "File/Notes",
+              "type": "string",
+              "isAlias": false,
+              "value": "Заметки\t"
+            },
+            {
+              "name": "File/Tags",
+              "type": "string",
+              "isAlias": false,
+              "value": " Теги"
+            },
+            {
+              "name": "Action/Save to",
+              "type": "string",
+              "isAlias": false,
+              "value": "Сохранить в"
+            },
+            {
+              "name": "Learn More",
+              "type": "string",
+              "isAlias": false,
+              "value": "Подробнее"
+            },
+            {
+              "name": "Action/Save as",
+              "type": "string",
+              "isAlias": false,
+              "value": "Сохранить как"
+            },
+            {
+              "name": "Action/Set Default",
+              "type": "string",
+              "isAlias": false,
+              "value": "Установить значение по умолчанию"
+            },
+            {
+              "name": "Action/Switch to List View",
+              "type": "string",
+              "isAlias": false,
+              "value": "Переключиться на представление в виде списка"
+            },
+            {
+              "name": "Action/Share To",
+              "type": "string",
+              "isAlias": false,
+              "value": "Поделиться в"
+            },
+            {
+              "name": "Action/Show Tips",
+              "type": "string",
+              "isAlias": false,
+              "value": "Показывать подсказки"
+            },
+            {
+              "name": "Action/Show Password Hint",
+              "type": "string",
+              "isAlias": false,
+              "value": "Показать подсказку для пароля"
+            },
+            {
+              "name": "Action/Activate",
+              "type": "string",
+              "isAlias": false,
+              "value": "активировать"
+            },
+            {
+              "name": "Action/Install Update",
+              "type": "string",
+              "isAlias": false,
+              "value": "Установить обновление"
+            },
+            {
+              "name": "Action/Get one",
+              "type": "string",
+              "isAlias": false,
+              "value": "Получить ключ"
+            },
+            {
+              "name": "Action/Bind",
+              "type": "string",
+              "isAlias": false,
+              "value": "Привязать"
+            },
+            {
+              "name": "Action/Subscribe Now",
+              "type": "string",
+              "isAlias": false,
+              "value": "Подписаться"
+            },
+            {
+              "name": "Action/Done",
+              "type": "string",
+              "isAlias": false,
+              "value": "Готово"
+            },
+            {
+              "name": "Title/Set a password",
+              "type": "string",
+              "isAlias": false,
+              "value": "Установите пароль для защиты этого файла Xmind."
+            },
+            {
+              "name": "Title/Forgot password?",
+              "type": "string",
+              "isAlias": false,
+              "value": "Забыли пароль?"
+            },
+            {
+              "name": "Title/New Folder",
+              "type": "string",
+              "isAlias": false,
+              "value": "Новая папка"
+            },
+            {
+              "name": "Title/Share mind maps to social",
+              "type": "string",
+              "isAlias": false,
+              "value": "Публикуйте интеллект-карты в социальных сетях и оформите подписку на полнофункциональную версию программы."
+            },
+            {
+              "name": "Title/Warning",
+              "type": "string",
+              "isAlias": false,
+              "value": "Предупреждение"
+            },
+            {
+              "name": "Title/Need to Adjust",
+              "type": "string",
+              "isAlias": false,
+              "value": "Необходимо ли скорректировать направление исследований?"
+            },
+            {
+              "name": "Copyright (C) XMIND LTD",
+              "type": "string",
+              "isAlias": false,
+              "value": "(C) XMIND LTD. Все права защищены."
+            },
+            {
+              "name": "Auto",
+              "type": "string",
+              "isAlias": false,
+              "value": "Авто"
+            },
+            {
+              "name": "Trial Version",
+              "type": "string",
+              "isAlias": false,
+              "value": "Пробная версия"
+            },
+            {
+              "name": "Trial Ended",
+              "type": "string",
+              "isAlias": false,
+              "value": "Период пробного использования завершен"
+            },
+            {
+              "name": "Upgrade to Pro",
+              "type": "string",
+              "isAlias": false,
+              "value": "Обновить до Pro"
+            }
+          ]
+        },
+        {
+          "name": "Korean",
+          "variables": [
+            {
+              "name": "Format/ExtraLight Italic",
+              "type": "string",
+              "isAlias": false,
+              "value": "매우 가늘게 기울임꼴"
+            },
+            {
+              "name": "Format/No Border",
+              "type": "string",
+              "isAlias": false,
+              "value": "테두리 없음"
+            },
+            {
+              "name": "Format/Rounded Rectangle",
+              "type": "string",
+              "isAlias": false,
+              "value": "둥근 직사각형"
+            },
+            {
+              "name": "Format/Dash-Dot-Dot Border",
+              "type": "string",
+              "isAlias": false,
+              "value": "이점 쇄선 테두리"
+            },
+            {
+              "name": "Format/Multi Branch Color",
+              "type": "string",
+              "isAlias": false,
+              "value": "다중 분기 색"
+            },
+            {
+              "name": "Format/Enable Tapered Line",
+              "type": "string",
+              "isAlias": false,
+              "value": "점점 가늘어지는 선 사용"
+            },
+            {
+              "name": "Format/Topic Shape",
+              "type": "string",
+              "isAlias": false,
+              "value": "주제 모양"
+            },
+            {
+              "name": "Format/Fill Color",
+              "type": "string",
+              "isAlias": false,
+              "value": "채우기 색"
+            },
+            {
+              "name": "Format/Length",
+              "type": "string",
+              "isAlias": false,
+              "value": "길이"
+            },
+            {
+              "name": "Format/Text",
+              "type": "string",
+              "isAlias": false,
+              "value": "스트"
+            },
+            {
+              "name": "Format/Structure",
+              "type": "string",
+              "isAlias": false,
+              "value": "자본 비용"
+            },
+            {
+              "name": "Format/Branch",
+              "type": "string",
+              "isAlias": false,
+              "value": "분기 내보내기 대상"
+            },
+            {
+              "name": "Format/Styles",
+              "type": "string",
+              "isAlias": false,
+              "value": "스타일"
+            },
+            {
+              "name": "Format/End",
+              "type": "string",
+              "isAlias": false,
+              "value": "끝"
+            },
+            {
+              "name": "Format/Colorful",
+              "type": "string",
+              "isAlias": false,
+              "value": "다채로움"
+            },
+            {
+              "name": "Format/Classic",
+              "type": "string",
+              "isAlias": false,
+              "value": "클래식"
+            },
+            {
+              "name": "Format/Map",
+              "type": "string",
+              "isAlias": false,
+              "value": "맵"
+            },
+            {
+              "name": "Format/Marker",
+              "type": "string",
+              "isAlias": false,
+              "value": "마커"
+            },
+            {
+              "name": "Format/Sticker",
+              "type": "string",
+              "isAlias": false,
+              "value": " 상표"
+            },
+            {
+              "name": "Format/Illustration",
+              "type": "string",
+              "isAlias": false,
+              "value": "삽화"
+            },
+            {
+              "name": "Map/Central Topic",
+              "type": "string",
+              "isAlias": false,
+              "value": "중심 주제"
+            },
+            {
+              "name": "Map/Main Topic 1",
+              "type": "string",
+              "isAlias": false,
+              "value": "주요 주제 1"
+            },
+            {
+              "name": "Map/CallOut",
+              "type": "string",
+              "isAlias": false,
+              "value": "설명선"
+            },
+            {
+              "name": "Map/Reset Zoom",
+              "type": "string",
+              "isAlias": false,
+              "value": "축소 초기화"
+            },
+            {
+              "name": "Map/Scale",
+              "type": "string",
+              "isAlias": false,
+              "value": "배율"
+            },
+            {
+              "name": "Map/Possible Research Opportunities",
+              "type": "string",
+              "isAlias": false,
+              "value": "가능한 연구 기회"
+            },
+            {
+              "name": "Map/Thesis Proposal",
+              "type": "string",
+              "isAlias": false,
+              "value": "논문 제안"
+            },
+            {
+              "name": "Map/Topics:",
+              "type": "string",
+              "isAlias": false,
+              "value": "주제:"
+            },
+            {
+              "name": "Share/Saving file from Xmind",
+              "type": "string",
+              "isAlias": false,
+              "value": "Xmind에서 파일 저장 중"
+            },
+            {
+              "name": "Share/Export Image",
+              "type": "string",
+              "isAlias": false,
+              "value": "이미지 내보내기"
+            },
+            {
+              "name": "File/Find & Replace",
+              "type": "string",
+              "isAlias": false,
+              "value": "찾기 및 바꾸기"
+            },
+            {
+              "name": "My Profile",
+              "type": "string",
+              "isAlias": false,
+              "value": "내 프로필"
+            },
+            {
+              "name": "File/No matchs found",
+              "type": "string",
+              "isAlias": false,
+              "value": "일치 항목이 없습니다."
+            },
+            {
+              "name": "File/This file does not exist",
+              "type": "string",
+              "isAlias": false,
+              "value": "이 파일이 존재하지 않으며 삭제되었거나 다른 계정에 있을 수 있습니다."
+            },
+            {
+              "name": "File/Outline",
+              "type": "string",
+              "isAlias": false,
+              "value": "개요"
+            },
+            {
+              "name": "File/Notes",
+              "type": "string",
+              "isAlias": false,
+              "value": "메모"
+            },
+            {
+              "name": "File/Tags",
+              "type": "string",
+              "isAlias": false,
+              "value": " 태그"
+            },
+            {
+              "name": "Action/Save to",
+              "type": "string",
+              "isAlias": false,
+              "value": "저장 위치"
+            },
+            {
+              "name": "Learn More",
+              "type": "string",
+              "isAlias": false,
+              "value": "자세한 내용"
+            },
+            {
+              "name": "Action/Save as",
+              "type": "string",
+              "isAlias": false,
+              "value": "다른 이름으로 저장"
+            },
+            {
+              "name": "Action/Set Default",
+              "type": "string",
+              "isAlias": false,
+              "value": "기본값으로 설정"
+            },
+            {
+              "name": "Action/Switch to List View",
+              "type": "string",
+              "isAlias": false,
+              "value": "목록 보기로 전환"
+            },
+            {
+              "name": "Action/Share To",
+              "type": "string",
+              "isAlias": false,
+              "value": "공유 대상"
+            },
+            {
+              "name": "Action/Show Tips",
+              "type": "string",
+              "isAlias": false,
+              "value": "팁 표시"
+            },
+            {
+              "name": "Action/Show Password Hint",
+              "type": "string",
+              "isAlias": false,
+              "value": "암호 힌트 표시"
+            },
+            {
+              "name": "Action/Activate",
+              "type": "string",
+              "isAlias": false,
+              "value": "활성화"
+            },
+            {
+              "name": "Action/Install Update",
+              "type": "string",
+              "isAlias": false,
+              "value": "업데이트 설치"
+            },
+            {
+              "name": "Action/Get one",
+              "type": "string",
+              "isAlias": false,
+              "value": "라이선스 키 얻기"
+            },
+            {
+              "name": "Action/Bind",
+              "type": "string",
+              "isAlias": false,
+              "value": "연결"
+            },
+            {
+              "name": "Action/Subscribe Now",
+              "type": "string",
+              "isAlias": false,
+              "value": "지금 구독"
+            },
+            {
+              "name": "Action/Done",
+              "type": "string",
+              "isAlias": false,
+              "value": "완료"
+            },
+            {
+              "name": "Title/Set a password",
+              "type": "string",
+              "isAlias": false,
+              "value": "이 Xmind 파일을 보호하기 위해 암호를 설정합니다."
+            },
+            {
+              "name": "Title/Forgot password?",
+              "type": "string",
+              "isAlias": false,
+              "value": "암호가 생각나지 않으세요?"
+            },
+            {
+              "name": "Title/New Folder",
+              "type": "string",
+              "isAlias": false,
+              "value": "새 폴더"
+            },
+            {
+              "name": "Title/Share mind maps to social",
+              "type": "string",
+              "isAlias": false,
+              "value": "마인드맵을 소셜 미디어에 공유하고 전체 버전을 구독하세요."
+            },
+            {
+              "name": "Title/Warning",
+              "type": "string",
+              "isAlias": false,
+              "value": "경고"
+            },
+            {
+              "name": "Title/Need to Adjust",
+              "type": "string",
+              "isAlias": false,
+              "value": "연구 방향 조정이 필요하십니까?"
+            },
+            {
+              "name": "Copyright (C) XMIND LTD",
+              "type": "string",
+              "isAlias": false,
+              "value": "Copyright (C) XMIND LTD. All rights reserved."
+            },
+            {
+              "name": "Auto",
+              "type": "string",
+              "isAlias": false,
+              "value": "자동"
+            },
+            {
+              "name": "Trial Version",
+              "type": "string",
+              "isAlias": false,
+              "value": "평가판"
+            },
+            {
+              "name": "Trial Ended",
+              "type": "string",
+              "isAlias": false,
+              "value": "평가판 만료"
+            },
+            {
+              "name": "Upgrade to Pro",
+              "type": "string",
+              "isAlias": false,
+              "value": "프로로 PPgrade"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Typography",
+      "modes": [
+        {
+          "name": "Style",
+          "variables": [
+            {
+              "name": "Interface Desktop/Headline/Headline Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Headline/Headline Medium",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 24,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 28,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Headline/Headline Small",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 21,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 27,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Subhead/Subhead Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 19,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 25,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Subhead/Subhead Medium",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 23,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 2,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Subhead/Subhead Small",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 19,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 2,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Subhead/Subhead Mini",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "DemiBold",
+                "lineHeight": 17,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 2,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Body/Body Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 14,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 18,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Body/Body Medium",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 17,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Body/Body Small",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 12,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 16,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Caption/Header",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 12,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 16,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Caption/Footer",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 17,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Caption/Caption",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 11,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 15,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Desktop/Caption/Caption Small",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 10,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 14,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Headline/Headline Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 34,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 40,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Headline/Headline Medium",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Headline/Headline Small",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 24,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 28,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Subhead/Subhead Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 21,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 27,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Subhead/Subhead Medium",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 19,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 25,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Subhead/Subhead Small",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 23,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 2,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Subhead/Subhead Mini",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 2,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Body/Body Large(Default)",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Body/Body Medium",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 19,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Body/Body Small",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 17,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Cpation/Header",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 17,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Cpation/Footer",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 17,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Cpation/Caption",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 12,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 16,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Interface Mobile/Cpation/Caption Small",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 11,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 15,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H1/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 32,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 120.00000476837158,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H1/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 125,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H2/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 24,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 129.99999523162842,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H2/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 22,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 129.99999523162842,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H3/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 139.9999976158142,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H3/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 18,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 135.0000023841858,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H4/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 150,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H4/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 145.00000476837158,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 2,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H5/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 14,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 150,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H5/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 14,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 145.00000476837158,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 2,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H6/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 150,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/H6/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 145.00000476837158,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Paragraph/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 160.0000023841858,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Paragraph/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 170.00000476837158,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Caption/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 150,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Caption/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 145.00000476837158,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Strong/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 160.0000023841858,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Strong/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Bold",
+                "lineHeight": 170.00000476837158,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Code block/Large",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 14,
+                "fontFamily": "Fira Code",
+                "fontWeight": "Retina",
+                "lineHeight": 150,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Code block/Default",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "Fira Code",
+                "fontWeight": "Retina",
+                "lineHeight": 145.00000476837158,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Horizontal rule/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 150,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Markdown/Horizontal rule/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind UI",
+                "fontWeight": "Regular",
+                "lineHeight": 145.00000476837158,
+                "lineHeightUnit": "PERCENT",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Hero/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 120,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 128,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Hero/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 86,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 94,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Hero/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 80,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 88,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Large/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 96,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 102,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Large/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 80,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 86,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Large/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 52,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 58,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Medium/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 80,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 86,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Medium/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 68,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 74,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Medium/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 40,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 46,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Small/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 64,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 70,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Small/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 52,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 58,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Headline/Headline Small/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 32,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 38,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Subhead/Subhead Large/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 52,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 58,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Subhead/Subhead Large/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 44,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 50,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Subhead/Subhead Large/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Subhead/Subhead Medium/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 42,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 48,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Subhead/Subhead Medium/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 36,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 42,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Subhead/Subhead Medium/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 24,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 30,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 2,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Subhead/Subhead Small/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 34,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 40,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Subhead/Subhead Small/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Display Subhead/Subhead Small/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 26,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 2,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Section Headline/Headline Large/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Bold",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Section Headline/Headline Large/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 24,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 30,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Section Headline/Headline Large/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Bold",
+                "lineHeight": 23,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Section Headline/Headline Medium/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 24,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 30,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Section Headline/Headline Medium/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 26,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Section Headline/Headline Medium/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Bold",
+                "lineHeight": 26,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Section Headline/Headline Small/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "NeverMind",
+                "fontWeight": "Bold",
+                "lineHeight": 26,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Section Headline/Headline Small/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Bold",
+                "lineHeight": 26,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Section Headline/Headline Small/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Bold",
+                "lineHeight": 26,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 1,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Body/Body Large/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 24,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "DemiBold",
+                "lineHeight": 30,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 3,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Body/Body Large/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 21,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "DemiBold",
+                "lineHeight": 27,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Body/Body Large/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "DemiBold",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Body/Body Medium/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 21,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "DemiBold",
+                "lineHeight": 27,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 3,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Body/Body Medium/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "DemiBold",
+                "lineHeight": 23,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 3,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Body/Body Medium/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "DemiBold",
+                "lineHeight": 23,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Body/Body Small/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "DemiBold",
+                "lineHeight": 23,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Body/Body Small/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "DemiBold",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Body/Body Small/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "DemiBold",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Caption/Caption/Desktop",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Regular",
+                "lineHeight": 23,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Caption/Caption/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Regular",
+                "lineHeight": 19,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Caption/Caption/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Regular",
+                "lineHeight": 19,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Caption/Caption Small/Caption Small",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Regular",
+                "lineHeight": 19,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Caption/Caption Small/Pad",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Regular",
+                "lineHeight": 17,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "Web Expressive/Caption/Caption Small/Mobile",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "NeverMind SemiCondensed",
+                "fontWeight": "Regular",
+                "lineHeight": 17,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 4,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

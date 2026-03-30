@@ -1,0 +1,10 @@
+{
+  "name": "@xmind-ui/components",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@xmind-ui/tokens": "workspace:*",
+    "reka-ui": "^2.9.2"
+  }
+}
