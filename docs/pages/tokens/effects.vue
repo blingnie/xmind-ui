@@ -94,7 +94,7 @@ async function copy(level: string, elevation: any) {
   color: #5b8fc7;
 }
 
-[data-theme="dark"] .code-block :deep(.syntax-property) {
+:global([data-theme="dark"]) .code-block :deep(.syntax-property) {
   color: #7ca9d8;
 }
 
@@ -103,7 +103,7 @@ async function copy(level: string, elevation: any) {
   color: #9d7cb3;
 }
 
-[data-theme="dark"] .code-block :deep(.syntax-function) {
+:global([data-theme="dark"]) .code-block :deep(.syntax-function) {
   color: #b99bcf;
 }
 
@@ -112,7 +112,7 @@ async function copy(level: string, elevation: any) {
   color: #c88955;
 }
 
-[data-theme="dark"] .code-block :deep(.syntax-number) {
+:global([data-theme="dark"]) .code-block :deep(.syntax-number) {
   color: #d9a673;
 }
 
