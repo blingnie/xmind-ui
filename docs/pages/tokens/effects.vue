@@ -89,24 +89,41 @@ async function copy(level: string, elevation: any) {
   color: var(--color-text-secondary);
 }
 
+/* 属性名 - 柔和的蓝色 */
 .code-block :deep(.syntax-property) {
-  color: var(--color-text-primary);
+  color: #5b8fc7;
 }
 
+[data-theme="dark"] .code-block :deep(.syntax-property) {
+  color: #7ca9d8;
+}
+
+/* 函数名 - 柔和的紫色 */
 .code-block :deep(.syntax-function) {
-  color: var(--color-text-primary);
+  color: #9d7cb3;
 }
 
+[data-theme="dark"] .code-block :deep(.syntax-function) {
+  color: #b99bcf;
+}
+
+/* 数值 - 柔和的橙色 */
 .code-block :deep(.syntax-number) {
-  color: var(--color-text-tertiary);
+  color: #c88955;
 }
 
+[data-theme="dark"] .code-block :deep(.syntax-number) {
+  color: #d9a673;
+}
+
+/* 单位 - 次要文本色 */
 .code-block :deep(.syntax-unit) {
   color: var(--color-text-tertiary);
 }
 
+/* 标点符号 - 最弱化 */
 .code-block :deep(.syntax-punctuation) {
   color: var(--color-text-tertiary);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 </style>
