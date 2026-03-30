@@ -12,14 +12,14 @@ definePageMeta({ layout: 'default' })
     <div class="grid grid-cols-2 gap-3">
       <NuxtLink
         to="/tokens/colors"
-        class="p-4 rounded-xl border border-[var(--color-border-translucent)] hover:shadow-[var(--shadow-l2)] transition-shadow"
+        class="p-4 rounded-xl border border-[var(--color-border-translucent)] bg-[var(--color-fill-surfacebright)] hover:shadow-[var(--shadow-l2)] transition-shadow"
       >
         <p class="text-sm font-medium mb-1">Foundation</p>
         <p class="text-xs text-[var(--color-text-tertiary)]">色板、字体、间距、圆角</p>
       </NuxtLink>
       <NuxtLink
         to="/components/button"
-        class="p-4 rounded-xl border border-[var(--color-border-translucent)] hover:shadow-[var(--shadow-l2)] transition-shadow"
+        class="p-4 rounded-xl border border-[var(--color-border-translucent)] bg-[var(--color-fill-surfacebright)] hover:shadow-[var(--shadow-l2)] transition-shadow"
       >
         <p class="text-sm font-medium mb-1">Components</p>
         <p class="text-xs text-[var(--color-text-tertiary)]">可复用 UI 组件</p>
