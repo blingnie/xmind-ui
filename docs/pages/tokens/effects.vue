@@ -95,12 +95,17 @@ async function copy(level: string, elevation: any) {
 }
 
 .code-block::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--color-fill-surfacedim);
 }
 
 .code-block::-webkit-scrollbar-thumb {
-  background: var(--color-fill-tertiary);
+  background: transparent;
   border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.code-block:hover::-webkit-scrollbar-thumb {
+  background: var(--color-fill-tertiary);
 }
 
 .code-block::-webkit-scrollbar-thumb:hover {
