@@ -1,48 +1,69 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
-const { getEffectTokens } = useTokens()
-const lightTokens = getEffectTokens('Light')
-const darkTokens = getEffectTokens('Dark')
-const activeMode = ref('Light')
-const groups = computed(() => {
-  const tokens = activeMode.value === 'Light' ? lightTokens : darkTokens
-  const map = new Map()
-  for (const t of tokens) {
-    const group = t.name.split('/')[0]
-    if (!map.has(group)) map.set(group, [])
-    map.get(group).push(t)
-  }
-  return Array.from(map.entries()).map(([group, items]) => ({ group, items }))
-})
+const { getElevations } = useTokens()
+const elevations = getElevations()
+const activeMode = ref<'Light' | 'Dark'>('Light')
 const copied = ref('')
-async function copy(text) {
+async function copy(text: string) {
   await navigator.clipboard.writeText(text)
   copied.value = text
   setTimeout(() => { copied.value = '' }, 1200)
 }
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-}
 </script>
 <template>
-  <div class="px-10 py-8 max-w-3xl">
+  <div class="px-10 py-8 max-w-6xl">
     <div class="flex items-center justify-between mb-1">
-      <h1 class="text-xl font-semibold">Effects</h1>
+      <h1 class="text-xl font-semibold">Elevation</h1>
       <div class="flex gap-1">
         <button v-for="m in ['Light', 'Dark']" :key="m" class="px-3 py-1 text-xs rounded-lg transition-colors" :class="activeMode === m ? 'bg-[var(--color-fill-brand)] text-[var(--color-text-invert)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-fill-secondary)]'" @click="activeMode = m">{{ m }}</button>
       </div>
     </div>
-    <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Visual effect tokens including shadows and blur parameters for depth and layering. Values adapt to the active theme mode.</p>
-    <div v-for="{ group, items } in groups" :key="group" class="mb-8">
-      <p class="text-xs font-medium text-[var(--color-text-tertiary)] tracking-wider mb-2">{{ capitalize(group) }}</p>
-      <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden divide-y divide-[var(--color-border-translucent)]">
-        <div v-for="token in items" :key="token.varName" class="flex items-center gap-4 px-4 py-2.5 hover:bg-[var(--color-fill-secondary)] transition-colors">
-          <div v-if="token.type === 'color'" class="w-6 h-6 rounded-md border border-[var(--color-border-translucent)] shrink-0" :style="{ background: `var(${token.varName})` }" />
-          <span v-else class="w-6 h-6 flex items-center justify-center text-[10px] font-mono text-[var(--color-text-tertiary)] shrink-0">{{ token.value }}</span>
-          <span class="text-sm text-[var(--color-text-secondary)] flex-1">{{ token.name }}</span>
-          <button class="text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]" @click="copy(`var(${token.varName})`)">
-            {{ copied === `var(${token.varName})` ? '✓ copied' : token.varName }}
-          </button>
+    <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Elevation tokens define shadow and blur effects to create depth hierarchy across UI layers. Each level corresponds to specific component types and interaction states.</p>
+
+    <div class="space-y-6">
+      <div v-for="elevation in elevations" :key="elevation.level" class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden">
+        <!-- Header -->
+        <div class="bg-[var(--color-fill-secondary)] px-4 py-3 border-b border-[var(--color-border-translucent)]">
+          <div class="flex items-center gap-3">
+            <span class="text-sm font-semibold font-mono">{{ elevation.level }}</span>
+            <span class="text-xs text-[var(--color-text-tertiary)]">{{ elevation.description }}</span>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-6 space-y-4">
+          <!-- Preview -->
+          <div class="flex items-center justify-center p-8 rounded-lg bg-[var(--color-fill-tertiary)]">
+            <div
+              class="w-32 h-32 rounded-lg bg-[var(--color-fill-primary)]"
+              :style="{
+                boxShadow: activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow,
+                backdropFilter: activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter
+              }"
+            />
+          </div>
+
+          <!-- Properties -->
+          <div class="space-y-2">
+            <div class="flex items-start gap-4">
+              <span class="text-xs font-medium text-[var(--color-text-tertiary)] w-32 shrink-0 pt-1">box-shadow:</span>
+              <button
+                class="flex-1 text-xs font-mono text-left text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors break-all"
+                @click="copy(activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow)"
+              >
+                {{ copied === (activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow) ? '✓ copied' : (activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow) }}
+              </button>
+            </div>
+            <div v-if="(activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter)" class="flex items-start gap-4">
+              <span class="text-xs font-medium text-[var(--color-text-tertiary)] w-32 shrink-0 pt-1">backdrop-filter:</span>
+              <button
+                class="flex-1 text-xs font-mono text-left text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+                @click="copy(activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter)"
+              >
+                {{ copied === (activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter) ? '✓ copied' : (activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter) }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

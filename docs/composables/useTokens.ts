@@ -1,5 +1,6 @@
 import foundationRaw from '@xmind-ui/tokens/foundation.json'
 import variablesRaw from '@xmind-ui/tokens/component.json'
+import elevationRaw from '@xmind-ui/tokens/elevation.json'
 
 function nameToVar(name: string) {
   return name.replace(/\//g, '-').replace(/ /g, '-').replace(/_/g, '-').toLowerCase()
@@ -58,6 +59,19 @@ export interface EffectToken {
   varName: string
   value: string
   type: 'color' | 'number'
+}
+
+export interface ElevationToken {
+  level: string
+  description: string
+  light: {
+    boxShadow: string
+    backdropFilter: string
+  }
+  dark: {
+    boxShadow: string
+    backdropFilter: string
+  }
 }
 
 // ── Helpers ──────────────────────────────────────────
@@ -183,6 +197,11 @@ export function useTokens() {
       })
   }
 
+  // Elevation tokens
+  function getElevations(): ElevationToken[] {
+    return elevationRaw.elevations as ElevationToken[]
+  }
+
   return {
     getColorGroups,
     getAliasTokens,
@@ -190,5 +209,6 @@ export function useTokens() {
     getRadiusTokens,
     getTypoGroups,
     getEffectTokens,
+    getElevations,
   }
 }

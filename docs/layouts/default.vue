@@ -9,7 +9,7 @@ const nav = [
       { label: 'Typography', to: '/tokens/typography' },
       { label: 'Spacing', to: '/tokens/spacing' },
       { label: 'Radius', to: '/tokens/radius' },
-      { label: 'Effects', to: '/tokens/effects' },
+      { label: 'Elevation', to: '/tokens/effects' },
     ],
   },
   {
