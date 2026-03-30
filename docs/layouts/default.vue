@@ -37,7 +37,7 @@ const nav = [
       <!-- Nav -->
       <nav class="flex-1 overflow-y-auto py-4 px-3">
         <div v-for="section in nav" :key="section.group" class="mb-5">
-          <p class="text-xs font-medium text-[var(--color-text-tertiary)] px-2 mb-1 uppercase tracking-wider">
+          <p class="text-xs font-medium text-[var(--color-text-tertiary)] px-2 mb-1 tracking-wider">
             {{ section.group }}
           </p>
           <ul>

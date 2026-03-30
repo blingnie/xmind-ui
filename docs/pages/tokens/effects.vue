@@ -20,6 +20,9 @@ async function copy(text) {
   copied.value = text
   setTimeout(() => { copied.value = '' }, 1200)
 }
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+}
 </script>
 <template>
   <div class="px-10 py-8 max-w-3xl">
@@ -31,7 +34,7 @@ async function copy(text) {
     </div>
     <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Visual effect tokens including shadows and blur parameters for depth and layering. Values adapt to the active theme mode.</p>
     <div v-for="{ group, items } in groups" :key="group" class="mb-8">
-      <p class="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-wider mb-2">{{ group }}</p>
+      <p class="text-xs font-medium text-[var(--color-text-tertiary)] tracking-wider mb-2">{{ capitalize(group) }}</p>
       <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden divide-y divide-[var(--color-border-translucent)]">
         <div v-for="token in items" :key="token.varName" class="flex items-center gap-4 px-4 py-2.5 hover:bg-[var(--color-fill-secondary)] transition-colors">
           <div v-if="token.type === 'color'" class="w-6 h-6 rounded-md border border-[var(--color-border-translucent)] shrink-0" :style="{ background: `var(${token.varName})` }" />
