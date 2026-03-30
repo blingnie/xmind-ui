@@ -4,11 +4,22 @@ const { getElevations } = useTokens()
 const elevations = getElevations()
 const { theme } = inject('theme') as any
 const activeMode = computed(() => theme.value === 'light' ? 'Light' : 'Dark')
-const copied = ref('')
-async function copy(text: string) {
-  await navigator.clipboard.writeText(text)
-  copied.value = text
-  setTimeout(() => { copied.value = '' }, 1200)
+const copiedLevel = ref('')
+
+function formatCssCode(elevation: any) {
+  const mode = activeMode.value === 'Light' ? elevation.light : elevation.dark
+  let code = `box-shadow:\n  ${mode.boxShadow};`
+  if (mode.backdropFilter) {
+    code += `\n\nbackdrop-filter: ${mode.backdropFilter};`
+  }
+  return code
+}
+
+async function copy(level: string, elevation: any) {
+  const code = formatCssCode(elevation)
+  await navigator.clipboard.writeText(code)
+  copiedLevel.value = level
+  setTimeout(() => { copiedLevel.value = '' }, 1200)
 }
 </script>
 <template>
@@ -17,7 +28,7 @@ async function copy(text: string) {
     <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Elevation tokens define shadow and blur effects to create depth hierarchy across UI layers. Each level corresponds to specific component types and interaction states.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div v-for="elevation in elevations" :key="elevation.level" class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden hover:shadow-[var(--shadow-l2)] transition-shadow">
+      <div v-for="elevation in elevations" :key="elevation.level" class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden">
         <!-- Header -->
         <div class="px-4 py-2.5 border-b border-[var(--color-border-translucent)]">
           <div class="flex items-center gap-2">
@@ -38,23 +49,23 @@ async function copy(text: string) {
           />
         </div>
 
-        <!-- Properties -->
-        <div class="p-4 space-y-2">
-          <button
-            class="w-full text-left text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors break-all leading-relaxed"
-            @click="copy(activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow)"
-            :title="'Click to copy box-shadow'"
-          >
-            {{ copied === (activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow) ? '✓ Copied!' : (activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow) }}
-          </button>
-          <button
-            v-if="(activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter)"
-            class="w-full text-left text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
-            @click="copy(activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter)"
-            :title="'Click to copy backdrop-filter'"
-          >
-            {{ copied === (activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter) ? '✓ Copied!' : (activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter) }}
-          </button>
+        <!-- Code Block -->
+        <div class="p-4">
+          <div class="relative group">
+            <pre class="text-xs font-mono text-[var(--color-text-secondary)] bg-[var(--color-fill-surfacedim)] rounded-lg p-3 pr-12 overflow-x-auto leading-relaxed">{{ formatCssCode(elevation) }}</pre>
+            <button
+              @click="copy(elevation.level, elevation)"
+              class="absolute top-3 right-3 p-1.5 rounded hover:bg-[var(--color-fill-surfacebright)] transition-colors"
+              :title="'Copy CSS code'"
+            >
+              <svg v-if="copiedLevel !== elevation.level" class="w-4 h-4 text-[var(--color-text-tertiary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              <svg v-else class="w-4 h-4 text-[var(--color-fill-accent-normal)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
