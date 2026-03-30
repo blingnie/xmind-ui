@@ -53,7 +53,7 @@ async function copy(level: string, elevation: any) {
         <div class="flex items-center justify-center p-12">
           <div
             class="w-28 h-28 rounded-lg"
-            :class="['L2', 'L3', 'L4'].includes(elevation.level) ? 'bg-[var(--color-material-acrylicbright)]' : 'bg-[var(--color-fill-surfacebright)]'"
+            :class="['L2', 'L3', 'L4'].includes(elevation.level) ? 'bg-[var(--color-fill-surface-desktop)]' : 'bg-[var(--color-fill-surfacebright)]'"
             :style="{
               boxShadow: activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow,
               backdropFilter: activeMode === 'Light' ? elevation.light.backdropFilter : elevation.dark.backdropFilter
