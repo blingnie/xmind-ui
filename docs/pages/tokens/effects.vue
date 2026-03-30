@@ -67,13 +67,13 @@ async function copy(level: string, elevation: any) {
             <pre class="code-block text-xs font-mono bg-[var(--color-fill-surfacedim)] rounded-lg p-3 pr-12 leading-relaxed whitespace-pre-wrap break-all h-32 overflow-y-auto" v-html="highlightCss(formatCssCode(elevation))" />
             <button
               @click="copy(elevation.level, elevation)"
-              class="absolute top-3 right-3 p-1.5 rounded hover:bg-[var(--color-fill-surfacebright)] transition-colors"
+              class="absolute top-3 right-3 p-1.5 rounded hover:bg-[var(--color-material-maskoverlay-s)] transition-colors"
               :title="'Copy CSS code'"
             >
               <svg v-if="copiedLevel !== elevation.level" class="w-4 h-4 text-[var(--color-text-tertiary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
-              <svg v-else class="w-4 h-4 text-[var(--color-fill-accent-normal)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg v-else class="w-4 h-4 text-[var(--color-icon-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
             </button>
@@ -87,6 +87,24 @@ async function copy(level: string, elevation: any) {
 <style scoped>
 .code-block {
   color: var(--color-text-secondary);
+}
+
+/* 滚动条样式 */
+.code-block::-webkit-scrollbar {
+  width: 6px;
+}
+
+.code-block::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-block::-webkit-scrollbar-thumb {
+  background: var(--color-fill-tertiary);
+  border-radius: 3px;
+}
+
+.code-block::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fill-secondary);
 }
 
 /* 属性名 - 柔和的蓝色 */
