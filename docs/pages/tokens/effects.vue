@@ -87,31 +87,6 @@ async function copy(level: string, elevation: any) {
 <style scoped>
 .code-block {
   color: var(--color-text-secondary);
-  direction: ltr;
-  text-align: left;
-}
-
-/* 滚动条样式 */
-.code-block::-webkit-scrollbar {
-  width: 6px;
-}
-
-.code-block::-webkit-scrollbar-track {
-  background: var(--color-fill-surfacedim);
-}
-
-.code-block::-webkit-scrollbar-thumb {
-  background: transparent;
-  border-radius: 3px;
-  transition: background 0.2s;
-}
-
-.code-block:hover::-webkit-scrollbar-thumb {
-  background: var(--color-fill-tertiary);
-}
-
-.code-block::-webkit-scrollbar-thumb:hover {
-  background: var(--color-fill-secondary);
 }
 
 /* 属性名 - 柔和的蓝色 */
