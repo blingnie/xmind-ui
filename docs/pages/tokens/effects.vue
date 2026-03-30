@@ -19,7 +19,7 @@ async function copy(text: string) {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div v-for="elevation in elevations" :key="elevation.level" class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden hover:shadow-[var(--shadow-l2)] transition-shadow">
         <!-- Header -->
-        <div class="bg-[var(--color-fill-secondary)] px-4 py-2.5 border-b border-[var(--color-border-translucent)]">
+        <div class="px-4 py-2.5 border-b border-[var(--color-border-translucent)]">
           <div class="flex items-center gap-2">
             <span class="text-sm font-semibold font-mono">{{ elevation.level }}</span>
             <span class="text-xs text-[var(--color-text-tertiary)]">{{ elevation.description }}</span>
@@ -38,7 +38,7 @@ async function copy(text: string) {
         </div>
 
         <!-- Properties -->
-        <div class="p-4 space-y-2 bg-[var(--color-fill-surfacebright)]">
+        <div class="p-4 space-y-2">
           <button
             class="w-full text-left text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors break-all leading-relaxed"
             @click="copy(activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow)"
