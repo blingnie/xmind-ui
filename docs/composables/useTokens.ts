@@ -87,14 +87,25 @@ export function useTokens() {
     const map = new Map<string, ColorSwatch[]>()
 
     for (const v of palette.modes[0].variables) {
-      if (v.isAlias) continue
-      const group = v.name.split('/')[0]
-      if (!map.has(group)) map.set(group, [])
-      map.get(group)!.push({
-        name: v.name,
-        varName: `--palette-${nameToVar(v.name)}`,
-        value: v.value,
-      })
+      // Include non-alias colors AND base/ alias colors
+      if (!v.isAlias || v.name.startsWith('base/')) {
+        const group = v.name.split('/')[0]
+        if (!map.has(group)) map.set(group, [])
+
+        // For base colors (alias), resolve their actual value
+        let displayValue = v.value
+        if (v.isAlias && typeof v.value === 'object') {
+          // Find the referenced palette color
+          const refColor = palette.modes[0].variables.find((c: any) => c.name === v.value.name)
+          displayValue = refColor ? refColor.value : v.value.name
+        }
+
+        map.get(group)!.push({
+          name: v.name,
+          varName: `--palette-${nameToVar(v.name)}`,
+          value: displayValue,
+        })
+      }
     }
 
     return Array.from(map.entries()).map(([group, swatches]) => ({ group, swatches }))

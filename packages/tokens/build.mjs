@@ -17,9 +17,21 @@ const linesDark = []
 
 // ── 1. Color Palette（原始色板，作为所有颜色的基础）──
 const paletteCol = data.collections.find(c => c.name === 'colorPalette')
+const paletteMap = new Map()
 for (const v of paletteCol.modes[0].variables) {
   if (!v.isAlias) {
     linesRoot.push(`  --palette-${nameToVar(v.name)}: ${v.value};`)
+    paletteMap.set(v.name, v.value)
+  }
+}
+
+// ── 1.5. Base Colors（基础颜色 alias）──
+for (const v of paletteCol.modes[0].variables) {
+  if (v.isAlias && v.name.startsWith('base/')) {
+    const targetName = v.value.name
+    const varName = `--palette-${nameToVar(v.name)}`
+    const refVar = `var(--palette-${nameToVar(targetName)})`
+    linesRoot.push(`  ${varName}: ${refVar};`)
   }
 }
 
