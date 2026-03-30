@@ -90,23 +90,23 @@ async function copy(level: string, elevation: any) {
 }
 
 .code-block :deep(.syntax-property) {
-  color: var(--color-fill-accent-normal);
-  font-weight: 500;
+  color: var(--color-text-primary);
 }
 
 .code-block :deep(.syntax-function) {
-  color: #9333ea;
+  color: var(--color-text-primary);
 }
 
 .code-block :deep(.syntax-number) {
-  color: #ea580c;
+  color: var(--color-text-tertiary);
 }
 
 .code-block :deep(.syntax-unit) {
-  color: #ea580c;
+  color: var(--color-text-tertiary);
 }
 
 .code-block :deep(.syntax-punctuation) {
   color: var(--color-text-tertiary);
+  opacity: 0.6;
 }
 </style>
