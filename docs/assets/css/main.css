@@ -9,9 +9,50 @@ html {
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
 }
 
 /* Code blocks use Fira Code */
 code, pre, .font-mono {
   font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+}
+
+/* Typography tokens - Headings */
+h1, .text-xl {
+  font-size: 21px;
+  line-height: 27px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+h2, .text-base {
+  font-size: 17px;
+  line-height: 23px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Typography tokens - Body text */
+.text-sm {
+  font-size: 13px;
+  line-height: 17px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.text-xs {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
 }
