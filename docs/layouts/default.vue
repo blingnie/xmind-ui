@@ -62,7 +62,7 @@ const nav = [
         <!-- Theme toggle -->
         <button
           class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[var(--color-fill-secondary)] transition-colors text-[var(--color-text-secondary)]"
-          :title="theme === 'light' ? '切换深色' : '切换浅色'"
+          :title="theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'"
           @click="toggleTheme"
         >
           <span v-if="theme === 'light'">🌙</span>

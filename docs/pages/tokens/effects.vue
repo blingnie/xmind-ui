@@ -29,7 +29,7 @@ async function copy(text) {
         <button v-for="m in ['Light', 'Dark']" :key="m" class="px-3 py-1 text-xs rounded-lg transition-colors" :class="activeMode === m ? 'bg-[var(--color-fill-brand)] text-[var(--color-text-invert)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-fill-secondary)]'" @click="activeMode = m">{{ m }}</button>
       </div>
     </div>
-    <p class="text-sm text-[var(--color-text-tertiary)] mb-6">阴影、模糊参数。</p>
+    <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Visual effect tokens including shadows and blur parameters for depth and layering. Values adapt to the active theme mode.</p>
     <div v-for="{ group, items } in groups" :key="group" class="mb-8">
       <p class="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-wider mb-2">{{ group }}</p>
       <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden divide-y divide-[var(--color-border-translucent)]">

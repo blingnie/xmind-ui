@@ -21,7 +21,7 @@ async function copy(text) {
 <template>
   <div class="px-10 py-8 max-w-3xl">
     <h1 class="text-xl font-semibold mb-1">Spacing</h1>
-    <p class="text-sm text-[var(--color-text-tertiary)] mb-6">间距 token，单位 px。</p>
+    <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Spacing tokens define consistent margin and padding values throughout the interface. All values are measured in pixels for precise layout control.</p>
     <div v-for="{ group, items } in groups" :key="group" class="mb-8">
       <p class="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-wider mb-2">{{ group }}</p>
       <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden divide-y divide-[var(--color-border-translucent)]">
