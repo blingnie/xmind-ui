@@ -16,7 +16,7 @@ async function copy(text: string) {
     <h1 class="text-xl font-semibold mb-1">Elevation</h1>
     <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Elevation tokens define shadow and blur effects to create depth hierarchy across UI layers. Each level corresponds to specific component types and interaction states.</p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div v-for="elevation in elevations" :key="elevation.level" class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden hover:shadow-[var(--shadow-l2)] transition-shadow">
         <!-- Header -->
         <div class="bg-[var(--color-fill-secondary)] px-4 py-2.5 border-b border-[var(--color-border-translucent)]">
