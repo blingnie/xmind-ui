@@ -18,7 +18,7 @@ html {
 
 /* Body default - Markdown Paragraph/Default */
 body {
-  background-color: var(--color-fill-surfacebright);
+  background-color: var(--color-fill-surface-desktop);
   color: var(--color-text-primary);
   font-size: 15px;
   line-height: 1.7;
