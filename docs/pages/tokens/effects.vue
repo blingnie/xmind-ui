@@ -27,7 +27,7 @@ async function copy(text: string) {
         </div>
 
         <!-- Preview -->
-        <div class="flex items-center justify-center p-12 bg-[var(--color-fill-secondary)]">
+        <div class="flex items-center justify-center p-12 bg-[var(--color-fill-surfacedim)]">
           <div
             class="w-28 h-28 rounded-lg bg-[var(--color-fill-surfacebright)]"
             :style="{
