@@ -26,7 +26,7 @@ async function copy(text: string) {
           :key="group"
           class="px-4 py-2 text-sm font-medium transition-all relative"
           :class="activeGroup === group
-            ? 'text-[var(--color-fill-brand)] border-b-2 border-[var(--color-fill-brand)]'
+            ? 'text-[var(--color-fill-accent-normal)] border-b-2 border-[var(--color-fill-accent-normal)]'
             : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] border-b-2 border-transparent'"
           @click="activeGroup = group"
         >

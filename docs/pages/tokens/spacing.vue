@@ -30,7 +30,7 @@ function capitalize(str: string) {
       <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden divide-y divide-[var(--color-border-translucent)]">
         <div v-for="token in items" :key="token.varName" class="flex items-center gap-4 px-4 py-2.5 hover:bg-[var(--color-fill-secondary)] transition-colors">
           <div class="w-32 shrink-0 flex items-center justify-center">
-            <div class="h-6 rounded" style="background: rgb(59, 130, 246);" :style="{ width: `${Math.min(token.value, 128)}px` }" />
+            <div class="h-6 rounded bg-[var(--color-fill-accent-normal)]" :style="{ width: `${Math.min(token.value, 128)}px` }" />
           </div>
           <span class="text-sm font-mono w-14 shrink-0 font-semibold">{{ token.value }}px</span>
           <span class="text-sm text-[var(--color-text-secondary)] flex-1">{{ token.name.split('/')[1] ?? token.name }}</span>

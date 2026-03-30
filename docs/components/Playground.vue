@@ -87,7 +87,7 @@ async function copyCode() {
             <template v-if="prop.type === 'boolean'">
               <button
                 class="w-8 h-4 rounded-full transition-colors relative"
-                :class="currentProps[prop.name] ? 'bg-[var(--color-fill-brand)]' : 'bg-[var(--color-fill-tertiary)]'"
+                :class="currentProps[prop.name] ? 'bg-[var(--color-fill-accent-normal)]' : 'bg-[var(--color-fill-tertiary)]'"
                 @click="currentProps[prop.name] = !currentProps[prop.name]"
               >
                 <span
@@ -105,7 +105,7 @@ async function copyCode() {
                   :key="opt"
                   class="px-2 py-0.5 text-xs rounded-md transition-colors"
                   :class="currentProps[prop.name] === opt
-                    ? 'bg-[var(--color-fill-brand)] text-[var(--color-text-invert)]'
+                    ? 'bg-[var(--color-fill-accent-normal)] text-[var(--color-text-invert)]'
                     : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-fill-secondary)]'"
                   @click="currentProps[prop.name] = opt"
                 >

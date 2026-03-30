@@ -22,7 +22,7 @@ const config = {
           class="inline-flex items-center justify-center font-medium transition-colors disabled:opacity-40 disabled:pointer-events-none"
           :class="[
             currentProps.size === 'sm' ? 'h-7 px-3 text-sm rounded-lg' : currentProps.size === 'lg' ? 'h-10 px-5 text-base rounded-xl' : 'h-8 px-4 text-sm rounded-lg',
-            currentProps.variant === 'solid' ? 'bg-[var(--color-fill-brand)] text-[var(--color-text-invert)]' : currentProps.variant === 'outline' ? 'border border-[var(--color-border-default)] text-[var(--color-text-primary)]' : 'text-[var(--color-text-primary)] hover:bg-[var(--color-fill-secondary)]'
+            currentProps.variant === 'solid' ? 'bg-[var(--color-fill-accent-normal)] text-[var(--color-text-invert)]' : currentProps.variant === 'outline' ? 'border border-[var(--color-border-default)] text-[var(--color-text-primary)]' : 'text-[var(--color-text-primary)] hover:bg-[var(--color-fill-secondary)]'
           ]"
         >{{ slotContent }}</button>
       </template>
