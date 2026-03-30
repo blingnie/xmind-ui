@@ -32,7 +32,7 @@ async function copy(text) {
           <button class="text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]" @click="copy(token.varName)">
             {{ copied === token.varName ? '✓ copied' : token.varName }}
           </button>
-          <span class="text-xs font-mono text-[var(--color-text-tertiary)] w-20 text-right">{{ token.rawValue }}</span>
+          <span class="text-xs font-mono text-[var(--color-text-tertiary)] w-32 text-right truncate" :title="token.refVar">{{ token.refVar }}</span>
         </div>
       </div>
     </div>

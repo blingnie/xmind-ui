@@ -8,8 +8,20 @@ const activeGroup = ref(typoGroups[0]?.group ?? '')
   <div class="px-10 py-8 max-w-5xl">
     <h1 class="text-xl font-semibold mb-1">Typography</h1>
     <p class="text-sm text-[var(--color-text-tertiary)] mb-6">字体规格，字体族为 NeverMind UI。</p>
-    <div class="flex gap-1 mb-6 flex-wrap">
-      <button v-for="{ group } in typoGroups" :key="group" class="px-3 py-1 text-xs rounded-lg transition-colors" :class="activeGroup === group ? 'bg-[var(--color-fill-brand)] text-[var(--color-text-invert)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-fill-secondary)]'" @click="activeGroup = group">{{ group }}</button>
+    <div class="border-b border-[var(--color-border-translucent)] mb-6">
+      <div class="flex gap-1 flex-wrap -mb-px">
+        <button
+          v-for="{ group } in typoGroups"
+          :key="group"
+          class="px-4 py-2 text-sm font-medium transition-all relative"
+          :class="activeGroup === group
+            ? 'text-[var(--color-fill-brand)] border-b-2 border-[var(--color-fill-brand)]'
+            : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] border-b-2 border-transparent'"
+          @click="activeGroup = group"
+        >
+          {{ group }}
+        </button>
+      </div>
     </div>
     <div v-for="{ group, tokens } in typoGroups" v-show="activeGroup === group" :key="group">
       <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden">
