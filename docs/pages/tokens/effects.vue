@@ -2,7 +2,8 @@
 definePageMeta({ layout: 'default' })
 const { getElevations } = useTokens()
 const elevations = getElevations()
-const activeMode = ref<'Light' | 'Dark'>('Light')
+const { theme } = inject('theme') as any
+const activeMode = computed(() => theme.value === 'light' ? 'Light' : 'Dark')
 const copied = ref('')
 async function copy(text: string) {
   await navigator.clipboard.writeText(text)
@@ -12,12 +13,7 @@ async function copy(text: string) {
 </script>
 <template>
   <div class="px-10 py-8 max-w-6xl">
-    <div class="flex items-center justify-between mb-1">
-      <h1 class="text-xl font-semibold">Elevation</h1>
-      <div class="flex gap-1">
-        <button v-for="m in ['Light', 'Dark']" :key="m" class="px-3 py-1 text-xs rounded-lg transition-colors" :class="activeMode === m ? 'bg-[var(--color-fill-brand)] text-[var(--color-text-invert)]' : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-fill-secondary)]'" @click="activeMode = m">{{ m }}</button>
-      </div>
-    </div>
+    <h1 class="text-xl font-semibold mb-1">Elevation</h1>
     <p class="text-sm text-[var(--color-text-tertiary)] mb-6">Elevation tokens define shadow and blur effects to create depth hierarchy across UI layers. Each level corresponds to specific component types and interaction states.</p>
 
     <div class="space-y-6">
