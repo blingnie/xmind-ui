@@ -34,9 +34,9 @@ function formatNumber(num: number, decimals = 0): string {
         </div>
         <div class="divide-y divide-[var(--color-border-translucent)]">
           <div v-for="token in tokens" :key="token.name" class="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-4 px-4 py-3 items-center">
-            <div class="text-left">
-              <div :style="{ fontSize: `${token.fontSize}px`, lineHeight: token.lineHeightUnit === 'PIXELS' ? `${token.lineHeight}px` : `${token.lineHeight}%`, fontWeight: token.fontWeight }" class="truncate mb-0.5">The quick brown fox</div>
-              <span class="text-xs text-[var(--color-text-tertiary)] font-mono">{{ token.name }}</span>
+            <div class="text-left min-w-0">
+              <div :style="{ fontSize: `${token.fontSize}px`, lineHeight: token.lineHeightUnit === 'PIXELS' ? `${token.lineHeight}px` : `${token.lineHeight}%`, fontWeight: token.fontWeight }" class="truncate mb-0.5">Aa 字体</div>
+              <span class="text-xs text-[var(--color-text-tertiary)] font-mono truncate block">{{ token.name }}</span>
             </div>
             <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ token.fontSize }}px</span>
             <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ formatNumber(token.lineHeight, token.lineHeightUnit === 'PIXELS' ? 0 : 0) }}{{ token.lineHeightUnit === 'PIXELS' ? 'px' : '%' }}</span>
