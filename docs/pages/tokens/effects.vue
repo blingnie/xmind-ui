@@ -38,7 +38,7 @@ async function copy(text: string) {
         </div>
 
         <!-- Properties -->
-        <div class="p-4 space-y-2 bg-[var(--color-bg-primary)]">
+        <div class="p-4 space-y-2 bg-[var(--color-fill-surfacebright)]">
           <button
             class="w-full text-left text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors break-all leading-relaxed"
             @click="copy(activeMode === 'Light' ? elevation.light.boxShadow : elevation.dark.boxShadow)"

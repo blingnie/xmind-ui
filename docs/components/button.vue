@@ -44,6 +44,6 @@ cat > ~/Documents/xmind-ui/docs/assets/css/main.css << 'EOF'
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-font-smoothing: antialiased; }
 body {
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-fill-surfacebright);
   color: var(--color-text-primary);
 }

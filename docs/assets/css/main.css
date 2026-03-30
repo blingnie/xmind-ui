@@ -9,7 +9,7 @@ html {
 
 /* Body default - Markdown Paragraph/Default */
 body {
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-fill-surfacebright);
   color: var(--color-text-primary);
   font-size: 15px;
   line-height: 1.7;

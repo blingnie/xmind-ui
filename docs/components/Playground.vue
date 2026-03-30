@@ -54,7 +54,7 @@ async function copyCode() {
 <template>
   <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden">
     <!-- 预览区 -->
-    <div class="min-h-40 flex items-center justify-center p-8 bg-[var(--color-bg-secondary)]">
+    <div class="min-h-40 flex items-center justify-center p-8 bg-[var(--color-fill-secondary)]">
       <slot :current-props="currentProps" :slot-content="slotContent" />
     </div>
 
