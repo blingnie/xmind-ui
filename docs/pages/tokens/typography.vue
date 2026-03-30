@@ -3,6 +3,10 @@ definePageMeta({ layout: 'default' })
 const { getTypoGroups } = useTokens()
 const typoGroups = getTypoGroups()
 const activeGroup = ref(typoGroups[0]?.group ?? '')
+
+function formatNumber(num: number, decimals = 0): string {
+  return Number(num.toFixed(decimals)).toString()
+}
 </script>
 <template>
   <div class="px-10 py-8 max-w-5xl">
@@ -30,13 +34,13 @@ const activeGroup = ref(typoGroups[0]?.group ?? '')
         </div>
         <div class="divide-y divide-[var(--color-border-translucent)]">
           <div v-for="token in tokens" :key="token.name" class="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-4 px-4 py-3 items-center">
-            <div>
+            <div class="text-left">
               <div :style="{ fontSize: `${token.fontSize}px`, lineHeight: token.lineHeightUnit === 'PIXELS' ? `${token.lineHeight}px` : `${token.lineHeight}%`, fontWeight: token.fontWeight }" class="truncate mb-0.5">The quick brown fox</div>
               <span class="text-xs text-[var(--color-text-tertiary)] font-mono">{{ token.name }}</span>
             </div>
             <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ token.fontSize }}px</span>
-            <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ token.lineHeight }}{{ token.lineHeightUnit === 'PIXELS' ? 'px' : '%' }}</span>
-            <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ token.letterSpacing }}{{ token.letterSpacingUnit === 'PERCENT' ? '%' : 'px' }}</span>
+            <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ formatNumber(token.lineHeight, token.lineHeightUnit === 'PIXELS' ? 0 : 0) }}{{ token.lineHeightUnit === 'PIXELS' ? 'px' : '%' }}</span>
+            <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ formatNumber(token.letterSpacing, 1) }}{{ token.letterSpacingUnit === 'PERCENT' ? '%' : 'px' }}</span>
             <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ token.fontWeight }}</span>
           </div>
         </div>
