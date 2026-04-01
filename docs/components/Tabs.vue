@@ -1,32 +1,28 @@
 <script setup lang="ts">
-const props = defineProps<{
+interface Props {
   tabs: string[]
-  modelValue: string
-}>()
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>()
-
-function selectTab(tab: string) {
-  emit('update:modelValue', tab)
 }
+
+const props = defineProps<Props>()
+const modelValue = defineModel<string>()
 </script>
 
 <template>
-  <div class="border-b border-[var(--color-border-translucent)]">
-    <div class="flex gap-1 flex-wrap -mb-px">
-      <button
-        v-for="tab in tabs"
-        :key="tab"
-        class="px-4 py-2 text-sm font-medium transition-all relative"
-        :class="modelValue === tab
-          ? 'text-[var(--color-fill-accent-normal)] border-b-2 border-[var(--color-fill-accent-normal)]'
-          : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] border-b-2 border-transparent'"
-        @click="selectTab(tab)"
-      >
-        {{ tab }}
-      </button>
-    </div>
+  <div class="flex gap-1 border-b border-[var(--color-border-translucent)] mb-2">
+    <button
+      v-for="tab in tabs"
+      :key="tab"
+      class="px-4 pt-3 pb-2 text-sm font-medium transition-colors relative"
+      :class="modelValue === tab
+        ? 'text-[var(--color-text-primary)]'
+        : 'text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)]'"
+      @click="modelValue = tab"
+    >
+      {{ tab }}
+      <div
+        v-if="modelValue === tab"
+        class="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--color-fill-accent-normal)]"
+      />
+    </button>
   </div>
 </template>
