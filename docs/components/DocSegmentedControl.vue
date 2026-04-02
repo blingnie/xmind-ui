@@ -31,6 +31,7 @@ const handleSelect = (key: T['key']) => {
 <style scoped>
 .doc-segmented-control {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-padding-xs-4);
   padding: var(--spacing-padding-xs-4);
   border-radius: var(--radius-s-8);
@@ -38,7 +39,7 @@ const handleSelect = (key: T['key']) => {
 }
 
 .doc-segmented-control__item {
-  flex: 1;
+  flex: 0 1 auto;
   height: var(--spacing-size-xl-24);
   padding: var(--spacing-padding-xs-4) var(--spacing-padding-s-8);
   border: none;
@@ -51,6 +52,7 @@ const handleSelect = (key: T['key']) => {
   letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
   cursor: pointer;
   transition: background-color 150ms ease;
+  white-space: nowrap;
 }
 
 .doc-segmented-control__item:hover:not(.doc-segmented-control__item--active) {
