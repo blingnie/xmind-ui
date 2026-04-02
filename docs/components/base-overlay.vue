@@ -1,0 +1,126 @@
+<script lang="ts">
+import { defineComponent, onBeforeUnmount, ref, watch, CSSProperties } from 'vue'
+
+export interface OverlayProps {
+  backgroundColor: string
+  escClose: boolean
+  isActivated: boolean
+}
+
+export default defineComponent({
+  name: 'BaseOverlay',
+  props: {
+    isActivated: {
+      type: Boolean,
+      default: false,
+    },
+    backgroundColor: {
+      type: String,
+      default: 'transparent',
+    },
+    escClose: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  emits: ['overlay-close'],
+  setup(props, ctx) {
+    const overlay = ref<HTMLElement>(null)
+    const containerStyle = ref<CSSProperties>({
+      zIndex: '2000',
+      backgroundColor: props.backgroundColor,
+    })
+
+    const emitClose = () => {
+      ctx.emit('overlay-close')
+    }
+
+    const handleEscapeClose = (e: KeyboardEvent) => {
+      if (e.defaultPrevented) {
+        return
+      }
+      if (e?.key?.toLowerCase() === 'escape' && props.escClose) {
+        emitClose()
+        e.preventDefault()
+      }
+    }
+
+    onBeforeUnmount(() => {
+      removeDialogOverlay()
+      deregisterEventListening()
+    })
+
+    const addDialogOverlay = () => {
+      removeDialogOverlay()
+
+      overlay.value = document.createElement('div')
+      overlay.value.classList.add('overlay')
+      overlay.value.style.position = 'fixed'
+      overlay.value.style.width = '100vw'
+      overlay.value.style.height = '100vh'
+      overlay.value.style.left = '0'
+      overlay.value.style.top = '0'
+      overlay.value.style.zIndex = '2000'
+      overlay.value.style.backgroundColor = 'transparent'
+      overlay.value.addEventListener('click', emitClose)
+
+      // stop pinch zoom
+      overlay.value.addEventListener('wheel', (e: WheelEvent) => {
+        if (e.ctrlKey) {
+          e.preventDefault()
+        }
+      })
+      overlay.value.addEventListener('touchmove', (e: TouchEvent) => {
+        if (e.touches.length > 1) {
+          e.preventDefault()
+        }
+      })
+
+      containerStyle.value.zIndex = '2001'
+
+      document.body.appendChild(overlay.value)
+    }
+
+    const removeDialogOverlay = () => {
+      if (!overlay.value) return
+      document.body.removeChild(overlay.value)
+      overlay.value = null
+    }
+
+    const registerEventListening = () => {
+      document.addEventListener('keydown', handleEscapeClose)
+    }
+
+    const deregisterEventListening = () => {
+      document.removeEventListener('keydown', handleEscapeClose)
+    }
+
+    watch(
+      () => props.isActivated,
+      isActivated => {
+        if (isActivated) {
+          addDialogOverlay()
+          registerEventListening()
+        } else {
+          removeDialogOverlay()
+          deregisterEventListening()
+        }
+      },
+      {
+        immediate: true,
+      },
+    )
+
+    return {
+      containerStyle,
+      emitClose,
+    }
+  },
+})
+</script>
+
+<template>
+  <div style="position: fixed; left: 0; top: 0" :style="containerStyle" @keydown.esc.stop.prevent="emitClose">
+    <slot></slot>
+  </div>
+</template>

@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <h1 class="text-xl font-semibold">Button</h1>
-    <p class="text-sm text-[var(--color-text-tertiary)]">Buttons are commonly used for key actions such as submit, confirm, create, switch, invoke tools, or advance workflows. In editing and property-panel contexts, Button often serves as a high-frequency entry point (e.g., apply, reset, add, more tools) or a decision checkpoint, requiring a balanced emphasis between accessibility, error prevention, and visual priority.</p>
+  <div class="doc-page-layout">
+    <!-- Main Content -->
+    <div class="doc-page-content">
+      <h1 class="text-xl font-semibold">Button</h1>
+      <p class="text-sm text-[var(--color-text-tertiary)]">Buttons are commonly used for key actions such as submit, confirm, create, switch, invoke tools, or advance workflows. In editing and property-panel contexts, Button often serves as a high-frequency entry point (e.g., apply, reset, add, more tools) or a decision checkpoint, requiring a balanced emphasis between accessibility, error prevention, and visual priority.</p>
 
-      <!-- 默认预览 -->
+      <!-- Default preview -->
       <section id="preview" class="doc-section">
         <div class="preview-card">
           <div class="preview-area">
@@ -26,108 +28,75 @@
         </Playground>
       </section>
 
-      <!-- API 参考 -->
+      <!-- API Reference -->
       <section id="api" class="doc-section">
         <h2>API</h2>
 
         <!-- Props -->
         <h3 id="props">Props</h3>
-        <div class="api-table-wrapper">
-          <table class="api-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Default</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>variant</code></td>
-                <td><code>ButtonVariant</code></td>
-                <td><code>'default'</code></td>
-                <td>
-                  <div class="props-preview">
-                    <Button variant="default" size="small">Default</Button>
-                    <Button variant="primary" size="small">Primary</Button>
-                    <Button variant="secondary" size="small">Secondary</Button>
-                    <Button variant="ai" size="small">AI</Button>
-                    <Button variant="danger" size="small">Danger</Button>
-                    <Button variant="link" size="small">Link</Button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><code>size</code></td>
-                <td><code>ButtonSize</code></td>
-                <td><code>'medium'</code></td>
-                <td>
-                  <div class="props-preview">
-                    <Button size="small">Small</Button>
-                    <Button size="medium">Medium</Button>
-                    <Button size="large">Large</Button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td><code>disabled</code></td>
-                <td><code>boolean</code></td>
-                <td><code>false</code></td>
-                <td>禁用按钮</td>
-              </tr>
-              <tr>
-                <td><code>text</code></td>
-                <td><code>boolean</code></td>
-                <td><code>false</code></td>
-                <td>文本模式</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="api-table">
+          <div class="api-table__header">
+            <span>Name</span>
+            <span>Type</span>
+            <span>Default</span>
+            <span>Description</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>variant</code></span>
+            <span data-label="Type"><code>ButtonVariant</code></span>
+            <span data-label="Default"><code>'default'</code></span>
+            <span data-label="Description">The visual style variant of the button</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>size</code></span>
+            <span data-label="Type"><code>ButtonSize</code></span>
+            <span data-label="Default"><code>'medium'</code></span>
+            <span data-label="Description">The size of the button</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>disabled</code></span>
+            <span data-label="Type"><code>boolean</code></span>
+            <span data-label="Default"><code>false</code></span>
+            <span data-label="Description">Whether the button is disabled</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>text</code></span>
+            <span data-label="Type"><code>boolean</code></span>
+            <span data-label="Default"><code>false</code></span>
+            <span data-label="Description">Render as a text button without background or border</span>
+          </div>
         </div>
 
         <!-- Events -->
         <h3 id="events">Events</h3>
-        <div class="api-table-wrapper">
-          <table class="api-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Payload</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>click</code></td>
-                <td><code>MouseEvent</code></td>
-                <td>按钮点击事件</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="api-table api-table--3-cols">
+          <div class="api-table__header">
+            <span>Name</span>
+            <span>Payload</span>
+            <span>Description</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>click</code></span>
+            <span data-label="Payload"><code>MouseEvent</code></span>
+            <span data-label="Description">Emitted when the button is clicked (not emitted when disabled)</span>
+          </div>
         </div>
 
         <!-- Slots -->
         <h3 id="slots">Slots</h3>
-        <div class="api-table-wrapper">
-          <table class="api-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>default</code></td>
-                <td>按钮内容</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="api-table api-table--2-cols">
+          <div class="api-table__header">
+            <span>Name</span>
+            <span>Description</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>default</code></span>
+            <span data-label="Description">Button content</span>
+          </div>
         </div>
       </section>
 
-      <!-- 用法示例 -->
+      <!-- Usage Examples -->
       <section id="examples" class="doc-section">
         <h2>Examples</h2>
 
@@ -192,6 +161,10 @@
           </div>
         </div>
       </section>
+    </div>
+
+    <!-- Table of Contents: 只在xl及以上显示 -->
+    <DocTableOfContents :items="tocItems" class="hidden xl:block" />
   </div>
 </template>
 
@@ -200,12 +173,27 @@ import Button from '../../../packages/components/Button/Button.vue'
 import SimpleCodeBlock from '~/components/SimpleCodeBlock.vue'
 import Tabs from '~/components/Tabs.vue'
 import Playground from '~/components/Playground.vue'
+import DocTableOfContents from '~/components/DocTableOfContents.vue'
 
 definePageMeta({ layout: 'default' })
 
 const activeTab = ref('Usage')
 
-// 完整源码
+// Table of Contents items
+const tocItems = ref([
+  { id: 'playground', text: 'Playground', level: 2 },
+  { id: 'api', text: 'API', level: 2 },
+  { id: 'props', text: 'Props', level: 3 },
+  { id: 'events', text: 'Events', level: 3 },
+  { id: 'slots', text: 'Slots', level: 3 },
+  { id: 'examples', text: 'Examples', level: 2 },
+  { id: 'example-variants', text: 'Variants', level: 3 },
+  { id: 'example-sizes', text: 'Sizes', level: 3 },
+  { id: 'example-disabled', text: 'Disabled', level: 3 },
+  { id: 'example-text', text: 'Text Mode', level: 3 },
+])
+
+// Full source code
 const buttonSource = `<template>
   <button
     :class="buttonClasses"
@@ -318,16 +306,19 @@ const handleClick = (event: MouseEvent) => {
 .button--default:hover:not(.button--disabled) {
   background-color: var(--button-bg-default-hover);
   color: var(--button-content-default-hover);
+  border-color: var(--button-border-default-hover);
 }
 
 .button--default:active:not(.button--disabled) {
   background-color: var(--button-bg-default-pressed);
   color: var(--button-content-default-pressed);
+  border-color: var(--button-border-default-pressed);
 }
 
 .button--default.button--disabled {
   background-color: var(--button-bg-default-disable);
   color: var(--button-content-default-disable);
+  border-color: var(--button-border-default-disable);
 }
 
 .button--primary {
@@ -350,7 +341,7 @@ const handleClick = (event: MouseEvent) => {
 
 .button--secondary {
   background-color: var(--button-bg-secondary-normal);
-  color: var(--button-content-oncolor-default);
+  color: var(--button-content-invert-default);
 }
 
 .button--secondary:hover:not(.button--disabled) {
@@ -363,7 +354,7 @@ const handleClick = (event: MouseEvent) => {
 
 .button--secondary.button--disabled {
   background-color: var(--button-bg-secondary-disable);
-  color: var(--button-content-oncolor-disable);
+  color: var(--button-content-invert-disable);
 }
 
 .button--ai {
@@ -406,22 +397,23 @@ const handleClick = (event: MouseEvent) => {
 }
 
 .button--link {
-  background-color: transparent;
+  background-color: var(--button-bg-nocontainer-normal);
   color: var(--button-content-link-normal);
   padding: var(--spacing-padding-xxs-2) var(--spacing-padding-xs-4);
 }
 
 .button--link:hover:not(.button--disabled) {
-  background-color: var(--color-mask-overlays);
+  background-color: var(--button-bg-nocontainer-hover);
   color: var(--button-content-link-hover);
 }
 
 .button--link:active:not(.button--disabled) {
-  background-color: var(--color-mask-overlaym);
+  background-color: var(--button-bg-nocontainer-pressed);
   color: var(--button-content-link-pressed);
 }
 
 .button--link.button--disabled {
+  background-color: var(--button-bg-nocontainer-disable);
   color: var(--button-content-link-disable);
 }
 
@@ -486,7 +478,7 @@ const handleClick = (event: MouseEvent) => {
 }
 </style>`
 
-// Playground 配置
+// Playground configuration
 const playgroundConfig = {
   name: 'Button',
   props: {
@@ -527,12 +519,12 @@ const playgroundConfig = {
   slots: {
     default: {
       label: 'Button Text',
-      defaultValue: 'Click me'
+      defaultValue: 'Save changes'
     }
   }
 }
 
-// 示例代码
+// Example code
 const defaultUsage = `<Button variant="secondary" size="medium">Save changes</Button>`
 
 const variantsUsage = `<Button variant="default">Default</Button>
@@ -554,7 +546,26 @@ const textUsage = `<Button variant="primary" text>Primary Text</Button>
 </script>
 
 <style scoped>
-/* ========== 区块 ========== */
+/* ========== Page Layout ========== */
+.doc-page-layout {
+  display: flex;
+  gap: var(--spacing-size-6xl-48);
+  min-height: calc(100vh - 80px);
+}
+
+/* xl以下隐藏TOC，单列布局 */
+@media (max-width: 1279px) {
+  .doc-page-layout {
+    gap: 0;
+  }
+}
+
+.doc-page-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ========== Sections ========== */
 .doc-section {
   margin-bottom: var(--spacing-margin-margin-xxxl-48);
 }
@@ -579,7 +590,7 @@ const textUsage = `<Button variant="primary" text>Primary Text</Button>
   margin-top: 0;
 }
 
-/* ========== 预览卡片 ========== */
+/* ========== Preview Card ========== */
 .preview-card {
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border-translucent);
@@ -591,68 +602,15 @@ const textUsage = `<Button variant="primary" text>Primary Text</Button>
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-gap-gap-xs-8);
+  gap: var(--spacing-size-m-16);
   flex-wrap: wrap;
   padding: var(--spacing-padding-xxxl-48);
   background: var(--color-fill-surfacebright);
   min-height: 240px;
 }
 
-/* ========== API 表格 ========== */
-.api-table-wrapper {
-  overflow-x: auto;
-  margin-bottom: var(--spacing-margin-margin-m-16);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border-translucent);
-  background: var(--color-fill-surfacebright);
-  overflow: hidden;
-}
 
-.api-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--typo-interface-desktop-body-body-medium-size);
-  line-height: var(--typo-interface-desktop-body-body-medium-lh);
-}
-
-.api-table th {
-  text-align: left;
-  padding: var(--spacing-padding-xs-4) var(--spacing-padding-m-12);
-  background: var(--color-fill-surfacebright);
-  color: var(--color-text-secondary);
-  font-weight: 600;
-  font-size: var(--typo-interface-desktop-caption-caption-large-size);
-  border-bottom: 1px solid var(--color-border-translucent);
-}
-
-.api-table td {
-  padding: var(--spacing-padding-xs-4) var(--spacing-padding-m-12);
-  border-bottom: 1px solid var(--color-border-translucent);
-  color: var(--color-text-primary);
-  vertical-align: top;
-}
-
-.api-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.api-table code {
-  font-family: 'Fira Code', monospace;
-  font-size: var(--typo-interface-desktop-caption-caption-small-size);
-  color: var(--color-fill-accent-normal);
-  background: var(--color-mask-overlays);
-  padding: 2px 6px;
-  border-radius: var(--radius-xs);
-}
-
-.props-preview {
-  display: flex;
-  gap: var(--spacing-gap-gap-xs-8);
-  flex-wrap: wrap;
-  margin-top: var(--spacing-margin-margin-xs-8);
-}
-
-/* ========== 示例区块 ========== */
+/* ========== Example Block ========== */
 .example-block {
   margin-bottom: var(--spacing-margin-margin-xl-32);
 }
@@ -663,5 +621,162 @@ const textUsage = `<Button variant="primary" text>Primary Text</Button>
   line-height: var(--typo-markdown-h3-default-lh);
   font-weight: 700;
   color: var(--color-text-primary);
+}
+
+/* ========== API Table ========== */
+.api-table {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-translucent);
+  overflow: hidden;
+  margin-bottom: var(--spacing-margin-margin-l-16);
+}
+
+/* Desktop layout - 完全使用 design tokens */
+@media (min-width: 1024px) {
+  .api-table {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .api-table__header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-size-m-16);
+    padding: var(--spacing-padding-m-12) var(--spacing-padding-l-16);
+    background-color: var(--color-fill-surfacebright);
+    border-bottom: 1px solid var(--color-border-translucent);
+  }
+
+  .api-table__header span {
+    font-size: var(--typo-interface-desktop-body-body-small-size);
+    line-height: var(--typo-interface-desktop-body-body-small-lh);
+    font-weight: 600;
+    letter-spacing: var(--typo-interface-desktop-body-body-small-ls);
+    color: var(--color-text-secondary);
+  }
+
+  .api-table__row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-size-m-16);
+    padding: var(--spacing-padding-l-16);
+    border-bottom: 1px solid var(--color-border-translucent);
+  }
+
+  .api-table__row:last-child {
+    border-bottom: none;
+  }
+
+  .api-table__row span {
+    font-size: var(--typo-interface-desktop-body-body-medium-size);
+    line-height: var(--typo-interface-desktop-body-body-medium-lh);
+    font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+    letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+  }
+
+  /* 4列布局 (Props) - w-24=96px, w-32=128px */
+  .api-table__header span:nth-child(1),
+  .api-table__row span:nth-child(1) {
+    width: 96px;
+    flex-shrink: 0;
+  }
+
+  .api-table__header span:nth-child(2),
+  .api-table__row span:nth-child(2) {
+    width: 128px;
+    flex-shrink: 0;
+  }
+
+  .api-table__header span:nth-child(3),
+  .api-table__row span:nth-child(3) {
+    width: 96px;
+    flex-shrink: 0;
+  }
+
+  .api-table__header span:nth-child(4),
+  .api-table__row span:nth-child(4) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* 3列布局 (Events) */
+  .api-table--3-cols .api-table__header span:nth-child(1),
+  .api-table--3-cols .api-table__row span:nth-child(1) {
+    width: 96px;
+  }
+
+  .api-table--3-cols .api-table__header span:nth-child(2),
+  .api-table--3-cols .api-table__row span:nth-child(2) {
+    width: 128px;
+  }
+
+  .api-table--3-cols .api-table__header span:nth-child(3),
+  .api-table--3-cols .api-table__row span:nth-child(3) {
+    flex: 1;
+  }
+
+  /* 2列布局 (Slots) */
+  .api-table--2-cols .api-table__header span:nth-child(1),
+  .api-table--2-cols .api-table__row span:nth-child(1) {
+    width: 96px;
+  }
+
+  .api-table--2-cols .api-table__header span:nth-child(2),
+  .api-table--2-cols .api-table__row span:nth-child(2) {
+    flex: 1;
+  }
+}
+
+/* Mobile layout - Card style - 完全使用 design tokens */
+@media (max-width: 1023px) {
+  .api-table {
+    border: none;
+    background: transparent;
+    margin-bottom: var(--spacing-margin-margin-m-16);
+  }
+
+  .api-table__header {
+    display: none;
+  }
+
+  .api-table__row {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin-bottom: var(--spacing-margin-margin-m-16);
+    border: 1px solid var(--color-border-translucent);
+    border-radius: var(--radius-m-12);
+    overflow: hidden;
+  }
+
+  .api-table__row:last-child {
+    margin-bottom: 0;
+  }
+
+  .api-table__row span {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-size-xs-4);
+    padding: var(--spacing-padding-m-12);
+    border-bottom: 1px solid var(--color-border-translucent);
+    font-size: var(--typo-interface-desktop-body-body-medium-size);
+    line-height: var(--typo-interface-desktop-body-body-medium-lh);
+    font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+    letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+  }
+
+  .api-table__row span:last-child {
+    border-bottom: none;
+  }
+
+  .api-table__row span::before {
+    content: attr(data-label);
+    font-size: var(--typo-interface-desktop-body-body-small-size);
+    line-height: var(--typo-interface-desktop-body-body-small-lh);
+    font-weight: var(--typo-interface-desktop-body-body-small-weight);
+    letter-spacing: var(--typo-interface-desktop-body-body-small-ls);
+    color: var(--color-text-secondary);
+  }
 }
 </style>

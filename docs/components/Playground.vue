@@ -1,144 +1,165 @@
+<template>
+  <div class="playground">
+    <!-- Component Preview -->
+    <div class="playground__preview">
+      <slot :props="componentProps" :slots="componentSlots" />
+    </div>
+
+    <!-- Controls Panel -->
+    <div class="playground__controls">
+      <div v-for="(control, propName) in config.props" :key="propName" class="control-row">
+        <label class="control-row__label">{{ control.label }}</label>
+
+        <!-- Boolean Control (Toggle) -->
+        <DocToggle
+          v-if="control.type === 'boolean'"
+          v-model="componentProps[propName]"
+        />
+
+        <!-- Select Control (Segmented Control) -->
+        <DocSegmentedControl
+          v-else-if="control.type === 'select'"
+          :selected-key="componentProps[propName]"
+          :options="control.options.map((opt: any) => ({ key: opt.value, label: opt.label }))"
+          @select="(key: string) => componentProps[propName] = key"
+        />
+
+        <!-- Text Control -->
+        <input
+          v-else-if="control.type === 'text'"
+          v-model="componentProps[propName]"
+          type="text"
+          class="control-row__input"
+        />
+
+        <!-- Number Control -->
+        <input
+          v-else-if="control.type === 'number'"
+          v-model.number="componentProps[propName]"
+          type="number"
+          :min="control.min"
+          :max="control.max"
+          :step="control.step"
+          class="control-row__input"
+        />
+      </div>
+
+      <!-- Slot Controls -->
+      <div v-for="(slot, slotName) in config.slots" :key="slotName" class="control-row">
+        <label class="control-row__label">{{ slot.label }}</label>
+        <input
+          v-model="componentSlots[slotName]"
+          type="text"
+          class="control-row__input"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
-import type { ComponentConfig } from '@xmind-ui/components/types/component-config'
+import { reactive } from 'vue'
+import type { ComponentConfig } from '../../packages/components/types/component-config'
+import DocToggle from './DocToggle.vue'
+import DocSegmentedControl from './DocSegmentedControl.vue'
 
 const props = defineProps<{
   config: ComponentConfig
 }>()
 
-// 当前 props 状态（从 config 初始化默认值）
-const currentProps = reactive<Record<string, any>>(
-  Object.fromEntries(props.config.props.map(p => [p.name, p.default]))
-)
-
-// slot 内容
-const slotContent = ref(
-  props.config.slots?.[0]?.defaultContent ?? ''
-)
-
-// 生成代码字符串
-const generatedCode = computed(() => {
-  const attrs = props.config.props
-    .filter(p => currentProps[p.name] !== p.default)
-    .map(p => {
-      const val = currentProps[p.name]
-      if (typeof val === 'boolean') return val ? p.name : `:${p.name}="false"`
-      return `:${p.name}="'${val}'"`.replace(/^:/, val === p.default ? '' : ':')
-    })
-
-  const allAttrs = props.config.props
-    .map(p => {
-      const val = currentProps[p.name]
-      if (p.type === 'boolean') {
-        if (val === true) return p.name
-        if (val === false) return null
-      }
-      if (val === p.default && p.type !== 'boolean') return null
-      return `${p.name}="${val}"`
-    })
-    .filter(Boolean)
-
-  const attrsStr = allAttrs.length ? '\n  ' + allAttrs.join('\n  ') + '\n' : ''
-  const slot = slotContent.value ? slotContent.value : ''
-  return `<${props.config.name}${attrsStr}>\n  ${slot}\n</${props.config.name}>`
+// Initialize component props from config
+const componentProps = reactive<Record<string, any>>({})
+Object.keys(props.config.props).forEach((propName) => {
+  componentProps[propName] = props.config.props[propName].defaultValue
 })
 
-// 复制状态
-const copied = ref(false)
-async function copyCode() {
-  await navigator.clipboard.writeText(generatedCode.value)
-  copied.value = true
-  setTimeout(() => { copied.value = false }, 1500)
+// Initialize component slots from config
+const componentSlots = reactive<Record<string, string>>({})
+if (props.config.slots) {
+  Object.keys(props.config.slots).forEach((slotName) => {
+    componentSlots[slotName] = props.config.slots![slotName].defaultValue
+  })
 }
+
 </script>
 
-<template>
-  <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden">
-    <!-- 预览区 -->
-    <div class="min-h-40 flex items-center justify-center p-8 bg-[var(--color-fill-secondary)]">
-      <slot :current-props="currentProps" :slot-content="slotContent" />
-    </div>
+<style scoped>
+.playground {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xl-24);
+  border-radius: var(--radius-l-16);
+  border: 1px solid var(--color-border-translucent);
+  background: var(--color-fill-surfacebright);
+  overflow: hidden;
+}
 
-    <!-- 控制面板 -->
-    <div class="border-t border-[var(--color-border-translucent)] flex">
-      <!-- Props 控件 -->
-      <div class="flex-1 p-4 border-r border-[var(--color-border-translucent)]">
-        <p class="text-xs font-medium text-[var(--color-text-tertiary)] mb-3 uppercase tracking-wider">Props</p>
+.playground__preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-padding-xxxl-48);
+  background-color: var(--color-fill-surfacebright);
+  min-height: 200px;
+}
 
-        <div class="space-y-3">
-          <!-- Slot 内容输入 -->
-          <div v-if="config.slots?.length" class="flex items-center gap-3">
-            <label class="text-xs text-[var(--color-text-secondary)] w-20 shrink-0">
-              {{ config.slots[0].name }}
-            </label>
-            <input
-              v-model="slotContent"
-              type="text"
-              class="flex-1 h-7 px-2 text-xs rounded-lg border border-[var(--color-border-translucent)] bg-transparent focus:outline-none focus:border-[var(--color-border-default)]"
-            />
-          </div>
+.playground__controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-padding-s-8);
+  padding: var(--spacing-padding-l-16);
+  border-top: 1px solid var(--color-border-translucent);
+  background-color: var(--color-fill-surfacebright);
+}
 
-          <!-- Props 控件 -->
-          <div v-for="prop in config.props" :key="prop.name" class="flex items-center gap-3">
-            <label class="text-xs text-[var(--color-text-secondary)] w-20 shrink-0">
-              {{ prop.name }}
-            </label>
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-padding-l-16);
+  min-height: var(--spacing-size-3xl-32);
+}
 
-            <!-- Boolean toggle -->
-            <template v-if="prop.type === 'boolean'">
-              <button
-                class="w-8 h-4 rounded-full transition-colors relative"
-                :class="currentProps[prop.name] ? 'bg-[var(--color-fill-accent-normal)]' : 'bg-[var(--color-fill-tertiary)]'"
-                @click="currentProps[prop.name] = !currentProps[prop.name]"
-              >
-                <span
-                  class="absolute top-0.5 w-3 h-3 rounded-full bg-white transition-transform"
-                  :class="currentProps[prop.name] ? 'left-4' : 'left-0.5'"
-                />
-              </button>
-            </template>
+.control-row__label {
+  flex-shrink: 0;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  font-size: var(--typo-interface-desktop-body-body-medium-size);
+  line-height: var(--typo-interface-desktop-body-body-medium-lh);
+  font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+  letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+  color: var(--color-text-secondary);
+}
 
-            <!-- Enum select -->
-            <template v-else-if="prop.type === 'enum'">
-              <div class="flex gap-1">
-                <button
-                  v-for="opt in prop.options"
-                  :key="opt"
-                  class="px-2 py-0.5 text-xs rounded-md transition-colors"
-                  :class="currentProps[prop.name] === opt
-                    ? 'bg-[var(--color-fill-accent-normal)] text-[var(--color-text-invert)]'
-                    : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-fill-secondary)]'"
-                  @click="currentProps[prop.name] = opt"
-                >
-                  {{ opt }}
-                </button>
-              </div>
-            </template>
+.control-row__input {
+  flex: 1;
+  height: var(--spacing-size-3xl-32);
+  padding: var(--spacing-padding-xs-4) var(--spacing-padding-s-8);
+  border: 1px solid var(--input-border-normal);
+  border-radius: var(--input-radius-default);
+  background-color: var(--input-bg-default-normal);
+  color: var(--input-text-default);
+  font-size: var(--typo-interface-desktop-body-body-medium-size);
+  line-height: var(--typo-interface-desktop-body-body-medium-lh);
+  font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+  letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+  font-family: inherit;
+  transition: all 150ms ease;
+}
 
-            <!-- String / Number input -->
-            <template v-else>
-              <input
-                v-model="currentProps[prop.name]"
-                :type="prop.type === 'number' ? 'number' : 'text'"
-                class="flex-1 h-7 px-2 text-xs rounded-lg border border-[var(--color-border-translucent)] bg-transparent focus:outline-none focus:border-[var(--color-border-default)]"
-              />
-            </template>
-          </div>
-        </div>
-      </div>
+.control-row__input:hover {
+  border-color: var(--input-border-hover);
+  background-color: var(--input-bg-default-hover);
+}
 
-      <!-- 代码面板 -->
-      <div class="w-72 p-4 flex flex-col gap-2">
-        <div class="flex items-center justify-between mb-1">
-          <p class="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-wider">Code</p>
-          <button
-            class="text-xs text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)] transition-colors"
-            @click="copyCode"
-          >
-            {{ copied ? '✓ Copied' : 'Copy' }}
-          </button>
-        </div>
-        <pre class="text-xs leading-relaxed text-[var(--color-text-secondary)] whitespace-pre-wrap break-all font-mono">{{ generatedCode }}</pre>
-      </div>
-    </div>
-  </div>
-</template>
+.control-row__input:active {
+  border-color: var(--input-border-pressed);
+  background-color: var(--input-bg-default-pressed);
+}
+
+.control-row__input:focus {
+  outline: none;
+  border-color: var(--input-border-active);
+}
+</style>

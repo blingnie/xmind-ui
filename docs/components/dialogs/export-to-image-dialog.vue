@@ -1,0 +1,371 @@
+<template>
+  <new-modal-dialog
+    :title="heading[exportType]"
+    :is-opened="true"
+    :min-height="300"
+    :height="'auto'"
+    :width="450"
+    :buttons="buttons"
+    :dialog-body-class="'px-6'"
+    class="export-to-image-dialog"
+    @modal-dialog-close="handleClose"
+  >
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-4">
+        <label
+          class="w-[108px] flex-shrink-0 text-mobile-body-medium text-text-primary-light dark:text-text-primary-dark sm:text-desktop-body-medium"
+        >
+          {{ $T('Content') }}
+        </label>
+        <fw-select
+          :trigger-size="isPhoneSizeViewportWidth ? 'large' : 'small'"
+          :selected-key="exportContentScope"
+          :options="exportContentScopeTypes"
+          class="w-[calc(100%-120px)] flex-shrink-0"
+          @select="handleExportContentScope"
+        />
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center gap-4">
+          <label
+            class="w-[108px] flex-shrink-0 text-mobile-body-medium text-text-primary-light dark:text-text-primary-dark sm:text-desktop-body-medium"
+          >
+            {{ $T('Scale') }}
+          </label>
+          <fw-select
+            :trigger-size="isPhoneSizeViewportWidth ? 'large' : 'small'"
+            :selected-key="exportScale"
+            :disabled="exportType === 'svg'"
+            :options="exportAvailableScales"
+            class="w-[120px] flex-shrink-0"
+            :position="'bottom-center'"
+            @select="key => (exportScale = key)"
+          />
+        </div>
+
+        <div v-if="bigMindMap && exportType === 'png'" class="ml-[124px] flex items-start gap-2">
+          <fw-icon name="preview-slash" class="text-warning-500 mt-0.5 h-4 w-4 flex-shrink-0" />
+          <span class="text-desktop-caption text-text-quaternary-light dark:text-text-quaternary-dark sm:text-desktop-body-small">
+            {{ $T('The image size will be reduced because the currently set size is over the maximum.') }}
+          </span>
+        </div>
+      </div>
+      <fw-divider class="w-full" />
+      <div class="flex flex-col gap-3">
+        <div
+          class="flex cursor-pointer select-none items-center text-desktop-subhead-mini text-text-primary-light dark:text-text-primary-dark"
+          @click="toggleOptionsExpanded"
+        >
+          <fw-icon :name="!isOptionsExpanded ? 'arrow-fill-right' : 'arrow-fill-down'" class="h-4 w-4 transition-transform duration-200" />
+          <span class="text-desktop-subhead-mini text-text-primary-light dark:text-text-primary-dark">{{ $T('Options') }}</span>
+        </div>
+
+        <div v-if="isOptionsExpanded" class="flex flex-col gap-4 transition-all duration-200 ease-in-out">
+          <div v-if="exportType !== 'jpeg'" class="flex items-center justify-between">
+            <label class="truncate text-mobile-body-medium text-text-primary-light dark:text-text-primary-dark sm:text-desktop-body-medium">
+              {{ $T('Transparent Background') }}
+            </label>
+            <fw-toggle
+              :checked="isTransparent"
+              :size="isPhoneSizeViewportWidth ? 'large' : 'small'"
+              toggle-for="transparent-toggle"
+              @toggle="handleTransparentToggle"
+            />
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label
+              class="flex items-center gap-1.5 truncate text-mobile-body-medium text-text-primary-light dark:text-text-primary-dark sm:text-desktop-body-medium"
+            >
+              {{ $T('Split By Main Branch') }}
+              <fw-icon
+                v-if="!isEditorCommonPaidFeatureEnabled"
+                name="lock-pro"
+                class="h-3.5 w-3.5 text-text-quaternary-light dark:text-text-quaternary-dark"
+              />
+            </label>
+            <fw-toggle
+              :checked="isSplitByMainBranch"
+              :disabled="!isSplitAble"
+              toggle-for="split-toggle"
+              :size="isPhoneSizeViewportWidth ? 'large' : 'small'"
+              @toggle="handleSmartSplitToggle"
+            />
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label
+              class="flex items-center gap-1.5 truncate text-mobile-body-medium text-text-primary-light dark:text-text-primary-dark sm:text-desktop-body-medium"
+            >
+              {{ $T("Show 'Presented with Xmind'") }}
+              <fw-icon
+                v-if="!isEditorCommonPaidFeatureEnabled"
+                name="lock-pro"
+                class="h-3.5 w-3.5 text-text-quaternary-light dark:text-text-quaternary-dark"
+              />
+            </label>
+            <fw-toggle
+              :size="isPhoneSizeViewportWidth ? 'large' : 'small'"
+              :disabled="!isEditorCommonPaidFeatureEnabled && !props.isEmbed"
+              :checked="hasWatermark"
+              toggle-for="watermark-toggle"
+              @toggle="handleWatermarkToggle"
+            />
+          </div>
+        </div>
+      </div>
+      <div v-if="exportType === 'svg'" class="mt-3 flex flex-col gap-3">
+        <p class="text-desktop-body-medium text-text-quaternary-light dark:text-text-quaternary-dark sm:text-desktop-caption-1">
+          {{ $T('For complete image display, please make sure the font has been installed.') }}
+        </p>
+      </div>
+    </div>
+  </new-modal-dialog>
+</template>
+
+<script lang="ts" setup>
+import { ref, onMounted, watch, computed, PropType, ComputedRef } from 'vue'
+import NewModalDialog, { type ModalDialogBottomButton } from '../new-base-modal-dialog.vue'
+import { trackOpenDownloadPNGDialog } from 'client/library/tracker'
+import { usePromiseHook } from 'utils/vue-utils'
+import { $T } from 'client/library/translation'
+import { useWorkspaceStore } from 'app/services/pinia/workspace-store'
+import { useImageFrameStore } from 'app/services/pinia/image-frame-store'
+import { storeToRefs } from 'pinia'
+import type { TrackingAction } from 'client/types/tracking'
+import { useFreeTrialToast } from 'app/composables/use-free-trial-toast'
+import { useWindowResize } from 'client/composables/window-resize'
+import type { IconName } from '../icon/icons'
+
+const WARN_LENGTH_LIMIT = 30000
+
+const props = defineProps({
+  value: {
+    required: true,
+    type: String,
+  },
+  query: {
+    type: Object,
+    required: true,
+  },
+  onExport: {
+    type: Function as PropType<(options: object) => Promise<boolean>>,
+    required: true,
+  },
+  isActivateStatusValid: {
+    type: Object as PropType<ComputedRef<boolean>>,
+    required: true,
+  },
+  openActivateDialog: {
+    type: Function as PropType<(args: { feature: string; type: 'svg' | 'png' | 'jpeg'; trackingAction?: TrackingAction }) => Promise<boolean>>,
+    required: true,
+  },
+  isEmbed: {
+    type: Boolean,
+    required: true,
+  },
+})
+
+const { isPhoneSizeViewportWidth } = useWindowResize()
+const { resolve } = usePromiseHook()
+const isEditorCommonPaidFeatureEnabled = computed(() => !!props.isActivateStatusValid?.value)
+const exportType = ref<'svg' | 'png' | 'jpeg'>(props.query.type || 'png')
+const isOptionsExpanded = ref(true)
+
+const exportContentScopeTypes = computed(() => [
+  {
+    key: 'current',
+    label: $T('Current Map'),
+  },
+  {
+    key: 'all',
+    label: $T('Current File'),
+    icon: (isEditorCommonPaidFeatureEnabled.value ? undefined : 'lock-pro') as IconName,
+    isPro: !isEditorCommonPaidFeatureEnabled.value,
+  },
+])
+
+const exportAvailableScales = computed(() => [
+  {
+    key: '1',
+    label: '100%',
+  },
+  {
+    key: '2',
+    label: '200%',
+    icon: (isEditorCommonPaidFeatureEnabled.value ? undefined : 'lock-pro') as IconName,
+    isPro: !isEditorCommonPaidFeatureEnabled.value,
+  },
+  {
+    key: '3',
+    label: '300%',
+    icon: (isEditorCommonPaidFeatureEnabled.value ? undefined : 'lock-pro') as IconName,
+    isPro: !isEditorCommonPaidFeatureEnabled.value,
+  },
+])
+const buttons = computed<ModalDialogBottomButton[]>(() => [
+  {
+    text: $T('Cancel'),
+    onClick: handleClose,
+    isDisabled: false,
+    type: 'default',
+  },
+  {
+    text: $T('Export'),
+    onClick: doExport,
+    isDisabled: false,
+    type: 'secondary',
+  },
+])
+const exportContentScope = ref('current')
+const exportScale = ref('1')
+
+const { hasWatermark, isTransparent, isSplitByMainBranch } = storeToRefs(useImageFrameStore())
+const { workbook } = storeToRefs(useWorkspaceStore())
+const { updateImageFrame } = useImageFrameStore()
+
+const heading = computed(() => {
+  return {
+    png: $T('Export to PNG'),
+    svg: $T('Export to SVG'),
+    jpeg: $T('Export to JPEG'),
+  }
+})
+
+const bigMindMap = computed(() => {
+  return Math.max(props.query.bound[0], props.query.bound[1]) * parseInt(exportScale.value) > WARN_LENGTH_LIMIT
+})
+const isSplitAble = computed(() => {
+  const { activeSheet } = workbook.value.workbookEditor
+  return exportContentScope.value === 'current'
+    ? props.query.splitAbleSheetIds.includes(activeSheet.value.id)
+    : props.query.splitAbleSheetIds.length > 0
+})
+
+const toggleOptionsExpanded = () => {
+  isOptionsExpanded.value = !isOptionsExpanded.value
+}
+
+const handleTransparentToggle = (checked: boolean) => {
+  updateImageFrame({ isTransparent: checked })
+}
+
+const handleClose = () => {
+  resolve()
+}
+
+const downloadImage = async (options: object) => {
+  handleClose()
+  await props.onExport(options)
+}
+
+const handleExportContentScope = async (key: string) => {
+  const option = exportContentScopeTypes.value.find(opt => opt.key === key)
+  if (option?.isPro && !props.isEmbed) {
+    props.openActivateDialog({
+      feature: 'exportAllMapsAtOnce',
+      type: exportType.value,
+      trackingAction:
+        props.query.source === 'export-share-pop'
+          ? `share_export_to_${exportType.value}_all_maps_at_once`
+          : `export_to_${exportType.value}_all_maps_at_once`,
+    })
+    return
+  }
+  if (key === 'all' && exportType.value !== 'svg') {
+    useFreeTrialToast().showFreeTrialToastForExportIfNeeded(props.query.source || 'export-as', exportType.value, 'all_maps_at_once')
+  }
+  exportContentScope.value = key
+}
+
+const doExport = () => {
+  const options = {
+    mode: exportContentScope.value,
+    isTransparent: isTransparent.value,
+    type: exportType.value,
+    hasWatermark: hasWatermark.value,
+    isSmartSplit: isSplitByMainBranch.value,
+  }
+  if (exportType.value !== 'svg') {
+    Object.assign(options, {
+      scale: parseInt(exportScale.value),
+    })
+  }
+
+  if (isEditorCommonPaidFeatureEnabled.value) {
+    trackOpenDownloadPNGDialog({
+      eventAction: 'watermarkStatus',
+      eventName: hasWatermark.value ? 'PNGwithWatermark' : 'PNGwithoutWatermark',
+    })
+  }
+
+  try {
+    downloadImage({ options })
+  } catch (e) {
+    logger.error(e)
+  }
+}
+
+const handleWatermarkToggle = (checked: boolean) => {
+  if (!isEditorCommonPaidFeatureEnabled.value && !props.isEmbed) {
+    props.openActivateDialog({
+      feature: 'exportCurrentWithoutWatermark',
+      type: exportType.value,
+    })
+    return
+  }
+  if (hasWatermark.value && exportType.value !== 'svg') {
+    useFreeTrialToast().showFreeTrialToastForExportIfNeeded(props.query.source || 'export-as', exportType.value)
+  }
+  updateImageFrame({ hasWatermark: checked })
+}
+
+const handleSmartSplitToggle = (checked: boolean) => {
+  if (!isEditorCommonPaidFeatureEnabled.value && !props.isEmbed) {
+    props.openActivateDialog({
+      feature: 'fromSplitByMainBranch',
+      type: exportType.value,
+      trackingAction:
+        props.query.source === 'export-share-pop'
+          ? `share_export_to_${exportType.value}_split_by_main_branch`
+          : `export_to_${exportType.value}_split_by_main_branch`,
+    })
+    return
+  }
+  if (!isSplitByMainBranch.value && exportType.value !== 'svg') {
+    useFreeTrialToast().showFreeTrialToastForExportIfNeeded(props.query.source || 'export-as', exportType.value, 'split_by_main_branch')
+  }
+  updateImageFrame({ isSplitByMainBranch: checked })
+}
+
+onMounted(() => {
+  updateImageFrame({ hasWatermark: isEditorCommonPaidFeatureEnabled.value ? hasWatermark.value : true })
+})
+
+watch(
+  () => parseInt(exportScale.value),
+  async newValue => {
+    if (newValue > 1 && !isEditorCommonPaidFeatureEnabled.value && !props.isEmbed) {
+      const trackingAction: TrackingAction =
+        props.query.source === 'export-share-pop'
+          ? (`share_export_to_${exportType.value}_${newValue}x_size` as TrackingAction)
+          : (`export_to_${exportType.value}_${newValue}x_size` as TrackingAction)
+
+      props.openActivateDialog({
+        feature: 'exportScale2x3x',
+        type: exportType.value,
+        trackingAction,
+      })
+      exportScale.value = '1'
+    }
+    if (newValue > 1 && exportType.value !== 'svg') {
+      useFreeTrialToast().showFreeTrialToastForExportIfNeeded(
+        props.query.source || 'export-as',
+        exportType.value,
+        `${newValue}x_size` as '2x_size' | '3x_size',
+      )
+    }
+  },
+)
+</script>

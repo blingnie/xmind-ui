@@ -1,10 +1,20 @@
 <template>
   <div class="relative group rounded-lg overflow-hidden">
+    <!-- Loading state -->
     <pre
-      class="simple-code-block text-xs font-mono bg-[var(--color-mask-overlays)] p-3 pr-12 leading-relaxed whitespace-pre-wrap break-all overflow-y-auto"
+      v-if="isLoading"
+      class="simple-code-block text-xs font-mono bg-[var(--color-mask-overlays)] p-3 pr-12 leading-relaxed overflow-y-auto text-[var(--color-text-secondary)]"
       :style="{ height }"
-      v-html="displayCode"
+    >{{ code }}</pre>
+
+    <!-- Highlighted code -->
+    <div
+      v-else
+      class="simple-code-block overflow-y-auto"
+      :style="{ height }"
+      v-html="highlightedCode"
     />
+
     <button
       @click="copy"
       class="absolute top-3 right-3 p-1.5 rounded hover:bg-[var(--color-mask-overlays)] transition-colors"
@@ -21,60 +31,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+import { useShiki } from '~/composables/useShiki'
 
 interface Props {
   code: string
-  language?: 'vue' | 'css' | 'plain'
+  language?: string
   height?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  language: 'plain',
+  language: 'vue',
   height: '128px'
 })
 
 const copied = ref(false)
+const { isLoading, highlight, currentTheme } = useShiki()
 
-function escapeHtml(text: string) {
-  const div = document.createElement('div')
-  div.textContent = text
-  return div.innerHTML
-}
+const highlightedCode = computed(() => {
+  return highlight(props.code, props.language)
+})
 
-function highlightVue(code: string) {
-  const escaped = escapeHtml(code)
-  return escaped
-    // 标签名
-    .replace(/&lt;(\/?)(Button|template|script|style|div|span|button|input|select)(\s|&gt;)/g, '&lt;<span class="syntax-property">$1$2</span>$3')
-    // 属性名
-    .replace(/\s(variant|size|disabled|text|type|class|id|v-bind|v-model|@click|:)=/g, ' <span class="syntax-function">$1</span>=')
-    // 属性值
-    .replace(/="([^"]*)"/g, '=<span class="syntax-punctuation">"</span><span class="syntax-number">$1</span><span class="syntax-punctuation">"</span>')
-    // 标签符号
-    .replace(/(&lt;|&gt;|\/&gt;)/g, '<span class="syntax-punctuation">$1</span>')
-}
-
-function highlightCss(code: string) {
-  return code
-    // Property names
-    .replace(/(box-shadow|backdrop-filter):/g, '<span class="syntax-property">$1</span><span class="syntax-punctuation">:</span>')
-    // Functions (rgba, blur)
-    .replace(/\b(rgba|blur)\(/g, '<span class="syntax-function">$1</span><span class="syntax-punctuation">(</span>')
-    // Numbers with units
-    .replace(/(\d+(?:\.\d+)?)(px|%)?/g, '<span class="syntax-number">$1</span><span class="syntax-unit">$2</span>')
-    // Punctuation
-    .replace(/([;,\)])/g, '<span class="syntax-punctuation">$1</span>')
-}
-
-const displayCode = computed(() => {
-  if (props.language === 'vue') {
-    return highlightVue(props.code)
-  } else if (props.language === 'css') {
-    return highlightCss(props.code)
-  } else {
-    return escapeHtml(props.code)
-  }
+// 主题变化时重新高亮
+watch(currentTheme, () => {
+  // Computed 会自动重新计算
 })
 
 async function copy() {
@@ -86,44 +66,30 @@ async function copy() {
 
 <style scoped>
 .simple-code-block {
-  color: var(--color-text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+  background-color: var(--color-mask-overlays);
+  border-radius: 8px;
+  height: 100%;
 }
 
-/* 属性名 - 柔和的蓝色 */
-.simple-code-block :deep(.syntax-property) {
-  color: #5b8fc7;
+/* 覆盖 shiki 输出的所有尺寸相关样式 */
+.simple-code-block :deep(pre) {
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 16px !important;
+  height: 100% !important;
+  overflow: visible !important;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
 }
 
-:global([data-theme="dark"]) .simple-code-block :deep(.syntax-property) {
-  color: #7ca9d8;
-}
-
-/* 函数名 - 柔和的紫色 */
-.simple-code-block :deep(.syntax-function) {
-  color: #9d7cb3;
-}
-
-:global([data-theme="dark"]) .simple-code-block :deep(.syntax-function) {
-  color: #b99bcf;
-}
-
-/* 数值 - 柔和的橙色 */
-.simple-code-block :deep(.syntax-number) {
-  color: #c88955;
-}
-
-:global([data-theme="dark"]) .simple-code-block :deep(.syntax-number) {
-  color: #d9a673;
-}
-
-/* 单位 - 次要文本色 */
-.simple-code-block :deep(.syntax-unit) {
-  color: var(--color-text-tertiary);
-}
-
-/* 标点符号 - 最弱化 */
-.simple-code-block :deep(.syntax-punctuation) {
-  color: var(--color-text-tertiary);
-  opacity: 0.5;
+.simple-code-block :deep(code) {
+  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  background-color: transparent;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
 }
 </style>

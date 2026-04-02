@@ -1,5 +1,7 @@
-/* NeverMind UI Font Family */
+/* Fira Code for code blocks */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
 
+/* NeverMind UI Font Family */
 @font-face {
   font-family: 'NeverMind UI';
   src: url('/assets/fonts/NeverMindUI-Regular.ttf') format('truetype');
@@ -63,6 +65,3 @@
   font-style: italic;
   font-display: swap;
 }
-
-/* Fira Code for code blocks */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');

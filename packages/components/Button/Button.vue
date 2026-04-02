@@ -110,16 +110,19 @@ const handleClick = (event: MouseEvent) => {
 .button--default:hover:not(.button--disabled) {
   background-color: var(--button-bg-default-hover);
   color: var(--button-content-default-hover);
+  border-color: var(--button-border-default-hover);
 }
 
 .button--default:active:not(.button--disabled) {
   background-color: var(--button-bg-default-pressed);
   color: var(--button-content-default-pressed);
+  border-color: var(--button-border-default-pressed);
 }
 
 .button--default.button--disabled {
   background-color: var(--button-bg-default-disable);
   color: var(--button-content-default-disable);
+  border-color: var(--button-border-default-disable);
 }
 
 .button--primary {
@@ -142,7 +145,7 @@ const handleClick = (event: MouseEvent) => {
 
 .button--secondary {
   background-color: var(--button-bg-secondary-normal);
-  color: var(--button-content-oncolor-default);
+  color: var(--button-content-invert-default);
 }
 
 .button--secondary:hover:not(.button--disabled) {
@@ -155,7 +158,7 @@ const handleClick = (event: MouseEvent) => {
 
 .button--secondary.button--disabled {
   background-color: var(--button-bg-secondary-disable);
-  color: var(--button-content-oncolor-disable);
+  color: var(--button-content-invert-disable);
 }
 
 .button--ai {
@@ -198,22 +201,23 @@ const handleClick = (event: MouseEvent) => {
 }
 
 .button--link {
-  background-color: transparent;
+  background-color: var(--button-bg-nocontainer-normal);
   color: var(--button-content-link-normal);
   padding: var(--spacing-padding-xxs-2) var(--spacing-padding-xs-4);
 }
 
 .button--link:hover:not(.button--disabled) {
-  background-color: var(--color-mask-overlays);
+  background-color: var(--button-bg-nocontainer-hover);
   color: var(--button-content-link-hover);
 }
 
 .button--link:active:not(.button--disabled) {
-  background-color: var(--color-mask-overlaym);
+  background-color: var(--button-bg-nocontainer-pressed);
   color: var(--button-content-link-pressed);
 }
 
 .button--link.button--disabled {
+  background-color: var(--button-bg-nocontainer-disable);
   color: var(--button-content-link-disable);
 }
 

@@ -53,7 +53,7 @@ export const buttonConfig: ComponentConfig = {
   slots: {
     default: {
       label: 'Button Text',
-      defaultValue: 'Click me',
+      defaultValue: 'Save changes',
     },
   },
   // 自动从 Button.vue 中提取的真实 tokens
