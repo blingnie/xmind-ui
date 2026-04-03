@@ -83,7 +83,7 @@ async function copyIconName(name: string) {
       >
         <button
           @click="copyIconName(icon.name)"
-          class="w-full aspect-square flex items-center justify-center rounded-xl border border-[var(--color-border-translucent)] bg-[var(--color-fill-surfacebright)] hover:shadow-[var(--shadow-l2)] transition-shadow cursor-pointer"
+          class="w-full aspect-square flex items-center justify-center rounded-xl border border-[var(--color-border-translucent)] bg-[var(--color-fill-surfacebright)] hover:shadow-[var(--elevation-l2)] transition-shadow cursor-pointer"
         >
           <div
             class="flex items-center justify-center shrink-0"
@@ -114,7 +114,7 @@ async function copyIconName(name: string) {
   /* Background is set inline with dynamic gradient */
   outline: none;
   cursor: pointer;
-  box-shadow: var(--shadow-b1);
+  box-shadow: var(--elevation-b1);
   position: relative;
 }
 
@@ -127,7 +127,7 @@ async function copyIconName(name: string) {
   background: var(--slider-knob-normal, var(--palette-base-white, #FFFFFF));
   cursor: pointer;
   border: 1px solid var(--slider-border);
-  box-shadow: var(--shadow-l1);
+  box-shadow: var(--elevation-l1);
   transition: all 150ms ease;
 }
 
@@ -138,7 +138,7 @@ async function copyIconName(name: string) {
   background: var(--slider-knob-normal, var(--palette-base-white, #FFFFFF));
   cursor: pointer;
   border: 1px solid var(--slider-border);
-  box-shadow: var(--shadow-l1);
+  box-shadow: var(--elevation-l1);
   transition: all 150ms ease;
 }
 

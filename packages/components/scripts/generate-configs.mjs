@@ -50,7 +50,7 @@ function extractTokensFromComponent(filePath) {
       result.typography.push(token)
     } else if (token.startsWith('--radius-') || token.startsWith('--button-radius-')) {
       result.radius.push(token)
-    } else if (token.startsWith('--shadow-') || token.startsWith('--effect-')) {
+    } else if (token.startsWith('--elevation-') || token.startsWith('--effect-')) {
       result.effects.push(token)
     } else {
       result.other.push(token)
