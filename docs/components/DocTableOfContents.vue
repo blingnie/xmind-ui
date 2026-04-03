@@ -1,9 +1,11 @@
 <template>
-  <nav class="doc-toc">
-    <div class="doc-toc__header">
-      <h3 class="doc-toc__title">On this page</h3>
-    </div>
-    <ul class="doc-toc__list">
+  <div class="doc-toc-wrapper">
+    <div v-show="showTopFade" class="doc-toc-fade doc-toc-fade--top"></div>
+    <nav class="doc-toc" ref="tocRef" @scroll="updateFadeStates">
+      <div class="doc-toc__header">
+        <h3 class="doc-toc__title">On this page</h3>
+      </div>
+      <ul class="doc-toc__list">
       <li
         v-for="item in items"
         :key="item.id"
@@ -18,9 +20,11 @@
         >
           {{ item.text }}
         </a>
-      </li>
-    </ul>
-  </nav>
+        </li>
+      </ul>
+    </nav>
+    <div v-show="showBottomFade" class="doc-toc-fade doc-toc-fade--bottom"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -39,6 +43,21 @@ const props = withDefaults(defineProps<{
 })
 
 const activeId = ref<string>('')
+const showTopFade = ref(false)
+const showBottomFade = ref(false)
+const tocRef = ref<HTMLElement | null>(null)
+
+const updateFadeStates = () => {
+  if (!tocRef.value) return
+
+  const { scrollTop, scrollHeight, clientHeight } = tocRef.value
+
+  // 顶部渐隐：滚动超过 10px 时显示
+  showTopFade.value = scrollTop > 10
+
+  // 底部渐隐：还有内容可以滚动时显示
+  showBottomFade.value = scrollTop + clientHeight < scrollHeight - 10
+}
 
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id)
@@ -75,6 +94,7 @@ const updateActiveSection = () => {
 onMounted(() => {
   window.addEventListener('scroll', updateActiveSection)
   updateActiveSection()
+  updateFadeStates()
 })
 
 onUnmounted(() => {
@@ -83,13 +103,68 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.doc-toc {
+.doc-toc-wrapper {
+  position: relative;
   position: sticky;
-  top: 96px;
-  width: 240px;
-  max-height: calc(100vh - 96px);
-  overflow-y: auto;
+  top: 112px;
   align-self: flex-start;
+  width: 240px;
+  max-height: calc(100vh - 160px);
+}
+
+.doc-toc {
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.2s;
+}
+
+.doc-toc:hover {
+  scrollbar-color: var(--color-border-default) transparent;
+}
+
+.doc-toc::-webkit-scrollbar {
+  width: 6px;
+}
+
+.doc-toc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.doc-toc::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.doc-toc:hover::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+}
+
+.doc-toc:hover::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-default);
+}
+
+/* Fade effects */
+.doc-toc-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 60px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.doc-toc-fade--top {
+  top: 0;
+  background: linear-gradient(180deg, var(--color-fill-surface-desktop) 0%, transparent 100%);
+}
+
+.doc-toc-fade--bottom {
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, var(--color-fill-surface-desktop) 100%);
 }
 
 .doc-toc__header {

@@ -42,6 +42,35 @@
         </p>
       </section>
 
+      <!-- Desktop-specific guidelines -->
+      <section id="desktop-guidelines" class="doc-section">
+        <h2 id="desktop-guidelines">Desktop-specific guidelines</h2>
+        <p class="section-description">Components in Xmind Design System follow desktop UI conventions:</p>
+
+        <ul class="requirements-list">
+          <li><strong>Typography</strong> uses <code>Interface Desktop</code> token set — optimized for screen reading at standard desktop resolutions</li>
+          <li><strong>Spacing</strong> is calibrated for mouse and keyboard interaction, not touch</li>
+          <li><strong>Component sizes</strong> default to desktop-appropriate dimensions (e.g. Button medium is 32px height)</li>
+          <li><strong>Hover and active states</strong> are designed for cursor-based interactions</li>
+        </ul>
+
+        <p class="token-note">
+          For mobile or responsive contexts, components may need adaptation.
+        </p>
+      </section>
+
+      <!-- NeverMind UI font -->
+      <section id="nevermind-font" class="doc-section">
+        <h2 id="nevermind-font">NeverMind UI font</h2>
+        <p class="section-description">Xmind Design System is designed with the NeverMind UI typeface. If your project uses it, set the font variable in your CSS:</p>
+
+        <SimpleCodeBlock
+          :code="fontCode"
+          language="css"
+          height="100px"
+        />
+      </section>
+
       <!-- Installation -->
       <section id="installation" class="doc-section">
         <h2 id="installation">Installation</h2>
@@ -153,28 +182,15 @@
               <thead>
                 <tr>
                   <th>Token</th>
-                  <th>Preview (Light)</th>
-                  <th>Preview (Dark)</th>
+                  <th>Reference (Light)</th>
+                  <th>Reference (Dark)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="token in colorTokens" :key="token.name">
                   <td><code>{{ token.name }}</code></td>
-                  <td>
-                    <span
-                      class="color-preview"
-                      :style="{
-                        background: token.light,
-                        border: token.light.toLowerCase().includes('fff') ? '1px solid var(--color-border-default)' : 'none'
-                      }"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="color-preview"
-                      :style="{ background: token.dark }"
-                    ></span>
-                  </td>
+                  <td><code>{{ token.lightRef }}</code></td>
+                  <td><code>{{ token.darkRef }}</code></td>
                 </tr>
               </tbody>
             </table>
@@ -333,7 +349,9 @@ const colorTokens = computed(() => {
     return {
       name: lightToken?.varName || `--color-${name.replace(/\//g, '-')}`,
       light: lightToken?.rawValue || 'N/A',
-      dark: darkToken?.rawValue || 'N/A'
+      dark: darkToken?.rawValue || 'N/A',
+      lightRef: lightToken?.refVar || 'N/A',
+      darkRef: darkToken?.refVar || 'N/A'
     }
   }).filter(t => t.light !== 'N/A')
 })
@@ -362,6 +380,8 @@ const radiusTokens = computed(() => {
 
 const tocItems = ref([
   { id: 'before-you-start', text: 'Before you start', level: 2 },
+  { id: 'desktop-guidelines', text: 'Desktop-specific guidelines', level: 2 },
+  { id: 'nevermind-font', text: 'NeverMind UI font', level: 2 },
   { id: 'installation', text: 'Installation', level: 2 },
   { id: 'basic-installation', text: 'Basic Installation', level: 3 },
   { id: 'specify-version', text: 'Specify Version', level: 3 },
@@ -426,6 +446,10 @@ import type { ButtonVariant, ButtonSize } from '@xmind-ui/components'
 
 const tokensImportCode = `// main.ts or app.vue
 import '@xmind-ui/tokens/dist/tokens.css'`
+
+const fontCode = `@theme {
+  --font-family-base: 'NeverMind UI', system-ui, sans-serif;
+}`
 
 const correctTokensCode = `<style scoped>
 .my-component {
@@ -506,7 +530,7 @@ const wrongTokensCode = `<style scoped>
 }
 
 .quick-link-card:hover {
-  box-shadow: var(--shadow-l2);
+  box-shadow: var(--elevation-l2);
 }
 
 .quick-link-card__title {
@@ -772,19 +796,22 @@ const wrongTokensCode = `<style scoped>
   padding: var(--spacing-padding-l-16);
   background: var(--color-mask-overlays);
   border-radius: var(--radius-l-16);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-padding-xs-4);
 }
 
 .troubleshoot-list li {
-  margin-bottom: var(--spacing-padding-m-12);
-  font-size: var(--typo-interface-desktop-body-body-medium-size);
-  line-height: var(--typo-interface-desktop-body-body-medium-lh);
-  font-weight: var(--typo-interface-desktop-body-body-medium-weight);
-  letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
-  color: var(--color-text-secondary);
-}
-
-.troubleshoot-list li:last-child {
-  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-padding-xs-4);
+  min-height: 26px;
+  font-size: var(--typo-markdown-paragraph-default-size);
+  line-height: var(--typo-markdown-paragraph-default-lh);
+  font-weight: var(--typo-markdown-paragraph-default-weight);
+  letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  color: var(--color-text-primary);
 }
 
 /* ========== Note Blocks ========== */
@@ -815,16 +842,35 @@ const wrongTokensCode = `<style scoped>
 
 .note-block ul {
   margin: 0;
-  padding-left: var(--spacing-padding-xl-20);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-padding-xs-4);
 }
 
 .note-block li {
-  margin-bottom: var(--spacing-margin-margin-xs-8);
-  font-size: var(--typo-interface-desktop-body-body-medium-size);
-  line-height: var(--typo-interface-desktop-body-body-medium-lh);
-  font-weight: var(--typo-interface-desktop-body-body-medium-weight);
-  letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
-  color: var(--color-text-secondary);
+  position: relative;
+  padding-left: calc(20px + var(--spacing-padding-xs-4));
+  min-height: 26px;
+  font-size: var(--typo-markdown-paragraph-default-size);
+  line-height: var(--typo-markdown-paragraph-default-lh);
+  font-weight: var(--typo-markdown-paragraph-default-weight);
+  letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  color: var(--color-text-primary);
+}
+
+.note-block li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 26px;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23666666'/%3E%3C/svg%3E");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* ========== Icons ========== */

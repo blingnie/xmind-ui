@@ -83,7 +83,7 @@
     "--button-radius-small"
   ],
   "effects": [
-    "--shadow-l1"
+    "--elevation-l1"
   ],
   "other": []
 }

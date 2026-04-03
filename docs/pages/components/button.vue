@@ -418,7 +418,7 @@ const handleClick = (event: MouseEvent) => {
   background-color: var(--button-bg-default-normal);
   color: var(--button-content-default-normal);
   border: 1px solid var(--button-border-default-normal);
-  box-shadow: var(--shadow-l1);
+  box-shadow: var(--elevation-l1);
 }
 
 .button--default:hover:not(.button--disabled) {

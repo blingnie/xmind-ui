@@ -154,10 +154,10 @@ for (const elevation of elevationData.elevations) {
   const darkShadow = elevation.dark.boxShadow
 
   if (lightShadow) {
-    linesLight.push(`  --shadow-${level}: ${lightShadow};`)
+    linesLight.push(`  --elevation-${level}: ${lightShadow};`)
   }
   if (darkShadow) {
-    linesDark.push(`  --shadow-${level}: ${darkShadow};`)
+    linesDark.push(`  --elevation-${level}: ${darkShadow};`)
   }
 }
 

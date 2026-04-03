@@ -15,6 +15,20 @@ function formatCssCode(elevation: any) {
   }
   return code
 }
+
+function getVarName(level: string) {
+  return `--elevation-${level.toLowerCase()}`
+}
+
+const copied = ref('')
+
+async function copyToken(varName: string) {
+  await navigator.clipboard.writeText(varName)
+  copied.value = varName
+  setTimeout(() => {
+    copied.value = ''
+  }, 1200)
+}
 </script>
 <template>
   <div>
@@ -25,9 +39,17 @@ function formatCssCode(elevation: any) {
       <div v-for="elevation in elevations" :key="elevation.level" class="rounded-xl border border-[var(--color-border-translucent)] bg-[var(--color-fill-surfacebright)] overflow-hidden">
         <!-- Header -->
         <div class="px-4 py-2.5 border-b border-[var(--color-border-translucent)]">
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold font-mono">{{ elevation.level }}</span>
-            <span class="text-xs text-[var(--color-text-tertiary)]">{{ elevation.description }}</span>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-semibold font-mono">{{ elevation.level }}</span>
+              <span class="text-xs text-[var(--color-text-tertiary)]">{{ elevation.description }}</span>
+            </div>
+            <button
+              @click="copyToken(getVarName(elevation.level))"
+              class="text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)] transition-colors"
+            >
+              {{ copied === getVarName(elevation.level) ? '✓ copied' : getVarName(elevation.level) }}
+            </button>
           </div>
         </div>
 
