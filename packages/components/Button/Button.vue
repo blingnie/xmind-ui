@@ -1,15 +1,27 @@
 <template>
-  <button
+  <component
+    :is="componentTag"
     :class="buttonClasses"
-    :disabled="disabled"
+    :disabled="isDisabled"
+    :href="href"
     @click="handleClick"
   >
+    <span v-if="loading" class="button__spinner" aria-hidden="true">
+      <span :class="spinnerClasses" v-html="SpinnerSvg"></span>
+    </span>
+    <span v-if="$slots['icon-left']" class="button__icon button__icon--left">
+      <slot name="icon-left" />
+    </span>
     <slot />
-  </button>
+    <span v-if="$slots['icon-right']" class="button__icon button__icon--right">
+      <slot name="icon-right" />
+    </span>
+  </component>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import SpinnerSvg from '../../../docs/components/icon/spinner.svg?raw'
 
 export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'ai' | 'danger' | 'link'
 export type ButtonSize = 'small' | 'medium' | 'large'
@@ -19,6 +31,9 @@ interface ButtonProps {
   size?: ButtonSize
   disabled?: boolean
   text?: boolean
+  loading?: boolean
+  iconOnly?: boolean
+  href?: string
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -26,11 +41,21 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   size: 'medium',
   disabled: false,
   text: false,
+  loading: false,
+  iconOnly: false,
 })
 
 const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
+
+const componentTag = computed(() => {
+  return props.href ? 'a' : 'button'
+})
+
+const isDisabled = computed(() => {
+  return props.disabled || props.loading
+})
 
 const buttonClasses = computed(() => {
   return [
@@ -38,12 +63,21 @@ const buttonClasses = computed(() => {
     `button--${props.variant}`,
     `button--${props.size}`,
     props.text && 'button--text',
-    props.disabled && 'button--disabled',
+    props.loading && 'button--loading',
+    props.iconOnly && 'button--icon-only',
+    isDisabled.value && 'button--disabled',
+  ].filter(Boolean).join(' ')
+})
+
+const spinnerClasses = computed(() => {
+  return [
+    'button__spinner-icon',
+    `button__spinner-icon--${props.size}`,
   ].filter(Boolean).join(' ')
 })
 
 const handleClick = (event: MouseEvent) => {
-  if (!props.disabled) {
+  if (!isDisabled.value) {
     emit('click', event)
   }
 }
@@ -203,7 +237,29 @@ const handleClick = (event: MouseEvent) => {
 .button--link {
   background-color: var(--button-bg-nocontainer-normal);
   color: var(--button-content-link-normal);
-  padding: var(--spacing-padding-xxs-2) var(--spacing-padding-xs-4);
+  padding: var(--spacing-padding-none-0) var(--spacing-padding-xs-4);
+}
+
+/* Link button size overrides */
+.button--link.button--small {
+  height: var(--button-height-xxs);
+  padding: var(--spacing-padding-none-0) var(--spacing-padding-xs-4);
+  font-size: var(--typo-interface-desktop-body-body-small-size);
+  line-height: var(--typo-interface-desktop-body-body-small-lh);
+}
+
+.button--link.button--medium {
+  height: var(--button-height-xs);
+  padding: var(--spacing-padding-none-0) var(--spacing-padding-xs-4);
+  font-size: var(--typo-interface-desktop-subhead-subhead-mini-size);
+  line-height: var(--typo-interface-desktop-subhead-subhead-mini-lh);
+}
+
+.button--link.button--large {
+  height: var(--button-height-s);
+  padding: var(--spacing-padding-none-0) var(--spacing-padding-xs-4);
+  font-size: var(--typo-interface-desktop-subhead-subhead-small-size);
+  line-height: var(--typo-interface-desktop-subhead-subhead-small-lh);
 }
 
 .button--link:hover:not(.button--disabled) {
@@ -219,25 +275,6 @@ const handleClick = (event: MouseEvent) => {
 .button--link.button--disabled {
   background-color: var(--button-bg-nocontainer-disable);
   color: var(--button-content-link-disable);
-}
-
-/* Link button size overrides */
-.button--link.button--small {
-  height: var(--button-height-xxs);
-  font-size: var(--typo-interface-desktop-body-body-small-size);
-  line-height: var(--typo-interface-desktop-body-body-small-lh);
-}
-
-.button--link.button--medium {
-  height: var(--button-height-xs);
-  font-size: var(--typo-interface-desktop-subhead-subhead-mini-size);
-  line-height: var(--typo-interface-desktop-subhead-subhead-mini-lh);
-}
-
-.button--link.button--large {
-  height: var(--button-height-s);
-  font-size: var(--typo-interface-desktop-subhead-subhead-small-size);
-  line-height: var(--typo-interface-desktop-subhead-subhead-small-lh);
 }
 
 /* Text button modifier */
@@ -279,5 +316,112 @@ const handleClick = (event: MouseEvent) => {
 
 .button--text.button--secondary.button--disabled {
   color: var(--color-text-quaternary);
+}
+
+/* Loading state with spinner */
+.button--loading {
+  position: relative;
+}
+
+.button__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--spacing-size-xs-4);
+  flex-shrink: 0;
+}
+
+.button--icon-only .button__spinner {
+  margin-right: 0;
+}
+
+.button__spinner-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: button-spinner-rotate 1s linear infinite;
+  position: relative;
+  color: currentColor;
+}
+
+/* Use currentColor to match button text color */
+.button__spinner-icon :deep(svg) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.button__spinner-icon :deep(svg path) {
+  fill: currentColor;
+}
+
+/* Size-specific spinner dimensions */
+.button__spinner-icon--small {
+  width: 14px;
+  height: 14px;
+}
+
+.button__spinner-icon--medium {
+  width: 16px;
+  height: 16px;
+}
+
+.button__spinner-icon--large {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes button-spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon spacing */
+.button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.button__icon--left {
+  margin-right: var(--spacing-size-xs-4);
+}
+
+.button__icon--right {
+  margin-left: var(--spacing-size-xs-4);
+}
+
+/* Icon only button - square shape */
+.button--icon-only {
+  padding: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.button--icon-only.button--small {
+  width: var(--button-height-m);
+}
+
+.button--icon-only.button--medium {
+  width: var(--button-height-l);
+}
+
+.button--icon-only.button--large {
+  width: var(--button-height-xl);
+}
+
+/* Link button as anchor tag */
+.button[href] {
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.button[href]:disabled {
+  pointer-events: none;
+  opacity: 0.6;
 }
 </style>

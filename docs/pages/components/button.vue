@@ -4,6 +4,7 @@
     <div class="doc-page-content">
       <h1 class="text-xl font-semibold">Button</h1>
       <p class="text-sm text-[var(--color-text-tertiary)]">Buttons are commonly used for key actions such as submit, confirm, create, switch, invoke tools, or advance workflows. In editing and property-panel contexts, Button often serves as a high-frequency entry point (e.g., apply, reset, add, more tools) or a decision checkpoint, requiring a balanced emphasis between accessibility, error prevention, and visual priority.</p>
+      <p class="text-sm text-[var(--color-text-tertiary)] mt-2"><strong>Usage Guidelines:</strong> Primary buttons should only be used for branding and upgrade scenarios. Prefer Secondary buttons for most common actions.</p>
 
       <!-- Default preview -->
       <section id="preview" class="doc-section">
@@ -23,7 +24,14 @@
         <h2>Playground</h2>
         <Playground :config="playgroundConfig">
           <template #default="{ props, slots }">
-            <Button v-bind="props">{{ slots.default }}</Button>
+            <Button v-bind="props">
+              <template v-if="props.iconOnly && !props.loading">
+                <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="SettingIcon" />
+              </template>
+              <template v-else-if="!props.iconOnly">
+                {{ slots.default }}
+              </template>
+            </Button>
           </template>
         </Playground>
       </section>
@@ -65,6 +73,24 @@
             <span data-label="Default"><code>false</code></span>
             <span data-label="Description">Render as a text button without background or border</span>
           </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>loading</code></span>
+            <span data-label="Type"><code>boolean</code></span>
+            <span data-label="Default"><code>false</code></span>
+            <span data-label="Description">Show loading spinner and disable the button</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>iconOnly</code></span>
+            <span data-label="Type"><code>boolean</code></span>
+            <span data-label="Default"><code>false</code></span>
+            <span data-label="Description">Render as a square icon-only button</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>href</code></span>
+            <span data-label="Type"><code>string</code></span>
+            <span data-label="Default"><code>undefined</code></span>
+            <span data-label="Description">When provided, renders as an anchor tag instead of a button</span>
+          </div>
         </div>
 
         <!-- Events -->
@@ -92,6 +118,14 @@
           <div class="api-table__row">
             <span data-label="Name"><code>default</code></span>
             <span data-label="Description">Button content</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>icon-left</code></span>
+            <span data-label="Description">Icon placed before the button text</span>
+          </div>
+          <div class="api-table__row">
+            <span data-label="Name"><code>icon-right</code></span>
+            <span data-label="Description">Icon placed after the button text</span>
           </div>
         </div>
       </section>
@@ -138,7 +172,7 @@
           <h3>Disabled</h3>
           <div class="preview-card">
             <div class="preview-area">
-              <Button variant="primary" disabled>Primary</Button>
+              <Button variant="secondary" disabled>Secondary</Button>
               <Button variant="default" disabled>Default</Button>
             </div>
             <div class="p-4 border-t border-[var(--color-border-translucent)]">
@@ -160,6 +194,77 @@
             </div>
           </div>
         </div>
+
+        <!-- Loading State -->
+        <div id="example-loading" class="example-block">
+          <h3>Loading State</h3>
+          <div class="preview-card">
+            <div class="preview-area">
+              <Button variant="secondary" :loading="true">Loading...</Button>
+              <Button variant="default" :loading="true">Processing</Button>
+            </div>
+            <div class="p-4 border-t border-[var(--color-border-translucent)]">
+              <SimpleCodeBlock :code="loadingUsage" language="vue" />
+            </div>
+          </div>
+        </div>
+
+        <!-- With Icon -->
+        <div id="example-with-icon" class="example-block">
+          <h3>With Icon</h3>
+          <div class="preview-card">
+            <div class="preview-area">
+              <Button variant="primary">
+                <template #icon-left>
+                  <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="CrownIcon" />
+                </template>
+                Upgrade
+              </Button>
+              <Button variant="secondary">
+                <template #icon-left>
+                  <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="AddIcon" />
+                </template>
+                Add Member
+              </Button>
+              <Button variant="default">
+                <template #icon-left>
+                  <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="MailIcon" />
+                </template>
+                Email
+              </Button>
+              <Button variant="danger">
+                <template #icon-left>
+                  <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="TrashIcon" />
+                </template>
+                Delete
+              </Button>
+            </div>
+            <div class="p-4 border-t border-[var(--color-border-translucent)]">
+              <SimpleCodeBlock :code="withIconUsage" language="vue" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Icon Only -->
+        <div id="example-icon-only" class="example-block">
+          <h3>Icon Only</h3>
+          <div class="preview-card">
+            <div class="preview-area">
+              <Button variant="default" icon-only>
+                <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="MoreIcon" />
+              </Button>
+              <Button variant="secondary" icon-only>
+                <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="SettingIcon" />
+              </Button>
+              <Button variant="danger" icon-only>
+                <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="TrashIcon" />
+              </Button>
+            </div>
+            <div class="p-4 border-t border-[var(--color-border-translucent)]">
+              <SimpleCodeBlock :code="iconOnlyUsage" language="vue" />
+            </div>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -174,6 +279,16 @@ import SimpleCodeBlock from '~/components/SimpleCodeBlock.vue'
 import Tabs from '~/components/Tabs.vue'
 import Playground from '~/components/Playground.vue'
 import DocTableOfContents from '~/components/DocTableOfContents.vue'
+
+// Import icons
+import AddIcon from '~/components/icon/fw-icons/add.svg?raw'
+import DownloadIcon from '~/components/icon/fw-icons/download.svg?raw'
+import ChevronDownIcon from '~/components/icon/fw-icons/chevron-downward.svg?raw'
+import CrownIcon from '~/components/icon/fw-icons/crown.svg?raw'
+import MailIcon from '~/components/icon/fw-icons/mail.svg?raw'
+import TrashIcon from '~/components/icon/fw-icons/trash.svg?raw'
+import MoreIcon from '~/components/icon/fw-icons/more.svg?raw'
+import SettingIcon from '~/components/icon/fw-icons/setting.svg?raw'
 
 definePageMeta({ layout: 'default' })
 
@@ -191,6 +306,9 @@ const tocItems = ref([
   { id: 'example-sizes', text: 'Sizes', level: 3 },
   { id: 'example-disabled', text: 'Disabled', level: 3 },
   { id: 'example-text', text: 'Text Mode', level: 3 },
+  { id: 'example-loading', text: 'Loading State', level: 3 },
+  { id: 'example-with-icon', text: 'With Icon', level: 3 },
+  { id: 'example-icon-only', text: 'Icon Only', level: 3 },
 ])
 
 // Full source code
@@ -515,6 +633,16 @@ const playgroundConfig = {
       type: 'boolean' as const,
       defaultValue: false
     },
+    loading: {
+      label: 'Loading State',
+      type: 'boolean' as const,
+      defaultValue: false
+    },
+    iconOnly: {
+      label: 'Icon Only',
+      type: 'boolean' as const,
+      defaultValue: false
+    },
   },
   slots: {
     default: {
@@ -538,11 +666,71 @@ const sizesUsage = `<Button size="small">Small</Button>
 <Button size="medium">Medium</Button>
 <Button size="large">Large</Button>`
 
-const disabledUsage = `<Button variant="primary" disabled>Primary</Button>
+const disabledUsage = `<Button variant="secondary" disabled>Secondary</Button>
 <Button variant="default" disabled>Default</Button>`
 
 const textUsage = `<Button variant="primary" text>Primary Text</Button>
 <Button variant="secondary" text>Secondary Text</Button>`
+
+const loadingUsage = `<Button variant="secondary" :loading="true">Loading...</Button>
+<Button variant="default" :loading="true">Processing</Button>`
+
+const withIconUsage = `<script setup>
+import CrownIcon from '~/components/icon/fw-icons/crown.svg?raw'
+import AddIcon from '~/components/icon/fw-icons/add.svg?raw'
+import MailIcon from '~/components/icon/fw-icons/mail.svg?raw'
+import TrashIcon from '~/components/icon/fw-icons/trash.svg?raw'
+<\/script>
+
+<template>
+  <Button variant="primary">
+    <template #icon-left>
+      <div style="width: 16px; height: 16px;" v-html="CrownIcon" />
+    </template>
+    Upgrade
+  </Button>
+
+  <Button variant="secondary">
+    <template #icon-left>
+      <div style="width: 16px; height: 16px;" v-html="AddIcon" />
+    </template>
+    Add Member
+  </Button>
+
+  <Button variant="default">
+    <template #icon-left>
+      <div style="width: 16px; height: 16px;" v-html="MailIcon" />
+    </template>
+    Email
+  </Button>
+
+  <Button variant="danger">
+    <template #icon-left>
+      <div style="width: 16px; height: 16px;" v-html="TrashIcon" />
+    </template>
+    Delete
+  </Button>
+</template>`
+
+const iconOnlyUsage = `<script setup>
+import MoreIcon from '~/components/icon/fw-icons/more.svg?raw'
+import SettingIcon from '~/components/icon/fw-icons/setting.svg?raw'
+import TrashIcon from '~/components/icon/fw-icons/trash.svg?raw'
+<\/script>
+
+<template>
+  <Button variant="default" icon-only>
+    <div style="width: 16px; height: 16px;" v-html="MoreIcon" />
+  </Button>
+
+  <Button variant="secondary" icon-only>
+    <div style="width: 16px; height: 16px;" v-html="SettingIcon" />
+  </Button>
+
+  <Button variant="danger" icon-only>
+    <div style="width: 16px; height: 16px;" v-html="TrashIcon" />
+  </Button>
+</template>`
 </script>
 
 <style scoped>

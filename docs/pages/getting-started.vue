@@ -1,0 +1,863 @@
+<template>
+  <div class="doc-page-layout">
+    <!-- Main Content -->
+    <div class="doc-page-content">
+      <h1 class="page-title">Getting Started</h1>
+      <p class="page-description">Xmind Design System is Xmind's internal design system — a collection of production-ready Vue 3 components built with Design Tokens for consistent styling across light and dark themes. Primarily designed for Xmind desktop application projects.</p>
+
+      <!-- Quick Links -->
+      <section class="doc-section">
+        <div class="quick-links-grid">
+          <NuxtLink
+            to="/tokens/colors"
+            class="quick-link-card"
+          >
+            <h3 class="quick-link-card__title">Foundation</h3>
+            <p class="quick-link-card__description">Design tokens for colors, typography, spacing, and radii</p>
+          </NuxtLink>
+          <NuxtLink
+            to="/components/button"
+            class="quick-link-card"
+          >
+            <h3 class="quick-link-card__title">Components</h3>
+            <p class="quick-link-card__description">Reusable UI components for desktop applications</p>
+          </NuxtLink>
+        </div>
+      </section>
+
+      <!-- Before You Start -->
+      <section id="before-you-start" class="doc-section">
+        <h2 id="before-you-start">Before you start</h2>
+        <p class="section-description">Make sure your project meets the following requirements:</p>
+
+        <ul class="requirements-list">
+          <li><strong>Vue 3</strong> (3.4 or later)</li>
+          <li><strong>Tailwind CSS</strong> (v4.0 or later)</li>
+          <li><strong>Desktop application context</strong> — components are optimized for desktop UI patterns and interactions</li>
+          <li>Access to the <a href="https://github.com/blingnie/xmind-ui" class="text-link" target="_blank" rel="noopener">xmind-ui repository</a></li>
+        </ul>
+
+        <p class="token-note">
+          Xmind Design System is built around a custom Design Token system. All component styles rely on CSS variables defined in <code>tokens.css</code>. <strong>You must import this file in your project entry for components to render correctly.</strong>
+        </p>
+      </section>
+
+      <!-- Installation -->
+      <section id="installation" class="doc-section">
+        <h2 id="installation">Installation</h2>
+        <p class="section-description">Install Xmind UI from Git repository for cross-project usage.</p>
+
+        <div class="example-block">
+          <h3 id="basic-installation">Basic Installation</h3>
+          <SimpleCodeBlock
+            :code="installCode"
+            language="bash"
+            height="150px"
+          />
+        </div>
+
+        <div class="example-block">
+          <h3 id="specify-version">Specify Version</h3>
+          <SimpleCodeBlock
+            :code="versionCode"
+            language="bash"
+            height="150px"
+          />
+        </div>
+
+        <div class="example-block">
+          <h3 id="project-structure">Project Structure</h3>
+          <SimpleCodeBlock
+            :code="structureCode"
+            language="bash"
+            height="180px"
+          />
+        </div>
+      </section>
+
+      <!-- Import -->
+      <section id="import" class="doc-section">
+        <h2 id="import">Import</h2>
+
+        <!-- Import Components -->
+        <div class="example-block">
+          <h3 id="import-components">Import Components</h3>
+          <p class="section-description">Import components and types by package name.</p>
+
+          <SimpleCodeBlock
+            :code="componentImportCode"
+            language="vue"
+            height="220px"
+          />
+        </div>
+
+        <!-- Import Tokens -->
+        <div class="example-block">
+          <h3 id="import-tokens">Import Design Tokens</h3>
+          <p class="section-description">Import tokens.css in your entry file to ensure all component styles work correctly.</p>
+
+          <SimpleCodeBlock
+            :code="tokensImportCode"
+            language="typescript"
+            height="80px"
+          />
+        </div>
+      </section>
+
+      <!-- Design Tokens -->
+      <section id="tokens" class="doc-section">
+        <h2 id="tokens">Using Design Tokens</h2>
+        <p class="section-description">All component styles are based on Design Tokens to ensure visual consistency and theme switching. <strong>Never hardcode colors, spacing, or other values. Always use CSS variables.</strong></p>
+
+        <div class="example-block">
+          <h3 id="use-tokens">Use Tokens in Custom Styles</h3>
+
+          <div class="example-card">
+            <div class="example-card__label example-card__label--good">
+              <span class="icon icon--success" v-html="SuccessCircularIcon"></span>
+              Correct Example
+            </div>
+            <div class="example-card__code">
+              <SimpleCodeBlock
+                :code="correctTokensCode"
+                language="vue"
+                height="200px"
+              />
+            </div>
+          </div>
+
+          <div class="example-card">
+            <div class="example-card__label example-card__label--bad">
+              <span class="icon icon--error" v-html="ErrorCircularIcon"></span>
+              Wrong Example
+            </div>
+            <div class="example-card__code">
+              <SimpleCodeBlock
+                :code="wrongTokensCode"
+                language="vue"
+                height="220px"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Token Reference -->
+      <section id="token-reference" class="doc-section">
+        <h2 id="token-reference">Common Tokens Reference</h2>
+
+        <div v-if="colorTokens.length > 0">
+          <h3 id="color-tokens">Color Tokens</h3>
+          <div class="token-table-wrapper">
+            <table class="token-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Preview (Light)</th>
+                  <th>Preview (Dark)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="token in colorTokens" :key="token.name">
+                  <td><code>{{ token.name }}</code></td>
+                  <td>
+                    <span
+                      class="color-preview"
+                      :style="{
+                        background: token.light,
+                        border: token.light.toLowerCase().includes('fff') ? '1px solid var(--color-border-default)' : 'none'
+                      }"
+                    ></span>
+                  </td>
+                  <td>
+                    <span
+                      class="color-preview"
+                      :style="{ background: token.dark }"
+                    ></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div v-if="spacingTokens.length > 0">
+          <h3 id="spacing-tokens">Spacing Tokens</h3>
+          <div class="token-table-wrapper">
+            <table class="token-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="token in spacingTokens" :key="token.name">
+                  <td><code>{{ token.name }}</code></td>
+                  <td>{{ token.value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div v-if="radiusTokens.length > 0">
+          <h3 id="radius-tokens">Radius Tokens</h3>
+          <div class="token-table-wrapper">
+            <table class="token-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="token in radiusTokens" :key="token.name">
+                  <td><code>{{ token.name }}</code></td>
+                  <td>{{ token.value }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="token-reference-note">
+          For complete token lists, see
+          <NuxtLink to="/tokens/colors" class="text-link">Colors</NuxtLink>,
+          <NuxtLink to="/tokens/spacing" class="text-link">Spacing</NuxtLink>,
+          <NuxtLink to="/tokens/radius" class="text-link">Radius</NuxtLink> documentation pages.
+        </p>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section id="troubleshooting" class="doc-section">
+        <h2 id="troubleshooting">Troubleshooting</h2>
+
+        <div class="example-block">
+          <h3 id="tokens-not-working">Tokens Not Working</h3>
+          <p class="section-description">If Design Tokens are not applied correctly, check the following:</p>
+          <ul class="troubleshoot-list">
+            <li><span class="icon icon--success" v-html="CheckmarkCircleFillIcon"></span>Ensure <code>@xmind-ui/tokens/dist/tokens.css</code> is imported in your entry file</li>
+            <li><span class="icon icon--success" v-html="CheckmarkCircleFillIcon"></span>Check browser DevTools to verify CSS variables are loaded</li>
+            <li><span class="icon icon--success" v-html="CheckmarkCircleFillIcon"></span>Verify the import path matches your project structure</li>
+          </ul>
+        </div>
+
+        <div class="example-block">
+          <h3 id="component-styles-broken">Component Styles Broken</h3>
+          <p class="section-description">If component styles appear broken or unstyled:</p>
+          <ul class="troubleshoot-list">
+            <li><span class="icon icon--success" v-html="CheckmarkCircleFillIcon"></span>Ensure your project has Vue 3 installed (<code>npm list vue</code>)</li>
+            <li><span class="icon icon--success" v-html="CheckmarkCircleFillIcon"></span>Check if your bundler (Vite/Webpack) is configured to process .vue files</li>
+            <li><span class="icon icon--success" v-html="CheckmarkCircleFillIcon"></span>Verify tokens.css is imported before any component usage</li>
+          </ul>
+        </div>
+
+        <div class="example-block">
+          <h3 id="dark-mode-not-switching">Dark Mode Not Switching</h3>
+          <p class="section-description">If dark mode toggle doesn't work:</p>
+          <ul class="troubleshoot-list">
+            <li><span class="icon icon--success" v-html="CheckmarkCircleFillIcon"></span>Ensure <code>data-theme="dark"</code> attribute is set on <code>&lt;html&gt;</code> or <code>&lt;body&gt;</code></li>
+            <li><span class="icon icon--success" v-html="CheckmarkCircleFillIcon"></span>Check theme toggle implementation updates this attribute correctly</li>
+            <li><span class="icon icon--success" v-html="CheckmarkCircleFillIcon"></span>Verify tokens.css contains both light and dark theme definitions</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Notes -->
+      <section id="notes" class="doc-section">
+        <h2 id="notes">Important Notes</h2>
+
+        <div class="note-block note-block--warning">
+          <h4><span class="icon icon--warning" v-html="TriangleIcon"></span>Style Guidelines</h4>
+          <ul>
+            <li>All colors, spacing, and radius must use Design Tokens</li>
+            <li>Never hardcode any style values</li>
+            <li>Never use Tailwind built-in color classes (e.g., <code>bg-gray-500</code>, <code>text-zinc-700</code>)</li>
+            <li>Always check <code>packages/tokens/dist/tokens.css</code> before using tokens</li>
+          </ul>
+        </div>
+
+        <div class="note-block note-block--info">
+          <h4><span class="icon icon--brand" v-html="InformationFillIcon"></span>Development Tips</h4>
+          <ul>
+            <li>Prefer using existing components to avoid duplication</li>
+            <li>New components must follow design specifications and token system</li>
+            <li>Ensure components work correctly in both light mode and dark mode</li>
+            <li>Add complete TypeScript types for all components</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Table of Contents -->
+    <DocTableOfContents :items="tocItems" class="hidden xl:block" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { Button } from '@xmind-ui/components'
+import DocTableOfContents from '~/components/DocTableOfContents.vue'
+import SimpleCodeBlock from '~/components/SimpleCodeBlock.vue'
+import { useTokens } from '~/composables/useTokens'
+import SuccessCircularIcon from '~/components/icon/fw-icons/success-circular.svg?raw'
+import CheckmarkCircleFillIcon from '~/components/icon/fw-icons/checkmark-circle-fill.svg?raw'
+import ErrorCircularIcon from '~/components/icon/fw-icons/error-circular.svg?raw'
+import TriangleIcon from '~/components/icon/fw-icons/triangle.svg?raw'
+import InformationFillIcon from '~/components/icon/fw-icons/information-fill.svg?raw'
+
+definePageMeta({ layout: 'default' })
+
+const { getAliasTokens, getSpacingTokens, getRadiusTokens } = useTokens()
+
+// Get tokens
+const aliasLight = getAliasTokens('Light')
+const aliasDark = getAliasTokens('Dark')
+const allSpacing = getSpacingTokens()
+const allRadius = getRadiusTokens()
+
+// Filter tokens for display
+const colorTokens = computed(() => {
+  const commonColors = [
+    'text/primary',
+    'text/secondary',
+    'bg/primary',
+    'bg/secondary',
+    'border/default',
+    'fill/brand'
+  ]
+
+  return commonColors.map(name => {
+    const lightToken = aliasLight.find(t => t.name === name)
+    const darkToken = aliasDark.find(t => t.name === name)
+    return {
+      name: lightToken?.varName || `--color-${name.replace(/\//g, '-')}`,
+      light: lightToken?.rawValue || 'N/A',
+      dark: darkToken?.rawValue || 'N/A'
+    }
+  }).filter(t => t.light !== 'N/A')
+})
+
+const spacingTokens = computed(() => {
+  const commonSpacing = ['padding/xs 4', 'padding/s 8', 'padding/m 12', 'padding/l 16', 'padding/xl 20']
+  return allSpacing
+    .filter(t => commonSpacing.some(s => t.name.includes(s.split(' ')[0])))
+    .slice(0, 5)
+    .map(t => ({
+      name: t.varName,
+      value: `${t.value}px`
+    }))
+})
+
+const radiusTokens = computed(() => {
+  const commonRadius = ['xs 6', 'm 12', 'l 16', 'xl 24']
+  return allRadius
+    .filter(t => commonRadius.some(r => t.name.includes(r.split(' ')[0])))
+    .slice(0, 4)
+    .map(t => ({
+      name: t.varName,
+      value: `${t.value}px`
+    }))
+})
+
+const tocItems = ref([
+  { id: 'before-you-start', text: 'Before you start', level: 2 },
+  { id: 'installation', text: 'Installation', level: 2 },
+  { id: 'basic-installation', text: 'Basic Installation', level: 3 },
+  { id: 'specify-version', text: 'Specify Version', level: 3 },
+  { id: 'project-structure', text: 'Project Structure', level: 3 },
+  { id: 'import', text: 'Import', level: 2 },
+  { id: 'import-components', text: 'Import Components', level: 3 },
+  { id: 'import-tokens', text: 'Import Design Tokens', level: 3 },
+  { id: 'tokens', text: 'Using Design Tokens', level: 2 },
+  { id: 'use-tokens', text: 'Use Tokens in Custom Styles', level: 3 },
+  { id: 'token-reference', text: 'Common Tokens Reference', level: 2 },
+  { id: 'color-tokens', text: 'Color Tokens', level: 3 },
+  { id: 'spacing-tokens', text: 'Spacing Tokens', level: 3 },
+  { id: 'radius-tokens', text: 'Radius Tokens', level: 3 },
+  { id: 'troubleshooting', text: 'Troubleshooting', level: 2 },
+  { id: 'tokens-not-working', text: 'Tokens Not Working', level: 3 },
+  { id: 'component-styles-broken', text: 'Component Styles Broken', level: 3 },
+  { id: 'dark-mode-not-switching', text: 'Dark Mode Not Switching', level: 3 },
+  { id: 'notes', text: 'Important Notes', level: 2 },
+])
+
+const installCode = `# Using pnpm (recommended)
+pnpm add git+https://github.com/blingnie/xmind-ui.git
+
+# Using npm
+npm install git+https://github.com/blingnie/xmind-ui.git
+
+# Using yarn
+yarn add git+https://github.com/blingnie/xmind-ui.git`
+
+const versionCode = `# Specify tag version
+pnpm add git+https://github.com/blingnie/xmind-ui.git#v0.1.0
+
+# Specify branch
+pnpm add git+https://github.com/blingnie/xmind-ui.git#main
+
+# Specify commit
+pnpm add git+https://github.com/blingnie/xmind-ui.git#abc1234`
+
+const structureCode = `xmind-ui/
+├── packages/
+│   ├── components/          # Component library @xmind-ui/components
+│   │   ├── Button/
+│   │   │   └── Button.vue
+│   │   └── index.ts        # Unified exports
+│   └── tokens/             # Design tokens @xmind-ui/tokens
+│       └── dist/tokens.css
+└── docs/                   # Documentation site`
+
+const componentImportCode = `<script setup>
+// Import component
+import { Button } from '@xmind-ui/components'
+
+// Import types
+import type { ButtonVariant, ButtonSize } from '@xmind-ui/components'
+<\/script>
+
+<template>
+  <Button variant="secondary" size="medium">
+    Click me
+  </Button>
+<\/template>`
+
+const tokensImportCode = `// main.ts or app.vue
+import '@xmind-ui/tokens/dist/tokens.css'`
+
+const correctTokensCode = `<style scoped>
+.my-component {
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  padding: var(--spacing-padding-m-12);
+  border-radius: var(--radius-m-12);
+  border: 1px solid var(--color-border-default);
+}
+
+.my-component:hover {
+  background: var(--color-bg-secondary);
+}
+<\/style>`
+
+const wrongTokensCode = `<style scoped>
+.my-component {
+  color: #333333;              /* ❌ Hardcoded color */
+  background: rgb(255,255,255); /* ❌ Hardcoded color */
+  padding: 12px;                /* ❌ Hardcoded spacing */
+  border-radius: 8px;           /* ❌ Hardcoded radius */
+}
+
+/* ❌ Using Tailwind built-in colors */
+.text-gray-500 { }
+.bg-zinc-700 { }
+<\/style>`
+</script>
+
+<style scoped>
+/* ========== Page Layout ========== */
+.doc-page-layout {
+  display: flex;
+  gap: var(--spacing-size-6xl-48);
+  min-height: calc(100vh - 80px);
+}
+
+.doc-page-content {
+  flex: 1;
+  max-width: 896px;
+  margin: 0 auto;
+}
+
+/* ========== Typography ========== */
+.page-title {
+  margin: 0 0 var(--spacing-margin-margin-m-16) 0;
+  font-size: var(--typo-markdown-h1-default-size);
+  line-height: var(--typo-markdown-h1-default-lh);
+  font-weight: var(--typo-markdown-h1-default-weight);
+  letter-spacing: var(--typo-markdown-h1-default-ls);
+  color: var(--color-text-primary);
+}
+
+.page-description {
+  margin: 0 0 var(--spacing-margin-margin-xl-32) 0;
+  font-size: var(--typo-markdown-paragraph-default-size);
+  line-height: var(--typo-markdown-paragraph-default-lh);
+  font-weight: var(--typo-markdown-paragraph-default-weight);
+  letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  color: var(--color-text-tertiary);
+}
+
+/* ========== Quick Links ========== */
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-size-m-16);
+  margin-bottom: var(--spacing-margin-margin-xxxl-48);
+}
+
+.quick-link-card {
+  padding: var(--spacing-padding-l-16);
+  border-radius: var(--radius-l-16);
+  border: 1px solid var(--color-border-translucent);
+  background: var(--color-fill-surfacebright);
+  text-decoration: none;
+  transition: box-shadow 150ms ease;
+}
+
+.quick-link-card:hover {
+  box-shadow: var(--shadow-l2);
+}
+
+.quick-link-card__title {
+  margin: 0 0 var(--spacing-margin-margin-xs-4) 0;
+  font-size: var(--typo-interface-desktop-subhead-subhead-small-size);
+  line-height: var(--typo-interface-desktop-subhead-subhead-small-lh);
+  font-weight: var(--typo-interface-desktop-subhead-subhead-small-weight);
+  letter-spacing: var(--typo-interface-desktop-subhead-subhead-small-ls);
+  color: var(--color-text-primary);
+}
+
+.quick-link-card__description {
+  margin: 0;
+  font-size: var(--typo-interface-desktop-body-body-small-size);
+  line-height: var(--typo-interface-desktop-body-body-small-lh);
+  font-weight: var(--typo-interface-desktop-body-body-small-weight);
+  letter-spacing: var(--typo-interface-desktop-body-body-small-ls);
+  color: var(--color-text-tertiary);
+}
+
+/* ========== Introduction ========== */
+.intro-paragraph {
+  margin: 0;
+  font-size: var(--typo-markdown-paragraph-default-size);
+  line-height: var(--typo-markdown-paragraph-default-lh);
+  font-weight: var(--typo-markdown-paragraph-default-weight);
+  letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  color: var(--color-text-secondary);
+}
+
+/* ========== Requirements List ========== */
+.requirements-list {
+  margin: 0 0 var(--spacing-margin-margin-l-24) 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-padding-xs-4);
+}
+
+.requirements-list li {
+  position: relative;
+  padding-left: calc(20px + var(--spacing-padding-xs-4));
+  min-height: 26px;
+  font-size: var(--typo-markdown-paragraph-default-size);
+  line-height: var(--typo-markdown-paragraph-default-lh);
+  font-weight: var(--typo-markdown-paragraph-default-weight);
+  letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  color: var(--color-text-primary);
+}
+
+.requirements-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 26px;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23666666'/%3E%3C/svg%3E");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.token-note {
+  margin: 0;
+  padding: var(--spacing-padding-l-16);
+  background: var(--color-mask-overlays);
+  border-radius: var(--radius-m-12);
+  font-size: var(--typo-markdown-paragraph-default-size);
+  line-height: var(--typo-markdown-paragraph-default-lh);
+  font-weight: var(--typo-markdown-paragraph-default-weight);
+  letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  color: var(--color-text-secondary);
+}
+
+.section-description {
+  margin-bottom: var(--spacing-margin-margin-m-16);
+  font-size: var(--typo-markdown-paragraph-default-size);
+  line-height: var(--typo-markdown-paragraph-default-lh);
+  font-weight: var(--typo-markdown-paragraph-default-weight);
+  letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  color: var(--color-text-secondary);
+}
+
+.token-reference-note {
+  margin-top: var(--spacing-margin-margin-m-16);
+  font-size: var(--typo-markdown-paragraph-default-size);
+  line-height: var(--typo-markdown-paragraph-default-lh);
+  font-weight: var(--typo-markdown-paragraph-default-weight);
+  letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  color: var(--color-text-secondary);
+}
+
+/* ========== Sections ========== */
+.doc-section {
+  margin-bottom: var(--spacing-margin-margin-xxxl-48);
+}
+
+.doc-section h2 {
+  margin: var(--spacing-margin-margin-xl-32) 0 var(--spacing-margin-margin-l-24) 0;
+  font-size: var(--typo-markdown-h2-default-size);
+  line-height: var(--typo-markdown-h2-default-lh);
+  font-weight: var(--typo-markdown-h2-default-weight);
+  letter-spacing: var(--typo-markdown-h2-default-ls);
+  color: var(--color-text-primary);
+}
+
+.doc-section h3 {
+  margin: var(--spacing-margin-margin-l-24) 0 var(--spacing-margin-margin-m-16) 0;
+  font-size: var(--typo-markdown-h3-default-size);
+  line-height: var(--typo-markdown-h3-default-lh);
+  font-weight: var(--typo-markdown-h3-default-weight);
+  letter-spacing: var(--typo-markdown-h3-default-ls);
+  color: var(--color-text-primary);
+}
+
+.doc-section h4 {
+  margin: var(--spacing-margin-margin-l-24) 0 var(--spacing-margin-margin-s-12) 0;
+  font-size: var(--typo-markdown-h4-default-size);
+  line-height: var(--typo-markdown-h4-default-lh);
+  font-weight: var(--typo-markdown-h4-default-weight);
+  letter-spacing: var(--typo-markdown-h4-default-ls);
+  color: var(--color-text-primary);
+}
+
+/* ========== Example Block ========== */
+.example-block {
+  margin-bottom: var(--spacing-margin-margin-xl-32);
+}
+
+/* ========== Example Cards ========== */
+.example-card {
+  border-radius: var(--radius-l-16);
+  border: 1px solid var(--color-border-translucent);
+  background: var(--color-fill-surfacebright);
+  overflow: hidden;
+  margin-bottom: var(--spacing-margin-margin-l-24);
+}
+
+.example-card__label {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-padding-m-12) var(--spacing-padding-l-16);
+  font-size: var(--typo-interface-desktop-subhead-subhead-mini-size);
+  line-height: var(--typo-interface-desktop-subhead-subhead-mini-lh);
+  font-weight: var(--typo-interface-desktop-subhead-subhead-mini-weight);
+  letter-spacing: var(--typo-interface-desktop-subhead-subhead-mini-ls);
+  border-bottom: 1px solid var(--color-border-translucent);
+}
+
+.example-card__label--good {
+  background: color-mix(in srgb, var(--color-fill-success-normal) 10%, transparent);
+  color: var(--color-text-primary);
+}
+
+.example-card__label--bad {
+  background: color-mix(in srgb, var(--color-fill-error-normal) 10%, transparent);
+  color: var(--color-text-primary);
+}
+
+.example-card__code {
+  padding: var(--spacing-padding-m-12);
+}
+
+/* ========== SimpleCodeBlock Overrides ========== */
+.example-block :deep(.simple-code-block) {
+  overflow: auto !important;
+}
+
+.example-block :deep(.simple-code-block pre) {
+  overflow: auto !important;
+  white-space: pre !important;
+  word-break: normal !important;
+}
+
+.example-card :deep(.simple-code-block) {
+  overflow: auto !important;
+}
+
+.example-card :deep(.simple-code-block pre) {
+  overflow: auto !important;
+  white-space: pre !important;
+  word-break: normal !important;
+}
+
+/* ========== Token Tables ========== */
+.token-table-wrapper {
+  margin-bottom: var(--spacing-margin-margin-xl-32);
+  border: 1px solid var(--color-border-translucent);
+  border-radius: var(--radius-l-16);
+  overflow: hidden;
+}
+
+.token-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.token-table thead {
+  background: var(--color-fill-surfacebright);
+}
+
+.token-table th {
+  padding: var(--spacing-padding-m-12) var(--spacing-padding-l-16);
+  text-align: left;
+  font-size: var(--typo-interface-desktop-body-body-small-size);
+  line-height: var(--typo-interface-desktop-body-body-small-lh);
+  font-weight: var(--typo-interface-desktop-body-body-small-weight);
+  letter-spacing: var(--typo-interface-desktop-body-body-small-ls);
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border-translucent);
+}
+
+.token-table td {
+  padding: var(--spacing-padding-m-12) var(--spacing-padding-l-16);
+  font-size: var(--typo-interface-desktop-body-body-medium-size);
+  line-height: var(--typo-interface-desktop-body-body-medium-lh);
+  font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+  letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border-translucent);
+}
+
+.token-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Color Preview Box */
+.color-preview {
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  border-radius: var(--radius-xs-6);
+}
+
+/* ========== Preview Card ========== */
+.preview-card {
+  border-radius: var(--radius-l-16);
+  border: 1px solid var(--color-border-translucent);
+  background: var(--color-fill-surfacebright);
+  overflow: hidden;
+  margin-bottom: var(--spacing-margin-margin-l-24);
+}
+
+.preview-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-padding-6xl-48);
+  background: var(--color-fill-surfacebright);
+  min-height: 240px;
+}
+
+.preview-card__code {
+  padding: var(--spacing-padding-m-12);
+  border-top: 1px solid var(--color-border-translucent);
+}
+
+/* ========== Troubleshooting Lists ========== */
+.troubleshoot-list {
+  margin: 0;
+  padding: var(--spacing-padding-l-16);
+  background: var(--color-mask-overlays);
+  border-radius: var(--radius-l-16);
+}
+
+.troubleshoot-list li {
+  margin-bottom: var(--spacing-padding-m-12);
+  font-size: var(--typo-interface-desktop-body-body-medium-size);
+  line-height: var(--typo-interface-desktop-body-body-medium-lh);
+  font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+  letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+  color: var(--color-text-secondary);
+}
+
+.troubleshoot-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== Note Blocks ========== */
+.note-block {
+  padding: var(--spacing-padding-xl-20);
+  border-radius: var(--radius-l-16);
+  margin-bottom: var(--spacing-margin-margin-l-24);
+}
+
+.note-block--warning {
+  background: color-mix(in srgb, var(--color-fill-warning-normal) 10%, transparent);
+}
+
+.note-block--info {
+  background: color-mix(in srgb, var(--palette-teal-400) 10%, transparent);
+}
+
+.note-block h4 {
+  display: flex;
+  align-items: center;
+  margin: 0 0 var(--spacing-margin-margin-m-16) 0;
+  font-size: var(--typo-interface-desktop-subhead-subhead-mini-size);
+  line-height: var(--typo-interface-desktop-subhead-subhead-mini-lh);
+  font-weight: var(--typo-interface-desktop-subhead-subhead-mini-weight);
+  letter-spacing: var(--typo-interface-desktop-subhead-subhead-mini-ls);
+  color: var(--color-text-primary);
+}
+
+.note-block ul {
+  margin: 0;
+  padding-left: var(--spacing-padding-xl-20);
+}
+
+.note-block li {
+  margin-bottom: var(--spacing-margin-margin-xs-8);
+  font-size: var(--typo-interface-desktop-body-body-medium-size);
+  line-height: var(--typo-interface-desktop-body-body-medium-lh);
+  font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+  letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+  color: var(--color-text-secondary);
+}
+
+/* ========== Icons ========== */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-right: var(--spacing-padding-xs-4);
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.icon :deep(svg) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.icon--success {
+  color: var(--color-fill-success-normal);
+}
+
+.icon--error {
+  color: var(--color-fill-error-normal);
+}
+
+.icon--warning {
+  color: var(--color-fill-warning-normal);
+}
+
+.icon--brand {
+  color: var(--palette-base-teal);
+}
+</style>

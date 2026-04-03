@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./Button": "./Button/Button.vue"
+  },
   "scripts": {
     "generate:tokens": "node scripts/generate-configs.mjs"
   },
