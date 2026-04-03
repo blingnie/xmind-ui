@@ -86,7 +86,7 @@ onUnmounted(() => {
 .doc-toc {
   position: sticky;
   top: 96px;
-  width: 180px;
+  width: 240px;
   max-height: calc(100vh - 96px);
   overflow-y: auto;
   align-self: flex-start;
