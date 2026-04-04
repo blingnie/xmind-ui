@@ -1,5 +1,15 @@
 <template>
-  <div class="playground">
+  <div class="playground" :style="platformStyles">
+    <!-- Platform Switcher -->
+    <div v-if="config.supportsPlatform" class="playground__platform">
+      <span class="platform-label">Platform</span>
+      <DocSegmentedControl
+        :selected-key="selectedPlatform"
+        :options="platformOptions"
+        @select="(key: string) => selectedPlatform = key"
+      />
+    </div>
+
     <!-- Component Preview -->
     <div class="playground__preview">
       <slot :props="componentProps" :slots="componentSlots" />
@@ -69,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref, computed } from 'vue'
 import type { ComponentConfig } from '../../packages/components/types/component-config'
 import DocToggle from './DocToggle.vue'
 import DocSegmentedControl from './DocSegmentedControl.vue'
@@ -77,6 +87,28 @@ import DocSegmentedControl from './DocSegmentedControl.vue'
 const props = defineProps<{
   config: ComponentConfig
 }>()
+
+// Platform switcher
+const selectedPlatform = ref('macos')
+const platformOptions = [
+  { key: 'macos', label: 'macOS' },
+  { key: 'windows', label: 'Windows' }
+]
+
+// Platform-specific CSS variable overrides
+const platformStyles = computed(() => {
+  if (!props.config.supportsPlatform) return {}
+
+  if (selectedPlatform.value === 'windows') {
+    return {
+      '--button-radius-small': 'var(--win-radius-button-small)',
+      '--button-radius-medium': 'var(--win-radius-button-default)',
+      '--button-radius-big': 'var(--win-radius-button-big)',
+    }
+  }
+
+  return {}
+})
 
 // Initialize component props from config
 const componentProps = reactive<Record<string, any>>({})
@@ -98,11 +130,29 @@ if (props.config.slots) {
 .playground {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-size-xl-24);
   border-radius: var(--radius-l-16);
   border: 1px solid var(--color-border-translucent);
   background: var(--color-fill-surfacebright);
   overflow: hidden;
+}
+
+.playground__platform {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-m-16);
+  padding: var(--spacing-padding-l-16);
+  border-bottom: 1px solid var(--color-border-translucent);
+  background-color: var(--color-fill-surfacebright);
+}
+
+.platform-label {
+  width: 96px;
+  flex-shrink: 0;
+  font-size: var(--typo-interface-desktop-body-body-medium-size);
+  line-height: var(--typo-interface-desktop-body-body-medium-lh);
+  font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+  letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+  color: var(--color-text-secondary);
 }
 
 .playground__preview {

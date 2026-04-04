@@ -2,9 +2,16 @@
   <div class="doc-page-layout">
     <!-- Main Content -->
     <div class="doc-page-content">
-      <h1 class="text-xl font-semibold">Button</h1>
-      <p class="text-sm text-[var(--color-text-tertiary)]">Buttons are commonly used for key actions such as submit, confirm, create, switch, invoke tools, or advance workflows. In editing and property-panel contexts, Button often serves as a high-frequency entry point (e.g., apply, reset, add, more tools) or a decision checkpoint, requiring a balanced emphasis between accessibility, error prevention, and visual priority.</p>
-      <p class="text-sm text-[var(--color-text-tertiary)] mt-2"><strong>Usage Guidelines:</strong> Primary buttons should only be used for branding and upgrade scenarios. Prefer Secondary buttons for most common actions.</p>
+      <h1 class="text-xl">Button</h1>
+      <p class="text-sm text-[var(--color-text-tertiary)]" style="margin-bottom: 0;">Buttons are commonly used for key actions such as submit, confirm, create, switch, invoke tools, or advance workflows. In editing and property-panel contexts, Button often serves as a high-frequency entry point (e.g., apply, reset, add, more tools) or a decision checkpoint, requiring a balanced emphasis between accessibility, error prevention, and visual priority.</p>
+      <p class="text-sm text-[var(--color-text-tertiary)]" style="margin-top: var(--spacing-margin-margin-xs-8); margin-bottom: 0;"><strong>Usage Guidelines:</strong> Primary buttons should only be used for branding and upgrade scenarios. Prefer Secondary buttons for most common actions.</p>
+
+      <!-- Figma Link -->
+      <PlatformLink
+        href="https://www.figma.com/design/SbtmOZIYx5KVJZ3xuSOkaY/Xmind-UI-Components-2.0?node-id=16315-6208"
+        label="Figma"
+        :icon="FigmaIcon"
+      />
 
       <!-- Default preview -->
       <section id="preview" class="doc-section">
@@ -279,6 +286,7 @@ import SimpleCodeBlock from '~/components/SimpleCodeBlock.vue'
 import Tabs from '~/components/Tabs.vue'
 import Playground from '~/components/Playground.vue'
 import DocTableOfContents from '~/components/DocTableOfContents.vue'
+import PlatformLink from '~/components/PlatformLink.vue'
 
 // Import icons
 import AddIcon from '~/components/icon/fw-icons/add.svg?raw'
@@ -289,6 +297,15 @@ import MailIcon from '~/components/icon/fw-icons/mail.svg?raw'
 import TrashIcon from '~/components/icon/fw-icons/trash.svg?raw'
 import MoreIcon from '~/components/icon/fw-icons/more.svg?raw'
 import SettingIcon from '~/components/icon/fw-icons/setting.svg?raw'
+
+// Figma icon
+const FigmaIcon = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M6.66667 18.3334C8.13943 18.3334 9.33333 17.1395 9.33333 15.6667V13.0001H6.66667C5.19391 13.0001 4 14.194 4 15.6667C4 17.1395 5.19391 18.3334 6.66667 18.3334Z" fill="#0ACF83"/>
+  <path d="M4 10.0001C4 8.52728 5.19391 7.33337 6.66667 7.33337H9.33333V12.6667H6.66667C5.19391 12.6667 4 11.4728 4 10.0001Z" fill="#A259FF"/>
+  <path d="M4.00001 4.66671C4.00001 3.19395 5.19392 2.00004 6.66668 2.00004H9.33334V7.33337H6.66668C5.19392 7.33337 4.00001 6.13947 4.00001 4.66671Z" fill="#F24E1E"/>
+  <path d="M9.33334 2.00004H12C13.4728 2.00004 14.6667 3.19395 14.6667 4.66671C14.6667 6.13947 13.4728 7.33337 12 7.33337H9.33334V2.00004Z" fill="#FF7262"/>
+  <path d="M14.6667 10.0001C14.6667 11.4728 13.4728 12.6667 12 12.6667C10.5272 12.6667 9.33334 11.4728 9.33334 10.0001C9.33334 8.52728 10.5272 7.33337 12 7.33337C13.4728 7.33337 14.6667 8.52728 14.6667 10.0001Z" fill="#1ABCFE"/>
+</svg>`
 
 definePageMeta({ layout: 'default' })
 
@@ -313,17 +330,29 @@ const tocItems = ref([
 
 // Full source code
 const buttonSource = `<template>
-  <button
+  <component
+    :is="componentTag"
     :class="buttonClasses"
-    :disabled="disabled"
+    :disabled="isDisabled"
+    :href="href"
     @click="handleClick"
   >
+    <span v-if="loading" class="button__spinner" aria-hidden="true">
+      <span :class="spinnerClasses" v-html="SpinnerSvg"></span>
+    </span>
+    <span v-if="$slots['icon-left']" class="button__icon button__icon--left">
+      <slot name="icon-left" />
+    </span>
     <slot />
-  </button>
+    <span v-if="$slots['icon-right']" class="button__icon button__icon--right">
+      <slot name="icon-right" />
+    </span>
+  </component>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import SpinnerSvg from './spinner.svg?raw'
 
 export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'ai' | 'danger' | 'link'
 export type ButtonSize = 'small' | 'medium' | 'large'
@@ -333,6 +362,9 @@ interface ButtonProps {
   size?: ButtonSize
   disabled?: boolean
   text?: boolean
+  loading?: boolean
+  iconOnly?: boolean
+  href?: string
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -340,11 +372,21 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   size: 'medium',
   disabled: false,
   text: false,
+  loading: false,
+  iconOnly: false,
 })
 
 const emit = defineEmits<{
   click: [event: MouseEvent]
 }>()
+
+const componentTag = computed(() => {
+  return props.href ? 'a' : 'button'
+})
+
+const isDisabled = computed(() => {
+  return props.disabled || props.loading
+})
 
 const buttonClasses = computed(() => {
   return [
@@ -352,12 +394,21 @@ const buttonClasses = computed(() => {
     \`button--\${props.variant}\`,
     \`button--\${props.size}\`,
     props.text && 'button--text',
-    props.disabled && 'button--disabled',
+    props.loading && 'button--loading',
+    props.iconOnly && 'button--icon-only',
+    isDisabled.value && 'button--disabled',
+  ].filter(Boolean).join(' ')
+})
+
+const spinnerClasses = computed(() => {
+  return [
+    'button__spinner-icon',
+    \`button__spinner-icon--\${props.size}\`,
   ].filter(Boolean).join(' ')
 })
 
 const handleClick = (event: MouseEvent) => {
-  if (!props.disabled) {
+  if (!isDisabled.value) {
     emit('click', event)
   }
 }
@@ -494,30 +545,51 @@ const handleClick = (event: MouseEvent) => {
 }
 
 .button--danger {
-  background-color: transparent;
+  background-color: var(--button-bg-danger-normal);
   color: var(--button-content-danger-normal);
-  border: 1px solid var(--button-border-danger-normal);
 }
 
 .button--danger:hover:not(.button--disabled) {
+  background-color: var(--button-bg-danger-hover);
   color: var(--button-content-danger-hover);
-  border-color: var(--button-border-danger-hover);
 }
 
 .button--danger:active:not(.button--disabled) {
+  background-color: var(--button-bg-danger-pressed);
   color: var(--button-content-danger-pressed);
-  border-color: var(--button-border-danger-pressed);
 }
 
 .button--danger.button--disabled {
+  background-color: var(--button-bg-danger-disable);
   color: var(--button-content-danger-disable);
-  border-color: var(--button-border-danger-disable);
 }
 
 .button--link {
   background-color: var(--button-bg-nocontainer-normal);
   color: var(--button-content-link-normal);
-  padding: var(--spacing-padding-xxs-2) var(--spacing-padding-xs-4);
+  padding: var(--spacing-padding-none-0) var(--spacing-padding-xs-4);
+}
+
+/* Link button size overrides */
+.button--link.button--small {
+  height: var(--button-height-xxs);
+  padding: var(--spacing-padding-none-0) var(--spacing-padding-xs-4);
+  font-size: var(--typo-interface-desktop-body-body-small-size);
+  line-height: var(--typo-interface-desktop-body-body-small-lh);
+}
+
+.button--link.button--medium {
+  height: var(--button-height-xs);
+  padding: var(--spacing-padding-none-0) var(--spacing-padding-xs-4);
+  font-size: var(--typo-interface-desktop-subhead-subhead-mini-size);
+  line-height: var(--typo-interface-desktop-subhead-subhead-mini-lh);
+}
+
+.button--link.button--large {
+  height: var(--button-height-s);
+  padding: var(--spacing-padding-none-0) var(--spacing-padding-xs-4);
+  font-size: var(--typo-interface-desktop-subhead-subhead-small-size);
+  line-height: var(--typo-interface-desktop-subhead-subhead-small-lh);
 }
 
 .button--link:hover:not(.button--disabled) {
@@ -533,25 +605,6 @@ const handleClick = (event: MouseEvent) => {
 .button--link.button--disabled {
   background-color: var(--button-bg-nocontainer-disable);
   color: var(--button-content-link-disable);
-}
-
-/* Link button size overrides */
-.button--link.button--small {
-  height: var(--button-height-xxs);
-  font-size: var(--typo-interface-desktop-body-body-small-size);
-  line-height: var(--typo-interface-desktop-body-body-small-lh);
-}
-
-.button--link.button--medium {
-  height: var(--button-height-xs);
-  font-size: var(--typo-interface-desktop-subhead-subhead-mini-size);
-  line-height: var(--typo-interface-desktop-subhead-subhead-mini-lh);
-}
-
-.button--link.button--large {
-  height: var(--button-height-s);
-  font-size: var(--typo-interface-desktop-subhead-subhead-small-size);
-  line-height: var(--typo-interface-desktop-subhead-subhead-small-lh);
 }
 
 /* Text button modifier */
@@ -594,11 +647,115 @@ const handleClick = (event: MouseEvent) => {
 .button--text.button--secondary.button--disabled {
   color: var(--color-text-quaternary);
 }
+
+/* Loading state with spinner */
+.button--loading {
+  position: relative;
+}
+
+.button__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--spacing-size-xs-4);
+  flex-shrink: 0;
+}
+
+.button--icon-only .button__spinner {
+  margin-right: 0;
+}
+
+.button__spinner-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: button-spinner-rotate 1s linear infinite;
+  position: relative;
+  color: currentColor;
+}
+
+/* Use currentColor to match button text color */
+.button__spinner-icon :deep(svg) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Size-specific spinner dimensions */
+.button__spinner-icon--small {
+  width: 14px;
+  height: 14px;
+}
+
+.button__spinner-icon--medium {
+  width: 16px;
+  height: 16px;
+}
+
+.button__spinner-icon--large {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes button-spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon spacing */
+.button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.button__icon--left {
+  margin-right: var(--spacing-size-xs-4);
+}
+
+.button__icon--right {
+  margin-left: var(--spacing-size-xs-4);
+}
+
+/* Icon only button - square shape */
+.button--icon-only {
+  padding: 0;
+  aspect-ratio: 1 / 1;
+}
+
+.button--icon-only.button--small {
+  width: var(--button-height-m);
+}
+
+.button--icon-only.button--medium {
+  width: var(--button-height-l);
+}
+
+.button--icon-only.button--large {
+  width: var(--button-height-xl);
+}
+
+/* Link button as anchor tag */
+.button[href] {
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.button[href]:disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
 </style>`
 
 // Playground configuration
 const playgroundConfig = {
   name: 'Button',
+  supportsPlatform: true,
   props: {
     variant: {
       label: 'Variant',

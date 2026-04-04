@@ -45,7 +45,7 @@ async function copyIconName(name: string) {
 
 <template>
   <div>
-    <h1 class="text-xl font-semibold">Icons</h1>
+    <h1 class="text-xl">Icons</h1>
     <p class="text-sm text-[var(--color-text-tertiary)] mb-[32px]">
       A comprehensive collection of {{ icons.length }} interface icons designed for clarity and consistency. Click any icon to copy its name.
     </p>

@@ -32,7 +32,7 @@ async function copyToken(varName: string) {
 </script>
 <template>
   <div>
-    <h1 class="text-xl font-semibold">Elevation</h1>
+    <h1 class="text-xl">Elevation</h1>
     <p class="text-sm text-[var(--color-text-tertiary)]">Elevation tokens define shadow and blur effects to create depth hierarchy across UI layers. Each level corresponds to specific component types and interaction states.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

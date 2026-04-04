@@ -4414,7 +4414,7 @@
               "type": "number",
               "isAlias": true,
               "value": {
-                "name": "s_8"
+                "name": "mac-radius-button-big"
               }
             },
             {
@@ -4422,7 +4422,7 @@
               "type": "number",
               "isAlias": true,
               "value": {
-                "name": "xxs_4"
+                "name": "mac-radius-button-default"
               }
             },
             {
@@ -4438,8 +4438,508 @@
               "type": "number",
               "isAlias": true,
               "value": {
+                "name": "mac-radius-button-small"
+              }
+            },
+            {
+              "name": "mac-radius-button-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-button-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "m_12"
+              }
+            },
+            {
+              "name": "mac-radius-button-small",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xs_6"
+              }
+            },
+            {
+              "name": "mac-radius-checkbox-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xs_6"
+              }
+            },
+            {
+              "name": "mac-radius-checkbox-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-menu-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-menu-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "l_16"
+              }
+            },
+            {
+              "name": "mac-radius-input-format",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-search-small",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-search-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-search-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "m_12"
+              }
+            },
+            {
+              "name": "mac-radius-input-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-input-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "m_12"
+              }
+            },
+            {
+              "name": "mac-radius-toolbar-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xl_24"
+              }
+            },
+            {
+              "name": "mac-radius-toolbar-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xl_24"
+              }
+            },
+            {
+              "name": "mac-radius-popover-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xl_24"
+              }
+            },
+            {
+              "name": "mac-radius-tabbar-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xl_24"
+              }
+            },
+            {
+              "name": "mac-radius-tabbar-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xl_24"
+              }
+            },
+            {
+              "name": "mac-radius-tab-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xl_24"
+              }
+            },
+            {
+              "name": "mac-radius-tab-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xl_24"
+              }
+            },
+            {
+              "name": "mac-radius-sheetbar-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xl_24"
+              }
+            },
+            {
+              "name": "mac-radius-select-small",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-select-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-select-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "m_12"
+              }
+            },
+            {
+              "name": "mac-radius-segment-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xs_6"
+              }
+            },
+            {
+              "name": "mac-radius-segment-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "mac-radius-toast-small",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "m_12"
+              }
+            },
+            {
+              "name": "mac-radius-toast-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "l_16"
+              }
+            },
+            {
+              "name": "mac-radius-window-default",
+              "type": "number",
+              "isAlias": false,
+              "value": 15
+            },
+            {
+              "name": "mac-radius-window-big",
+              "type": "number",
+              "isAlias": false,
+              "value": 26
+            },
+            {
+              "name": "mac-radius-notification-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "m_12"
+              }
+            },
+            {
+              "name": "mac-radius-panel-default",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "win-radius-button-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
                 "name": "xxs_4"
               }
+            },
+            {
+              "name": "win-radius-button-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "win-radius-button-small",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-checkbox-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "3_onlyForCheckbox"
+              }
+            },
+            {
+              "name": "win-radius-checkbox-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-menu-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-menu-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "win-radius-input-format",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-search-small",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-search-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-search-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-input-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-input-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-toolbar-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-toolbar-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "win-radius-popover-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "l_16"
+              }
+            },
+            {
+              "name": "win-radius-tabbar-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-tabbar-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "win-radius-tab-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-tab-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "win-radius-sheetbar-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-select-small",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-select-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-select-big",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "win-radius-segment-element",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-segment-bg",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "xxs_4"
+              }
+            },
+            {
+              "name": "win-radius-toast-small",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "win-radius-toast-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "win-radius-window-default",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
+            },
+            {
+              "name": "win-radius-window-big",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "win-radius-notification-default",
+              "type": "number",
+              "isAlias": true,
+              "value": {
+                "name": "s_8"
+              }
+            },
+            {
+              "name": "win-radius-panel-default",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
             },
             {
               "name": "button/height/xl",
@@ -5619,40 +6119,28 @@
               }
             },
             {
-              "name": "button/border/danger/normal",
+              "name": "button/bg/danger/normal",
               "type": "color",
-              "isAlias": true,
-              "value": {
-                "collection": "Alias Token",
-                "name": "color/border/error/normal"
-              }
+              "isAlias": false,
+              "value": "#E9545433"
             },
             {
-              "name": "button/border/danger/hover",
+              "name": "button/bg/danger/hover",
               "type": "color",
-              "isAlias": true,
-              "value": {
-                "collection": "Alias Token",
-                "name": "color/border/error/hover"
-              }
+              "isAlias": false,
+              "value": "#E954541F"
             },
             {
-              "name": "button/border/danger/pressed",
+              "name": "button/bg/danger/pressed",
               "type": "color",
-              "isAlias": true,
-              "value": {
-                "collection": "Alias Token",
-                "name": "color/border/error/pressed"
-              }
+              "isAlias": false,
+              "value": "#E954543D"
             },
             {
-              "name": "button/border/danger/disable",
+              "name": "button/bg/danger/disable",
               "type": "color",
-              "isAlias": true,
-              "value": {
-                "collection": "Alias Token",
-                "name": "color/border/error/disable"
-              }
+              "isAlias": false,
+              "value": "#E954541F"
             },
             {
               "name": "input/text/success",

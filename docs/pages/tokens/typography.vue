@@ -8,6 +8,24 @@ function formatNumber(num: number, decimals = 0): string {
   return Number(num.toFixed(decimals)).toString()
 }
 
+// Map font weight names to numeric values (same as build.mjs)
+function weightToNumber(weight: string): number {
+  const weightMap: Record<string, number> = {
+    'Thin': 100,
+    'ExtraLight': 200,
+    'Light': 300,
+    'Regular': 400,
+    'Retina': 400,
+    'Medium': 500,
+    'SemiBold': 600,
+    'DemiBold': 600,
+    'Bold': 700,
+    'ExtraBold': 800,
+    'Black': 900
+  }
+  return weightMap[weight] ?? 400
+}
+
 const copied = ref('')
 async function copy(text: string) {
   await navigator.clipboard.writeText(text)
@@ -17,8 +35,8 @@ async function copy(text: string) {
 </script>
 <template>
   <div>
-    <h1 class="text-xl font-semibold">Typography</h1>
-    <div class="text-sm text-[var(--color-text-tertiary)]">Typography scale and specifications using the NeverMind UI font family. Each token defines font size, line height, letter spacing, and weight for consistent text styling across interfaces.</div>
+    <h1 class="text-xl">Typography</h1>
+    <p class="text-sm text-[var(--color-text-tertiary)]">Typography scale and specifications using the NeverMind UI font family. Each token defines font size, line height, letter spacing, and weight for consistent text styling across interfaces.</p>
     <Tabs v-model="activeGroup" :tabs="typoGroups.map(g => g.group)" />
     <div v-for="{ group, tokens } in typoGroups" v-show="activeGroup === group" :key="group" class="mt-4">
       <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden">
@@ -29,7 +47,12 @@ async function copy(text: string) {
           <div v-for="token in tokens" :key="token.name" class="grid grid-cols-[2fr_1fr_1fr_1fr_1fr_2fr] gap-4 px-4 py-3 items-center">
             <div class="text-left min-w-0">
               <div
-                :style="{ fontSize: `${token.fontSize}px`, lineHeight: token.lineHeightUnit === 'PIXELS' ? `${token.lineHeight}px` : `${token.lineHeight}%`, fontWeight: token.fontWeight }"
+                :style="{
+                  fontSize: `var(${token.varName}-size)`,
+                  lineHeight: `var(${token.varName}-lh)`,
+                  fontWeight: `var(${token.varName}-weight)`,
+                  letterSpacing: `var(${token.varName}-ls)`
+                }"
                 :class="token.name.includes('Code block') ? 'font-mono' : ''"
                 class="truncate mb-0.5"
               >{{ token.name.includes('Code block') ? 'Code' : 'Aa' }}</div>
@@ -38,7 +61,7 @@ async function copy(text: string) {
             <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ token.fontSize }}px</span>
             <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ formatNumber(token.lineHeight, token.lineHeightUnit === 'PIXELS' ? 0 : 0) }}{{ token.lineHeightUnit === 'PIXELS' ? 'px' : '%' }}</span>
             <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ formatNumber(token.letterSpacing, 1) }}{{ token.letterSpacingUnit === 'PERCENT' ? '%' : 'px' }}</span>
-            <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ token.fontWeight }}</span>
+            <span class="text-xs font-mono text-[var(--color-text-secondary)]">{{ weightToNumber(token.fontWeight) }}</span>
             <button class="text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)] text-left truncate" @click="copy(`var(${token.varName})`)">
               {{ copied === `var(${token.varName})` ? '✓ copied' : token.varName }}
             </button>

@@ -97,8 +97,10 @@ for (const v of typoCol.modes[0].variables) {
     'ExtraLight': '200',
     'Light': '300',
     'Regular': '400',
+    'Retina': '400',
     'Medium': '500',
     'SemiBold': '600',
+    'DemiBold': '600',
     'Bold': '700',
     'ExtraBold': '800',
     'Black': '900'

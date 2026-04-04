@@ -2,8 +2,15 @@
   <div class="doc-page-layout">
     <!-- Main Content -->
     <div class="doc-page-content">
-      <h1 class="page-title">Getting Started</h1>
-      <p class="page-description">Xmind Design System is Xmind's internal design system — a collection of production-ready Vue 3 components built with Design Tokens for consistent styling across light and dark themes. Primarily designed for Xmind desktop application projects.</p>
+      <h1 class="text-xl">Getting Started</h1>
+      <p class="text-sm text-[var(--color-text-tertiary)]" style="margin-bottom: 0;">Xmind Design System is Xmind's internal design system — a collection of production-ready Vue 3 components built with Design Tokens for consistent styling across light and dark themes. Primarily designed for Xmind desktop application projects.</p>
+
+      <!-- Figma Link -->
+      <PlatformLink
+        href="https://www.figma.com/design/SbtmOZIYx5KVJZ3xuSOkaY/Xmind-UI-Components-2.0?node-id=0-1&t=F8uGcaioymYlseop-1"
+        label="Figma"
+        :icon="FigmaIcon"
+      />
 
       <!-- Quick Links -->
       <section class="doc-section">
@@ -315,12 +322,22 @@
 import { Button } from '@xmind-ui/components'
 import DocTableOfContents from '~/components/DocTableOfContents.vue'
 import SimpleCodeBlock from '~/components/SimpleCodeBlock.vue'
+import PlatformLink from '~/components/PlatformLink.vue'
 import { useTokens } from '~/composables/useTokens'
 import SuccessCircularIcon from '~/components/icon/fw-icons/success-circular.svg?raw'
 import CheckmarkCircleFillIcon from '~/components/icon/fw-icons/checkmark-circle-fill.svg?raw'
 import ErrorCircularIcon from '~/components/icon/fw-icons/error-circular.svg?raw'
 import TriangleIcon from '~/components/icon/fw-icons/triangle.svg?raw'
 import InformationFillIcon from '~/components/icon/fw-icons/information-fill.svg?raw'
+
+// Figma icon
+const FigmaIcon = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M6.66667 18.3334C8.13943 18.3334 9.33333 17.1395 9.33333 15.6667V13.0001H6.66667C5.19391 13.0001 4 14.194 4 15.6667C4 17.1395 5.19391 18.3334 6.66667 18.3334Z" fill="#0ACF83"/>
+  <path d="M4 10.0001C4 8.52728 5.19391 7.33337 6.66667 7.33337H9.33333V12.6667H6.66667C5.19391 12.6667 4 11.4728 4 10.0001Z" fill="#A259FF"/>
+  <path d="M4.00001 4.66671C4.00001 3.19395 5.19392 2.00004 6.66668 2.00004H9.33334V7.33337H6.66668C5.19392 7.33337 4.00001 6.13947 4.00001 4.66671Z" fill="#F24E1E"/>
+  <path d="M9.33334 2.00004H12C13.4728 2.00004 14.6667 3.19395 14.6667 4.66671C14.6667 6.13947 13.4728 7.33337 12 7.33337H9.33334V2.00004Z" fill="#FF7262"/>
+  <path d="M14.6667 10.0001C14.6667 11.4728 13.4728 12.6667 12 12.6667C10.5272 12.6667 9.33334 11.4728 9.33334 10.0001C9.33334 8.52728 10.5272 7.33337 12 7.33337C13.4728 7.33337 14.6667 8.52728 14.6667 10.0001Z" fill="#1ABCFE"/>
+</svg>`
 
 definePageMeta({ layout: 'default' })
 
@@ -491,25 +508,6 @@ const wrongTokensCode = `<style scoped>
   flex: 1;
   max-width: 896px;
   margin: 0 auto;
-}
-
-/* ========== Typography ========== */
-.page-title {
-  margin: 0 0 var(--spacing-margin-margin-m-16) 0;
-  font-size: var(--typo-markdown-h1-default-size);
-  line-height: var(--typo-markdown-h1-default-lh);
-  font-weight: var(--typo-markdown-h1-default-weight);
-  letter-spacing: var(--typo-markdown-h1-default-ls);
-  color: var(--color-text-primary);
-}
-
-.page-description {
-  margin: 0 0 var(--spacing-margin-margin-xl-32) 0;
-  font-size: var(--typo-markdown-paragraph-default-size);
-  line-height: var(--typo-markdown-paragraph-default-lh);
-  font-weight: var(--typo-markdown-paragraph-default-weight);
-  letter-spacing: var(--typo-markdown-paragraph-default-ls);
-  color: var(--color-text-tertiary);
 }
 
 /* ========== Quick Links ========== */
