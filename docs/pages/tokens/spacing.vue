@@ -23,7 +23,7 @@ function capitalize(str: string) {
 </script>
 <template>
   <div>
-    <h1 class="text-xl font-semibold">Spacing</h1>
+    <h1 class="text-xl">Spacing</h1>
     <p class="text-sm text-[var(--color-text-tertiary)]">Spacing tokens define consistent margin and padding values throughout the interface. All values are measured in pixels for precise layout control.</p>
     <div v-for="{ group, items } in groups" :key="group" class="mb-8">
       <p class="text-xs font-medium text-[var(--color-text-tertiary)] tracking-wider mb-2">{{ capitalize(group) }}</p>

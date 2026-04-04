@@ -24,7 +24,7 @@ function capitalize(str: string) {
 </script>
 <template>
   <div>
-    <h1 class="text-xl font-semibold">Colors</h1>
+    <h1 class="text-xl">Colors</h1>
     <p class="text-sm text-[var(--color-text-tertiary)]">Semantic color tokens that automatically adapt between light and dark themes. Click any token to copy the CSS variable name to your clipboard.</p>
     <div v-for="{ group, tokens } in aliasGroups" :key="group" class="mb-6">
       <p class="text-xs font-medium text-[var(--color-text-tertiary)] tracking-wider mb-2">{{ capitalize(group) }}</p>
@@ -39,7 +39,7 @@ function capitalize(str: string) {
         </div>
       </div>
     </div>
-    <h2 class="text-base font-semibold mb-4 mt-8">Palette</h2>
+    <h2 class="text-base mb-4 mt-8">Palette</h2>
     <div v-for="{ group, swatches } in colorGroups" :key="group" class="mb-6">
       <p class="text-xs font-medium text-[var(--color-text-tertiary)] tracking-wider mb-2">{{ capitalize(group) }}</p>
       <div class="rounded-xl border border-[var(--color-border-translucent)] overflow-hidden divide-y divide-[var(--color-border-translucent)]">

@@ -15,6 +15,7 @@ export interface SlotControl {
 
 export interface ComponentConfig {
   name: string
+  supportsPlatform?: boolean
   props: Record<string, PropControl>
   slots?: Record<string, SlotControl>
 }

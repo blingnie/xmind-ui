@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import SpinnerSvg from '../../../docs/components/icon/spinner.svg?raw'
+import SpinnerSvg from './spinner.svg?raw'
 
 export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'ai' | 'danger' | 'link'
 export type ButtonSize = 'small' | 'medium' | 'large'
@@ -214,24 +214,23 @@ const handleClick = (event: MouseEvent) => {
 }
 
 .button--danger {
-  background-color: transparent;
+  background-color: var(--button-bg-danger-normal);
   color: var(--button-content-danger-normal);
-  border: 1px solid var(--button-border-danger-normal);
 }
 
 .button--danger:hover:not(.button--disabled) {
+  background-color: var(--button-bg-danger-hover);
   color: var(--button-content-danger-hover);
-  border-color: var(--button-border-danger-hover);
 }
 
 .button--danger:active:not(.button--disabled) {
+  background-color: var(--button-bg-danger-pressed);
   color: var(--button-content-danger-pressed);
-  border-color: var(--button-border-danger-pressed);
 }
 
 .button--danger.button--disabled {
+  background-color: var(--button-bg-danger-disable);
   color: var(--button-content-danger-disable);
-  border-color: var(--button-border-danger-disable);
 }
 
 .button--link {
@@ -349,10 +348,6 @@ const handleClick = (event: MouseEvent) => {
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.button__spinner-icon :deep(svg path) {
-  fill: currentColor;
 }
 
 /* Size-specific spinner dimensions */
