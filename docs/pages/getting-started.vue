@@ -497,19 +497,6 @@ const wrongTokensCode = `<style scoped>
 </script>
 
 <style scoped>
-/* ========== Page Layout ========== */
-.doc-page-layout {
-  display: flex;
-  gap: var(--spacing-size-6xl-48);
-  min-height: calc(100vh - 80px);
-}
-
-.doc-page-content {
-  flex: 1;
-  max-width: 896px;
-  margin: 0 auto;
-}
-
 /* ========== Quick Links ========== */
 .quick-links-grid {
   display: grid;
@@ -623,43 +610,6 @@ const wrongTokensCode = `<style scoped>
   color: var(--color-text-secondary);
 }
 
-/* ========== Sections ========== */
-.doc-section {
-  margin-bottom: var(--spacing-margin-margin-xxxl-48);
-}
-
-.doc-section h2 {
-  margin: var(--spacing-margin-margin-xl-32) 0 var(--spacing-margin-margin-l-24) 0;
-  font-size: var(--typo-markdown-h2-default-size);
-  line-height: var(--typo-markdown-h2-default-lh);
-  font-weight: var(--typo-markdown-h2-default-weight);
-  letter-spacing: var(--typo-markdown-h2-default-ls);
-  color: var(--color-text-primary);
-}
-
-.doc-section h3 {
-  margin: var(--spacing-margin-margin-l-24) 0 var(--spacing-margin-margin-m-16) 0;
-  font-size: var(--typo-markdown-h3-default-size);
-  line-height: var(--typo-markdown-h3-default-lh);
-  font-weight: var(--typo-markdown-h3-default-weight);
-  letter-spacing: var(--typo-markdown-h3-default-ls);
-  color: var(--color-text-primary);
-}
-
-.doc-section h4 {
-  margin: var(--spacing-margin-margin-l-24) 0 var(--spacing-margin-margin-s-12) 0;
-  font-size: var(--typo-markdown-h4-default-size);
-  line-height: var(--typo-markdown-h4-default-lh);
-  font-weight: var(--typo-markdown-h4-default-weight);
-  letter-spacing: var(--typo-markdown-h4-default-ls);
-  color: var(--color-text-primary);
-}
-
-/* ========== Example Block ========== */
-.example-block {
-  margin-bottom: var(--spacing-margin-margin-xl-32);
-}
-
 /* ========== Example Cards ========== */
 .example-card {
   border-radius: var(--radius-l-16);
@@ -726,6 +676,7 @@ const wrongTokensCode = `<style scoped>
 .token-table {
   width: 100%;
   border-collapse: collapse;
+  margin: 0;
 }
 
 .token-table thead {
@@ -757,37 +708,6 @@ const wrongTokensCode = `<style scoped>
   border-bottom: none;
 }
 
-/* Color Preview Box */
-.color-preview {
-  display: inline-block;
-  width: 40px;
-  height: 24px;
-  border-radius: var(--radius-xs-6);
-}
-
-/* ========== Preview Card ========== */
-.preview-card {
-  border-radius: var(--radius-l-16);
-  border: 1px solid var(--color-border-translucent);
-  background: var(--color-fill-surfacebright);
-  overflow: hidden;
-  margin-bottom: var(--spacing-margin-margin-l-24);
-}
-
-.preview-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-padding-6xl-48);
-  background: var(--color-fill-surfacebright);
-  min-height: 240px;
-}
-
-.preview-card__code {
-  padding: var(--spacing-padding-m-12);
-  border-top: 1px solid var(--color-border-translucent);
-}
-
 /* ========== Troubleshooting Lists ========== */
 .troubleshoot-list {
   margin: 0;
@@ -801,15 +721,20 @@ const wrongTokensCode = `<style scoped>
 }
 
 .troubleshoot-list li {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-padding-xs-4);
+  display: block;
+  padding-left: calc(16px + var(--spacing-padding-xs-4));
+  text-indent: calc(-16px - var(--spacing-padding-xs-4));
   min-height: 26px;
   font-size: var(--typo-markdown-paragraph-default-size);
   line-height: var(--typo-markdown-paragraph-default-lh);
   font-weight: var(--typo-markdown-paragraph-default-weight);
   letter-spacing: var(--typo-markdown-paragraph-default-ls);
   color: var(--color-text-primary);
+}
+
+.troubleshoot-list li .icon {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* ========== Note Blocks ========== */

@@ -28,7 +28,8 @@ provide('theme', { theme, toggleTheme })
 
 /* Inline code */
 main code {
-  padding: var(--spacing-padding-xs-4) var(--spacing-padding-s-8);
+  display: inline;
+  padding: 2px var(--spacing-padding-s-8); /* 垂直 2px no token */
   background: var(--color-mask-overlays);
   border-radius: var(--radius-xxs-4);
   font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
@@ -37,6 +38,12 @@ main code {
   line-height: var(--typo-markdown-code-block-default-lh);
   letter-spacing: var(--typo-markdown-code-block-default-ls);
   color: var(--color-text-secondary);
+  /* 关键：让 code 跟随文本流换行，不自己决定断行位置 */
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 /* Links - only in main content area */
@@ -67,10 +74,9 @@ main ul:not([class]) {
 }
 
 main ul:not([class]) li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-padding-xs-4);
-  min-height: 26px;
+  display: block;
+  padding-left: 1em;
+  position: relative;
   font-size: var(--typo-markdown-paragraph-default-size);
   line-height: var(--typo-markdown-paragraph-default-lh);
   font-weight: var(--typo-markdown-paragraph-default-weight);
@@ -79,16 +85,9 @@ main ul:not([class]) li {
 }
 
 main ul:not([class]) li::before {
-  content: '';
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 26px;
-  flex-shrink: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23666666'/%3E%3C/svg%3E");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  background-position: center;
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-tertiary);
 }
 </style>
