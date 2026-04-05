@@ -16,9 +16,9 @@
       <!-- Default preview -->
       <section id="preview" class="doc-section">
         <div class="preview-card">
-          <div class="preview-area">
+          <PreviewArea>
             <Button variant="secondary" size="medium">Save changes</Button>
-          </div>
+          </PreviewArea>
           <div class="pt-2 px-4 pb-4 border-t border-[var(--color-border-translucent)]">
             <Tabs v-model="activeTab" :tabs="['Usage', 'Source']" />
             <SimpleCodeBlock :code="activeTab === 'Usage' ? defaultUsage : buttonSource" language="vue" height="280px" />
@@ -145,14 +145,14 @@
         <div id="example-variants" class="example-block">
           <h3>Variants</h3>
           <div class="preview-card">
-            <div class="preview-area">
+            <PreviewArea>
               <Button variant="default">Default</Button>
               <Button variant="primary">Primary</Button>
               <Button variant="secondary">Secondary</Button>
               <Button variant="ai">AI</Button>
               <Button variant="danger">Danger</Button>
               <Button variant="link">Link</Button>
-            </div>
+            </PreviewArea>
             <div class="p-4 border-t border-[var(--color-border-translucent)]">
               <SimpleCodeBlock :code="variantsUsage" language="vue" />
             </div>
@@ -163,11 +163,11 @@
         <div id="example-sizes" class="example-block">
           <h3>Sizes</h3>
           <div class="preview-card">
-            <div class="preview-area">
+            <PreviewArea>
               <Button size="small">Small</Button>
               <Button size="medium">Medium</Button>
               <Button size="large">Large</Button>
-            </div>
+            </PreviewArea>
             <div class="p-4 border-t border-[var(--color-border-translucent)]">
               <SimpleCodeBlock :code="sizesUsage" language="vue" />
             </div>
@@ -178,10 +178,10 @@
         <div id="example-disabled" class="example-block">
           <h3>Disabled</h3>
           <div class="preview-card">
-            <div class="preview-area">
+            <PreviewArea>
               <Button variant="secondary" disabled>Secondary</Button>
               <Button variant="default" disabled>Default</Button>
-            </div>
+            </PreviewArea>
             <div class="p-4 border-t border-[var(--color-border-translucent)]">
               <SimpleCodeBlock :code="disabledUsage" language="vue" />
             </div>
@@ -192,10 +192,10 @@
         <div id="example-text" class="example-block">
           <h3>Text Mode</h3>
           <div class="preview-card">
-            <div class="preview-area">
+            <PreviewArea>
               <Button variant="primary" text>Primary Text</Button>
               <Button variant="secondary" text>Secondary Text</Button>
-            </div>
+            </PreviewArea>
             <div class="p-4 border-t border-[var(--color-border-translucent)]">
               <SimpleCodeBlock :code="textUsage" language="vue" />
             </div>
@@ -206,10 +206,10 @@
         <div id="example-loading" class="example-block">
           <h3>Loading State</h3>
           <div class="preview-card">
-            <div class="preview-area">
+            <PreviewArea>
               <Button variant="secondary" :loading="true">Loading...</Button>
               <Button variant="default" :loading="true">Processing</Button>
-            </div>
+            </PreviewArea>
             <div class="p-4 border-t border-[var(--color-border-translucent)]">
               <SimpleCodeBlock :code="loadingUsage" language="vue" />
             </div>
@@ -220,7 +220,7 @@
         <div id="example-with-icon" class="example-block">
           <h3>With Icon</h3>
           <div class="preview-card">
-            <div class="preview-area">
+            <PreviewArea>
               <Button variant="primary">
                 <template #icon-left>
                   <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="CrownIcon" />
@@ -245,7 +245,7 @@
                 </template>
                 Delete
               </Button>
-            </div>
+            </PreviewArea>
             <div class="p-4 border-t border-[var(--color-border-translucent)]">
               <SimpleCodeBlock :code="withIconUsage" language="vue" />
             </div>
@@ -256,7 +256,7 @@
         <div id="example-icon-only" class="example-block">
           <h3>Icon Only</h3>
           <div class="preview-card">
-            <div class="preview-area">
+            <PreviewArea>
               <Button variant="default" icon-only>
                 <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="MoreIcon" />
               </Button>
@@ -266,7 +266,7 @@
               <Button variant="danger" icon-only>
                 <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="TrashIcon" />
               </Button>
-            </div>
+            </PreviewArea>
             <div class="p-4 border-t border-[var(--color-border-translucent)]">
               <SimpleCodeBlock :code="iconOnlyUsage" language="vue" />
             </div>
@@ -287,6 +287,7 @@ import Tabs from '~/components/Tabs.vue'
 import Playground from '~/components/Playground.vue'
 import DocTableOfContents from '~/components/DocTableOfContents.vue'
 import PlatformLink from '~/components/PlatformLink.vue'
+import PreviewArea from '~/components/PreviewArea.vue'
 
 // Import icons
 import AddIcon from '~/components/icon/fw-icons/add.svg?raw'
@@ -890,238 +891,3 @@ import TrashIcon from '~/components/icon/fw-icons/trash.svg?raw'
 </template>`
 </script>
 
-<style scoped>
-/* ========== Page Layout ========== */
-.doc-page-layout {
-  display: flex;
-  gap: var(--spacing-size-6xl-48);
-  min-height: calc(100vh - 80px);
-}
-
-/* xl以下隐藏TOC，单列布局 */
-@media (max-width: 1279px) {
-  .doc-page-layout {
-    gap: 0;
-  }
-}
-
-.doc-page-content {
-  flex: 1;
-  min-width: 0;
-}
-
-/* ========== Sections ========== */
-.doc-section {
-  margin-bottom: var(--spacing-margin-margin-xxxl-48);
-}
-
-.doc-section h2 {
-  margin: 0 0 var(--spacing-margin-margin-l-24) 0;
-  font-size: var(--typo-markdown-h2-default-size);
-  line-height: var(--typo-markdown-h2-default-lh);
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
-.doc-section h3 {
-  margin: var(--spacing-margin-margin-xl-32) 0 var(--spacing-margin-margin-m-16) 0;
-  font-size: var(--typo-markdown-h3-default-size);
-  line-height: var(--typo-markdown-h3-default-lh);
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
-.doc-section h3:first-child {
-  margin-top: 0;
-}
-
-/* ========== Preview Card ========== */
-.preview-card {
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border-translucent);
-  background: var(--color-fill-surfacebright);
-  overflow: hidden;
-}
-
-.preview-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-size-m-16);
-  flex-wrap: wrap;
-  padding: var(--spacing-padding-xxxl-48);
-  background: var(--color-fill-surfacebright);
-  min-height: 240px;
-}
-
-
-/* ========== Example Block ========== */
-.example-block {
-  margin-bottom: var(--spacing-margin-margin-xl-32);
-}
-
-.example-block h3 {
-  margin: 0 0 var(--spacing-margin-margin-m-16) 0;
-  font-size: var(--typo-markdown-h3-default-size);
-  line-height: var(--typo-markdown-h3-default-lh);
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
-/* ========== API Table ========== */
-.api-table {
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border-translucent);
-  overflow: hidden;
-  margin-bottom: var(--spacing-margin-margin-l-16);
-}
-
-/* Desktop layout - 完全使用 design tokens */
-@media (min-width: 1024px) {
-  .api-table {
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-  }
-
-  .api-table__header {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-size-m-16);
-    padding: var(--spacing-padding-m-12) var(--spacing-padding-l-16);
-    background-color: var(--color-fill-surfacebright);
-    border-bottom: 1px solid var(--color-border-translucent);
-  }
-
-  .api-table__header span {
-    font-size: var(--typo-interface-desktop-body-body-small-size);
-    line-height: var(--typo-interface-desktop-body-body-small-lh);
-    font-weight: 600;
-    letter-spacing: var(--typo-interface-desktop-body-body-small-ls);
-    color: var(--color-text-secondary);
-  }
-
-  .api-table__row {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-size-m-16);
-    padding: var(--spacing-padding-l-16);
-    border-bottom: 1px solid var(--color-border-translucent);
-  }
-
-  .api-table__row:last-child {
-    border-bottom: none;
-  }
-
-  .api-table__row span {
-    font-size: var(--typo-interface-desktop-body-body-medium-size);
-    line-height: var(--typo-interface-desktop-body-body-medium-lh);
-    font-weight: var(--typo-interface-desktop-body-body-medium-weight);
-    letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
-  }
-
-  /* 4列布局 (Props) - w-24=96px, w-32=128px */
-  .api-table__header span:nth-child(1),
-  .api-table__row span:nth-child(1) {
-    width: 96px;
-    flex-shrink: 0;
-  }
-
-  .api-table__header span:nth-child(2),
-  .api-table__row span:nth-child(2) {
-    width: 128px;
-    flex-shrink: 0;
-  }
-
-  .api-table__header span:nth-child(3),
-  .api-table__row span:nth-child(3) {
-    width: 96px;
-    flex-shrink: 0;
-  }
-
-  .api-table__header span:nth-child(4),
-  .api-table__row span:nth-child(4) {
-    flex: 1;
-    min-width: 0;
-  }
-
-  /* 3列布局 (Events) */
-  .api-table--3-cols .api-table__header span:nth-child(1),
-  .api-table--3-cols .api-table__row span:nth-child(1) {
-    width: 96px;
-  }
-
-  .api-table--3-cols .api-table__header span:nth-child(2),
-  .api-table--3-cols .api-table__row span:nth-child(2) {
-    width: 128px;
-  }
-
-  .api-table--3-cols .api-table__header span:nth-child(3),
-  .api-table--3-cols .api-table__row span:nth-child(3) {
-    flex: 1;
-  }
-
-  /* 2列布局 (Slots) */
-  .api-table--2-cols .api-table__header span:nth-child(1),
-  .api-table--2-cols .api-table__row span:nth-child(1) {
-    width: 96px;
-  }
-
-  .api-table--2-cols .api-table__header span:nth-child(2),
-  .api-table--2-cols .api-table__row span:nth-child(2) {
-    flex: 1;
-  }
-}
-
-/* Mobile layout - Card style - 完全使用 design tokens */
-@media (max-width: 1023px) {
-  .api-table {
-    border: none;
-    background: transparent;
-    margin-bottom: var(--spacing-margin-margin-m-16);
-  }
-
-  .api-table__header {
-    display: none;
-  }
-
-  .api-table__row {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 0;
-    margin-bottom: var(--spacing-margin-margin-m-16);
-    border: 1px solid var(--color-border-translucent);
-    border-radius: var(--radius-m-12);
-    overflow: hidden;
-  }
-
-  .api-table__row:last-child {
-    margin-bottom: 0;
-  }
-
-  .api-table__row span {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-size-xs-4);
-    padding: var(--spacing-padding-m-12);
-    border-bottom: 1px solid var(--color-border-translucent);
-    font-size: var(--typo-interface-desktop-body-body-medium-size);
-    line-height: var(--typo-interface-desktop-body-body-medium-lh);
-    font-weight: var(--typo-interface-desktop-body-body-medium-weight);
-    letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
-  }
-
-  .api-table__row span:last-child {
-    border-bottom: none;
-  }
-
-  .api-table__row span::before {
-    content: attr(data-label);
-    font-size: var(--typo-interface-desktop-body-body-small-size);
-    line-height: var(--typo-interface-desktop-body-body-small-lh);
-    font-weight: var(--typo-interface-desktop-body-body-small-weight);
-    letter-spacing: var(--typo-interface-desktop-body-body-small-ls);
-    color: var(--color-text-secondary);
-  }
-}
-</style>

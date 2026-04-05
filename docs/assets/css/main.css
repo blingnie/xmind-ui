@@ -36,15 +36,22 @@ code, pre, .font-mono {
 /* Inline code styling - matches Figma design */
 code {
   display: inline;
-  font-size: var(--typo-markdown-code-block-default-size);
-  line-height: var(--typo-markdown-code-block-default-lh);
-  font-weight: var(--typo-markdown-code-block-default-weight);
-  letter-spacing: var(--typo-markdown-code-block-default-ls);
+  padding: 2px var(--spacing-padding-s-8); /* 垂直 2px no token */
   background-color: var(--color-mask-overlays);
-  color: var(--color-text-secondary);
-  padding: var(--spacing-padding-xs-4) var(--spacing-padding-s-8);
   border-radius: var(--radius-xxs-4);
-  width: fit-content;
+  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+  font-size: var(--typo-markdown-code-block-default-size);
+  font-weight: var(--typo-markdown-code-block-default-weight);
+  line-height: var(--typo-markdown-code-block-default-lh);
+  letter-spacing: var(--typo-markdown-code-block-default-ls);
+  color: var(--color-text-secondary);
+  /* 关键：让 code 跟随文本流换行，不自己决定断行位置 */
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  /* 换行时每行独立渲染背景和圆角 */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 /* Markdown Typography tokens - Only apply to main content area */
@@ -85,6 +92,15 @@ main h3 {
   letter-spacing: var(--typo-markdown-h3-default-ls);
   margin-top: var(--spacing-margin-margin-xl-32);
   margin-bottom: var(--spacing-margin-margin-xs-8);
+}
+
+main h4 {
+  font-size: var(--typo-markdown-h4-default-size);
+  line-height: var(--typo-markdown-h4-default-lh);
+  font-weight: var(--typo-markdown-h4-default-weight);
+  letter-spacing: var(--typo-markdown-h4-default-ls);
+  margin-top: var(--spacing-margin-margin-l-24);
+  margin-bottom: var(--spacing-margin-margin-m-16);
 }
 
 main p,
@@ -208,24 +224,28 @@ main .grid p,
 main .grid h1,
 main .grid h2,
 main .grid h3,
+main .grid h4,
 main .grid span,
 main .grid div,
 main .rounded-xl p,
 main .rounded-xl h1,
 main .rounded-xl h2,
 main .rounded-xl h3,
+main .rounded-xl h4,
 main .rounded-xl span,
 main .rounded-xl div,
 main .divide-y p,
 main .divide-y h1,
 main .divide-y h2,
 main .divide-y h3,
+main .divide-y h4,
 main .divide-y span,
 main .divide-y div,
 main .border-b p,
 main .border-b h1,
 main .border-b h2,
 main .border-b h3,
+main .border-b h4,
 main .border-b span,
 main .border-b div,
 main .border-b button {
@@ -238,4 +258,261 @@ main .border-b button {
   line-height: var(--typo-interface-desktop-caption-caption-small-lh);
   font-weight: 400;
   letter-spacing: var(--typo-interface-desktop-caption-caption-small-ls);
+}
+
+/* ========== Documentation Page Layouts ========== */
+.doc-page-layout {
+  display: flex;
+  gap: var(--spacing-size-6xl-48);
+  min-height: calc(100vh - 80px);
+}
+
+/* xl以下隐藏TOC，单列布局 */
+@media (max-width: 1279px) {
+  .doc-page-layout {
+    gap: 0;
+  }
+}
+
+.doc-page-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.doc-section {
+  margin-bottom: var(--spacing-margin-margin-xxxl-48);
+}
+
+.doc-section h2 {
+  margin: 0 0 var(--spacing-margin-margin-l-24) 0;
+  font-size: var(--typo-markdown-h2-default-size);
+  line-height: var(--typo-markdown-h2-default-lh);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.doc-section h3 {
+  margin: var(--spacing-margin-margin-xl-32) 0 var(--spacing-margin-margin-m-16) 0;
+  font-size: var(--typo-markdown-h3-default-size);
+  line-height: var(--typo-markdown-h3-default-lh);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.doc-section h3:first-child {
+  margin-top: 0;
+}
+
+.preview-card {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-translucent);
+  background: var(--color-fill-surfacebright);
+  overflow: hidden;
+}
+
+.example-block {
+  margin-bottom: var(--spacing-margin-margin-xl-32);
+}
+
+.example-block h3 {
+  margin: 0 0 var(--spacing-margin-margin-m-16) 0;
+  font-size: var(--typo-markdown-h3-default-size);
+  line-height: var(--typo-markdown-h3-default-lh);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ========== API Tables ========== */
+.api-table {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-translucent);
+  overflow: hidden;
+  margin-bottom: var(--spacing-margin-margin-l-16);
+}
+
+/* Desktop layout */
+@media (min-width: 1024px) {
+  .api-table {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .api-table__header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-size-m-16);
+    padding: var(--spacing-padding-m-12) var(--spacing-padding-l-16);
+    background-color: var(--color-fill-surfacebright);
+    border-bottom: 1px solid var(--color-border-translucent);
+  }
+
+  .api-table__header span {
+    font-size: var(--typo-interface-desktop-body-body-small-size);
+    line-height: var(--typo-interface-desktop-body-body-small-lh);
+    font-weight: 600;
+    letter-spacing: var(--typo-interface-desktop-body-body-small-ls);
+    color: var(--color-text-secondary);
+  }
+
+  .api-table__row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-size-m-16);
+    padding: var(--spacing-padding-l-16);
+    border-bottom: 1px solid var(--color-border-translucent);
+  }
+
+  .api-table__row:last-child {
+    border-bottom: none;
+  }
+
+  .api-table__row span {
+    font-size: var(--typo-interface-desktop-body-body-medium-size);
+    line-height: var(--typo-interface-desktop-body-body-medium-lh);
+    font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+    letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .api-table__row span code {
+    vertical-align: baseline;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /* 4列布局 (Props) - w-24=96px, w-32=128px */
+  .api-table__header span:nth-child(1),
+  .api-table__row span:nth-child(1) {
+    width: 120px;
+    flex-shrink: 0;
+  }
+
+  .api-table__header span:nth-child(2),
+  .api-table__row span:nth-child(2) {
+    width: 128px;
+    flex-shrink: 0;
+  }
+
+  .api-table__header span:nth-child(3),
+  .api-table__row span:nth-child(3) {
+    width: 96px;
+    flex-shrink: 0;
+  }
+
+  .api-table__header span:nth-child(4),
+  .api-table__row span:nth-child(4) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Description 列使用 markdown paragraph 样式 */
+  .api-table__row span:nth-child(4) {
+    font-size: var(--typo-markdown-paragraph-default-size);
+    line-height: var(--typo-markdown-paragraph-default-lh);
+    font-weight: 400;
+    letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  }
+
+  /* 3列布局 (Events) */
+  .api-table--3-cols .api-table__header span:nth-child(1),
+  .api-table--3-cols .api-table__row span:nth-child(1) {
+    width: 120px;
+  }
+
+  .api-table--3-cols .api-table__header span:nth-child(2),
+  .api-table--3-cols .api-table__row span:nth-child(2) {
+    width: 128px;
+  }
+
+  .api-table--3-cols .api-table__header span:nth-child(3),
+  .api-table--3-cols .api-table__row span:nth-child(3) {
+    flex: 1;
+  }
+
+  /* 3列布局 Description 列使用 markdown paragraph 样式 */
+  .api-table--3-cols .api-table__row span:nth-child(3) {
+    font-size: var(--typo-markdown-paragraph-default-size);
+    line-height: var(--typo-markdown-paragraph-default-lh);
+    font-weight: 400;
+    letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  }
+
+  /* 2列布局 (Slots) */
+  .api-table--2-cols .api-table__header span:nth-child(1),
+  .api-table--2-cols .api-table__row span:nth-child(1) {
+    width: 120px;
+  }
+
+  .api-table--2-cols .api-table__header span:nth-child(2),
+  .api-table--2-cols .api-table__row span:nth-child(2) {
+    flex: 1;
+  }
+
+  /* 2列布局 Description 列使用 markdown paragraph 样式 */
+  .api-table--2-cols .api-table__row span:nth-child(2) {
+    font-size: var(--typo-markdown-paragraph-default-size);
+    line-height: var(--typo-markdown-paragraph-default-lh);
+    font-weight: 400;
+    letter-spacing: var(--typo-markdown-paragraph-default-ls);
+  }
+}
+
+/* Mobile layout - Card style */
+@media (max-width: 1023px) {
+  .api-table {
+    border: none;
+    background: transparent;
+    margin-bottom: var(--spacing-margin-margin-m-16);
+  }
+
+  .api-table__header {
+    display: none;
+  }
+
+  .api-table__row {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin-bottom: var(--spacing-margin-margin-m-16);
+    border: 1px solid var(--color-border-translucent);
+    border-radius: var(--radius-m-12);
+    overflow: hidden;
+  }
+
+  .api-table__row:last-child {
+    margin-bottom: 0;
+  }
+
+  .api-table__row span {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-size-xs-4);
+    padding: var(--spacing-padding-m-12);
+    border-bottom: 1px solid var(--color-border-translucent);
+    font-size: var(--typo-interface-desktop-body-body-medium-size);
+    line-height: var(--typo-interface-desktop-body-body-medium-lh);
+    font-weight: var(--typo-interface-desktop-body-body-medium-weight);
+    letter-spacing: var(--typo-interface-desktop-body-body-medium-ls);
+  }
+
+  .api-table__row span:last-child {
+    border-bottom: none;
+  }
+
+  .api-table__row span::before {
+    content: attr(data-label);
+    font-size: var(--typo-interface-desktop-body-body-small-size);
+    line-height: var(--typo-interface-desktop-body-body-small-lh);
+    font-weight: var(--typo-interface-desktop-body-body-small-weight);
+    letter-spacing: var(--typo-interface-desktop-body-body-small-ls);
+    color: var(--color-text-secondary);
+  }
+
+  .api-table__row span code {
+    display: inline !important;
+    width: auto !important;
+  }
 }
