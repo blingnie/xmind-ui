@@ -33,7 +33,7 @@
           <template #default="{ props, slots }">
             <Button v-bind="props">
               <template v-if="props.iconOnly && !props.loading">
-                <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="SettingIcon" />
+                <span v-html="SettingIcon" />
               </template>
               <template v-else-if="!props.iconOnly">
                 {{ slots.default }}
@@ -223,25 +223,25 @@
             <PreviewArea>
               <Button variant="primary">
                 <template #icon-left>
-                  <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="CrownIcon" />
+                  <span v-html="CrownIcon" />
                 </template>
                 Upgrade
               </Button>
               <Button variant="secondary">
                 <template #icon-left>
-                  <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="AddIcon" />
+                  <span v-html="AddIcon" />
                 </template>
                 Add Member
               </Button>
               <Button variant="default">
                 <template #icon-left>
-                  <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="MailIcon" />
+                  <span v-html="MailIcon" />
                 </template>
                 Email
               </Button>
               <Button variant="danger">
                 <template #icon-left>
-                  <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="TrashIcon" />
+                  <span v-html="TrashIcon" />
                 </template>
                 Delete
               </Button>
@@ -258,13 +258,13 @@
           <div class="preview-card">
             <PreviewArea>
               <Button variant="default" icon-only>
-                <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="MoreIcon" />
+                <span v-html="MoreIcon" />
               </Button>
               <Button variant="secondary" icon-only>
-                <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="SettingIcon" />
+                <span v-html="SettingIcon" />
               </Button>
               <Button variant="danger" icon-only>
-                <div style="width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;" v-html="TrashIcon" />
+                <span v-html="TrashIcon" />
               </Button>
             </PreviewArea>
             <div class="p-4 border-t border-[var(--color-border-translucent)]">
@@ -843,28 +843,28 @@ import TrashIcon from '~/components/icon/fw-icons/trash.svg?raw'
 <template>
   <Button variant="primary">
     <template #icon-left>
-      <div style="width: 16px; height: 16px;" v-html="CrownIcon" />
+      <span v-html="CrownIcon" />
     </template>
     Upgrade
   </Button>
 
   <Button variant="secondary">
     <template #icon-left>
-      <div style="width: 16px; height: 16px;" v-html="AddIcon" />
+      <span v-html="AddIcon" />
     </template>
     Add Member
   </Button>
 
   <Button variant="default">
     <template #icon-left>
-      <div style="width: 16px; height: 16px;" v-html="MailIcon" />
+      <span v-html="MailIcon" />
     </template>
     Email
   </Button>
 
   <Button variant="danger">
     <template #icon-left>
-      <div style="width: 16px; height: 16px;" v-html="TrashIcon" />
+      <span v-html="TrashIcon" />
     </template>
     Delete
   </Button>
@@ -878,15 +878,15 @@ import TrashIcon from '~/components/icon/fw-icons/trash.svg?raw'
 
 <template>
   <Button variant="default" icon-only>
-    <div style="width: 16px; height: 16px;" v-html="MoreIcon" />
+    <span v-html="MoreIcon" />
   </Button>
 
   <Button variant="secondary" icon-only>
-    <div style="width: 16px; height: 16px;" v-html="SettingIcon" />
+    <span v-html="SettingIcon" />
   </Button>
 
   <Button variant="danger" icon-only>
-    <div style="width: 16px; height: 16px;" v-html="TrashIcon" />
+    <span v-html="TrashIcon" />
   </Button>
 </template>`
 </script>

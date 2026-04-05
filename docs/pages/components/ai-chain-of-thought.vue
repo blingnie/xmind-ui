@@ -265,7 +265,7 @@
             <PreviewArea align="left" with-action>
               <Button variant="default" size="small" @click="replayTypewriter">
                 <template #icon-left>
-                  <div style="width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;" v-html="RefreshIcon" />
+                  <span v-html="RefreshIcon" />
                 </template>
                 Replay
               </Button>
