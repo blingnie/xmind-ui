@@ -381,6 +381,29 @@ const handleClick = (event: MouseEvent) => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: currentColor;
+}
+
+.button__icon :deep(svg) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Icon sizes based on button size */
+.button--small .button__icon {
+  width: 14px;
+  height: 14px;
+}
+
+.button--medium .button__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.button--large .button__icon {
+  width: 20px;
+  height: 20px;
 }
 
 .button__icon--left {
@@ -407,6 +430,55 @@ const handleClick = (event: MouseEvent) => {
 
 .button--icon-only.button--large {
   width: var(--button-height-xl);
+}
+
+/* Icon only button - icon sizes */
+.button--icon-only.button--small > * {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.button--icon-only.button--small > * :deep(svg),
+.button--icon-only.button--small > :deep(svg) {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+.button--icon-only.button--medium > * {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.button--icon-only.button--medium > * :deep(svg),
+.button--icon-only.button--medium > :deep(svg) {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.button--icon-only.button--large > * {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.button--icon-only.button--large > * :deep(svg),
+.button--icon-only.button--large > :deep(svg) {
+  display: block;
+  width: 20px;
+  height: 20px;
 }
 
 /* Link button as anchor tag */
