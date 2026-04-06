@@ -40,6 +40,12 @@ const previewAreaClasses = computed(() => {
   min-height: 240px;
 }
 
+@media (max-width: 640px) {
+  .preview-area {
+    padding: var(--spacing-padding-xxl-24);
+  }
+}
+
 .preview-area--left {
   justify-content: flex-start;
 }

@@ -31,6 +31,7 @@ const nav = [
     group: 'AI Components',
     items: [
       { label: 'Chain of Thought', to: '/components/ai-chain-of-thought' },
+      { label: 'Reasoning', to: '/components/ai-reasoning' },
       // 后续新增 AI 组件在这里追加
     ],
   },
@@ -164,7 +165,7 @@ onMounted(() => {
       </header>
 
       <!-- Content area: Sidebar + Main (with top padding to avoid header) -->
-      <div class="max-w-[1404px] mx-auto pt-28 px-6 flex gap-12">
+      <div class="max-w-[1404px] mx-auto pt-28 px-6 flex gap-16">
         <!-- Sidebar (180px, sticky) -->
         <div class="sidebar-wrapper">
           <div v-show="showTopFade" class="sidebar-fade sidebar-fade--top"></div>

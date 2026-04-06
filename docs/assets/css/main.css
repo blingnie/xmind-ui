@@ -263,7 +263,7 @@ main .border-b button {
 /* ========== Documentation Page Layouts ========== */
 .doc-page-layout {
   display: flex;
-  gap: var(--spacing-size-6xl-48);
+  gap: var(--spacing-size-8xl-64);
   min-height: calc(100vh - 80px);
 }
 

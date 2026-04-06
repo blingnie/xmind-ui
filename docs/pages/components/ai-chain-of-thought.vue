@@ -172,6 +172,12 @@
             <span>Description</span>
           </div>
           <div class="api-table__row">
+            <span data-label="Name"><code>id</code></span>
+            <span data-label="Type"><code>string</code></span>
+            <span data-label="Default"><code>undefined</code></span>
+            <span data-label="Description">Optional unique identifier. When provided, used as the key for expand state tracking; otherwise falls back to index</span>
+          </div>
+          <div class="api-table__row">
             <span data-label="Name"><code>iconType</code></span>
             <span data-label="Type"><code>StepIconType</code></span>
             <span data-label="Default">—</span>
@@ -576,77 +582,137 @@ OFFSET 0;`,
 // Component source code
 const componentSource = `<template>
   <div class="chain-of-thought">
-    <template v-for="(step, index) in props.steps" :key="index">
-      <!-- Title -->
-      <div
-        :class="cotTitleClasses(step, index)"
-        @click="toggleExpand(step, index)"
-        @mouseenter="hoveredIndex = index"
-        @mouseleave="hoveredIndex = null"
-      >
-        <!-- Icon -->
-        <div :class="cotIconClasses(step, index)">
+    <TransitionGroup name="step-fade">
+      <div v-for="(step, index) in props.steps" :key="step.id || index" class="cot-step">
+        <div
+          :class="cotTitleClasses(step, index)"
+          @click="toggleExpand(step, index)"
+          @mouseenter="hoveredId = getStepKey(step, index)"
+          @mouseleave="hoveredId = null"
+        >
+          <div :class="cotIconClasses(step, index)">
+            <!-- basic bullet -->
+            <span
+              v-if="step.iconType === 'basic' && !['done', 'failed'].includes(step.status)"
+              class="cot-title__bullet"
+            />
+
+            <!-- done / failed：固定图标，不旋转 -->
+            <span
+              v-else-if="['done', 'failed'].includes(step.status)"
+              class="cot-title__icon"
+              v-html="step.status === 'done' ? CheckmarkCircleFillIcon : XmarkFillIcon"
+            />
+
+            <!-- processing：自定义图标，不旋转 -->
+            <span
+              v-else-if="step.status === 'processing'"
+              class="cot-title__icon"
+              v-html="step.icon || ''"
+            />
+
+            <!-- expandable advanced：hover 或展开时切换为 chevron + 旋转动画 -->
+            <template v-else>
+              <!-- Normal 态：自定义 icon，无动画，直接显示 -->
+              <span
+                v-if="!isShowingChevron(step, index)"
+                class="cot-title__icon"
+                v-html="step.icon || ''"
+              />
+              <!-- Hover / 展开 / 折叠中：chevron，有旋转动画 -->
+              <span
+                v-else
+                class="cot-title__icon cot-title__icon--chevron"
+                :style="{ transform: isExpanded(step, index) ? 'rotate(180deg)' : 'rotate(0deg)' }"
+                v-html="ChevronDownIcon"
+              />
+            </template>
+          </div>
+
+          <span :class="cotTextClasses(step, index)">
+            {{ step.status === 'done' ? 'Done' : step.label }}
+          </span>
+
           <span
-            v-if="step.iconType === 'basic' && !['done','failed'].includes(step.status)"
-            class="cot-title__bullet"
+            v-if="step.iconType === 'basic' && isExpandable(step)"
+            class="cot-title__chevron"
+            :style="{ transform: isExpanded(step, index) ? 'rotate(180deg)' : 'rotate(0deg)' }"
+            v-html="ChevronDownIcon"
           />
-          <span
-            v-else
-            :class="['cot-title__icon', isExpanded(step, index) && isExpandable(step) && 'cot-title__icon--expanded']"
-            v-html="getAdvancedIcon(step, index)"
-          />
-        </div>
 
-        <!-- Label Text -->
-        <span :class="cotTextClasses(step, index)">
-          {{ step.status === 'done' ? 'Done' : step.label }}
-        </span>
-
-        <!-- Chevron (basic type only) -->
-        <span
-          v-if="step.iconType === 'basic' && isExpandable(step)"
-          :class="['cot-title__chevron', isExpanded(step, index) && 'cot-title__chevron--expanded']"
-          v-html="ChevronDownIcon"
-        />
-
-        <!-- Status Label -->
-        <div class="cot-label__wrap">
-          <div :class="cotLabelClasses(step)">
-            <span v-if="step.status === 'processing'" class="cot-label__dot" />
-            <span class="cot-label__text">{{ labelText(step.status) }}</span>
+          <div class="cot-label__wrap">
+            <div :class="cotLabelClasses(step)">
+              <span v-if="step.status === 'processing'" class="cot-label__dot" />
+              <span class="cot-label__text">{{ labelText(step.status) }}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Detail -->
-      <div v-if="step.detail" class="cot-detail">
-        <div :class="cotDetailLineClasses(step, index)" />
+        <div v-if="step.detail" class="cot-detail">
+          <div class="cot-detail__rail" aria-hidden="true">
+            <div
+              :class="[
+                'cot-detail__line',
+                !isExpanded(step, index) && step.detail?.type === 'content' && 'cot-detail__line--short',
+                !isExpanded(step, index) && step.detail?.type === 'code' && 'cot-detail__line--medium'
+              ]"
+            />
+          </div>
 
-        <!-- Content type (with Transition) -->
-        <template v-if="step.detail.type === 'content'">
-          <Transition :css="false" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave" @after-leave="onAfterLeave">
-            <div v-if="isExpanded(step, index)" class="cot-detail__body">
-              <div class="cot-detail__content">{{ step.detail?.content }}</div>
+          <div class="cot-detail__body">
+            <div
+              v-if="!isExpanded(step, index)"
+              :class="[
+                'cot-detail__summary',
+                step.detail?.type === 'code' && 'cot-detail__summary--code'
+              ]"
+            >
+              <div
+                v-if="step.detail.type === 'code'"
+                class="cot-code-shell cot-code-shell--collapsed"
+                @click.stop="toggleExpand(step, index)"
+              >
+                <span class="cot-code-shell__label">Script</span>
+              </div>
             </div>
-          </Transition>
-        </template>
 
-        <!-- Code type (Script capsule) -->
-        <template v-else-if="step.detail.type === 'code'">
-          <div v-if="isExpanded(step, index)" :class="['cot-code-shell', 'cot-code-shell--expanded']">
-            <div v-for="(block, bi) in step.detail.blocks" :key="bi" class="cot-code-shell__block">
-              <span class="cot-code-shell__lang">{{ block.lang }}</span>
-              <div class="cot-code-shell__scroll-wrapper">
-                <pre class="cot-code-shell__body">{{ block.code }}</pre>
+            <div
+              :class="[
+                'cot-detail__panel',
+                isExpanded(step, index) && 'cot-detail__panel--expanded'
+              ]"
+            >
+              <div class="cot-detail__inner">
+                <template v-if="isExpanded(step, index)">
+                  <div
+                    v-if="step.detail.type === 'content'"
+                    class="cot-detail__content"
+                  >
+                    {{ step.detail?.content || '' }}
+                  </div>
+
+                  <div
+                    v-else-if="step.detail.type === 'code'"
+                    class="cot-code-shell cot-code-shell--expanded"
+                  >
+                    <div
+                      v-for="(block, bi) in step.detail.blocks"
+                      :key="bi"
+                      class="cot-code-shell__block"
+                    >
+                      <span class="cot-code-shell__lang">{{ block.lang }}</span>
+                      <div class="cot-code-shell__scroll-wrapper">
+                        <pre class="cot-code-shell__body" @scroll="handleCodeScroll">{{ block.code }}</pre>
+                      </div>
+                    </div>
+                  </div>
+                </template>
               </div>
             </div>
           </div>
-          <div v-else :class="['cot-code-shell', 'cot-code-shell--collapsed']">
-            <span class="cot-code-shell__label">Script</span>
-          </div>
-        </template>
+        </div>
       </div>
-    </template>
+    </TransitionGroup>
   </div>
 </template>`
 
