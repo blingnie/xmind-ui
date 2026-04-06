@@ -1,102 +1,140 @@
 <template>
   <div class="chain-of-thought">
-    <template v-for="(step, index) in props.steps" :key="index">
-      <!-- Title 行 -->
-      <div
-        :class="cotTitleClasses(step, index)"
-        @click="toggleExpand(step, index)"
-        @mouseenter="hoveredIndex = index"
-        @mouseleave="hoveredIndex = null"
-      >
-        <!-- 图标区 -->
-        <div :class="cotIconClasses(step, index)">
+    <TransitionGroup name="step-fade">
+      <div v-for="(step, index) in props.steps" :key="step.id || index" class="cot-step">
+        <div
+          :class="cotTitleClasses(step, index)"
+          @click="toggleExpand(step, index)"
+          @mouseenter="hoveredId = getStepKey(step, index)"
+          @mouseleave="hoveredId = null"
+        >
+          <div :class="cotIconClasses(step, index)">
+            <!-- basic bullet -->
+            <span
+              v-if="step.iconType === 'basic' && !['done', 'failed'].includes(step.status)"
+              class="cot-title__bullet"
+            />
+
+            <!-- done / failed：固定图标，不旋转 -->
+            <span
+              v-else-if="['done', 'failed'].includes(step.status)"
+              class="cot-title__icon"
+              v-html="step.status === 'done' ? CheckmarkCircleFillIcon : XmarkFillIcon"
+            />
+
+            <!-- processing：自定义图标，不旋转 -->
+            <span
+              v-else-if="step.status === 'processing'"
+              class="cot-title__icon"
+              v-html="step.icon || ''"
+            />
+
+            <!-- expandable advanced：hover 或展开时切换为 chevron + 旋转动画 -->
+            <template v-else>
+              <!-- Normal 态：自定义 icon，无动画，直接显示 -->
+              <span
+                v-if="!isShowingChevron(step, index)"
+                class="cot-title__icon"
+                v-html="step.icon || ''"
+              />
+              <!-- Hover / 展开 / 折叠中：chevron，有旋转动画 -->
+              <span
+                v-else
+                class="cot-title__icon cot-title__icon--chevron"
+                :style="{ transform: isExpanded(step, index) ? 'rotate(180deg)' : 'rotate(0deg)' }"
+                v-html="ChevronDownIcon"
+              />
+            </template>
+          </div>
+
+          <span :class="cotTextClasses(step, index)">
+            {{ step.status === 'done' ? 'Done' : step.label }}
+          </span>
+
           <span
-            v-if="step.iconType === 'basic' && !['done','failed'].includes(step.status)"
-            class="cot-title__bullet"
+            v-if="step.iconType === 'basic' && isExpandable(step)"
+            class="cot-title__chevron"
+            :style="{ transform: isExpanded(step, index) ? 'rotate(180deg)' : 'rotate(0deg)' }"
+            v-html="ChevronDownIcon"
           />
-          <span
-            v-else
-            :class="['cot-title__icon', isExpanded(step, index) && isExpandable(step) && 'cot-title__icon--expanded']"
-            v-html="getAdvancedIcon(step, index)"
-          />
-        </div>
 
-        <!-- 文字 -->
-        <span :class="cotTextClasses(step, index)">
-          {{ step.status === 'done' ? 'Done' : step.label }}
-        </span>
-
-        <!-- chevron（basic 类型，紧跟文字） -->
-        <span
-          v-if="step.iconType === 'basic' && isExpandable(step)"
-          :class="['cot-title__chevron', isExpanded(step, index) && 'cot-title__chevron--expanded']"
-          v-html="ChevronDownIcon"
-        />
-
-        <!-- Label -->
-        <div class="cot-label__wrap">
-          <div :class="cotLabelClasses(step)">
-            <span v-if="step.status === 'processing'" class="cot-label__dot" />
-            <span class="cot-label__text">{{ labelText(step.status) }}</span>
+          <div class="cot-label__wrap">
+            <div :class="cotLabelClasses(step)">
+              <span v-if="step.status === 'processing'" class="cot-label__dot" />
+              <span class="cot-label__text">{{ labelText(step.status) }}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Detail 区 -->
-      <div v-if="step.detail" class="cot-detail">
-        <div :class="cotDetailLineClasses(step, index)" />
-
-        <!-- content 类型 -->
-        <template v-if="step.detail.type === 'content'">
-          <Transition
-            :css="false"
-            @enter="onEnter"
-            @after-enter="onAfterEnter"
-            @leave="onLeave"
-            @after-leave="onAfterLeave"
-          >
-            <div v-if="isExpanded(step, index)" class="cot-detail__body">
-              <div class="cot-detail__content">
-                {{ step.detail?.content || '' }}
-              </div>
-            </div>
-          </Transition>
-        </template>
-
-        <!-- code 类型 -->
-        <template v-else-if="step.detail.type === 'code'">
-          <!-- expanded 时显示代码块 -->
+        <div v-if="step.detail" class="cot-detail">
+        <div class="cot-detail__rail" aria-hidden="true">
           <div
-            v-if="isExpanded(step, index)"
-            :class="['cot-code-shell', 'cot-code-shell--expanded']"
+            :class="[
+              'cot-detail__line',
+              !isExpanded(step, index) && step.detail?.type === 'content' && 'cot-detail__line--short',
+              !isExpanded(step, index) && step.detail?.type === 'code' && 'cot-detail__line--medium'
+            ]"
+          />
+        </div>
+
+        <div class="cot-detail__body">
+          <div
+            v-if="!isExpanded(step, index)"
+            :class="[
+              'cot-detail__summary',
+              step.detail?.type === 'code' && 'cot-detail__summary--code'
+            ]"
           >
             <div
-              v-for="(block, bi) in step.detail.blocks"
-              :key="bi"
-              class="cot-code-shell__block"
+              v-if="step.detail.type === 'code'"
+              class="cot-code-shell cot-code-shell--collapsed"
+              @click.stop="toggleExpand(step, index)"
             >
-              <span class="cot-code-shell__lang">{{ block.lang }}</span>
-              <div class="cot-code-shell__scroll-wrapper">
-                <pre
-                  class="cot-code-shell__body"
-                  @scroll="handleCodeScroll"
-                  @vue:mounted="(e) => handleCodeScroll({ target: e } as unknown as Event)"
-                >{{ block.code }}</pre>
-              </div>
+              <span class="cot-code-shell__label">Script</span>
             </div>
           </div>
 
-          <!-- collapsed 时显示 Script 胶囊 -->
           <div
-            v-else
-            :class="['cot-code-shell', 'cot-code-shell--collapsed']"
-            @click="toggleExpand(step, index)"
+            :class="[
+              'cot-detail__panel',
+              isExpanded(step, index) && 'cot-detail__panel--expanded'
+            ]"
           >
-            <span class="cot-code-shell__label">Script</span>
+            <div class="cot-detail__inner">
+              <template v-if="isExpanded(step, index)">
+                <div
+                  v-if="step.detail.type === 'content'"
+                  class="cot-detail__content"
+                >
+                  {{ step.detail?.content || '' }}
+                </div>
+
+                <div
+                  v-else-if="step.detail.type === 'code'"
+                  class="cot-code-shell cot-code-shell--expanded"
+                >
+                  <div
+                    v-for="(block, bi) in step.detail.blocks"
+                    :key="bi"
+                    class="cot-code-shell__block"
+                  >
+                    <span class="cot-code-shell__lang">{{ block.lang }}</span>
+                    <div class="cot-code-shell__scroll-wrapper">
+                      <pre
+                        class="cot-code-shell__body"
+                        @scroll="handleCodeScroll"
+                        @vue:mounted="(el: Element) => handleCodeScroll({ target: el } as Event)"
+                      >{{ block.code }}</pre>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div>
           </div>
-        </template>
+        </div>
       </div>
-    </template>
+      </div>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -116,6 +154,7 @@ export interface CodeBlock {
 }
 
 export interface ChainOfThoughtStep {
+  id?: string // 可选唯一标识，有 id 时用 id 作为展开状态的 key，否则用 index
   iconType: StepIconType
   icon?: string
   label: string
@@ -135,9 +174,10 @@ const props = withDefaults(defineProps<ChainOfThoughtProps>(), {
   steps: () => [],
 })
 
-// 展开状态管理
-const expandedMap = shallowRef<Map<number, boolean>>(new Map())
-const hoveredIndex = ref<number | null>(null)
+const expandedMap = shallowRef<Map<string, boolean>>(new Map())
+const hoveredId = ref<string | null>(null)
+
+const getStepKey = (step: ChainOfThoughtStep, index: number): string => step.id || String(index)
 
 const isExpandable = (step: ChainOfThoughtStep): boolean => {
   return !['processing', 'done', 'failed'].includes(step.status) && !!step.detail
@@ -146,100 +186,50 @@ const isExpandable = (step: ChainOfThoughtStep): boolean => {
 const isExpanded = (step: ChainOfThoughtStep, index: number): boolean => {
   if (!step.detail) return false
   if (step.status === 'processing') return true
-  if (expandedMap.value.has(index)) return expandedMap.value.get(index)!
+  const key = getStepKey(step, index)
+  if (expandedMap.value.has(key)) return expandedMap.value.get(key)!
   return false
 }
 
 const toggleExpand = (step: ChainOfThoughtStep, index: number) => {
   if (!isExpandable(step)) return
-  const current = isExpanded(step, index)
-  expandedMap.value.set(index, !current)
+  const key = getStepKey(step, index)
+  expandedMap.value.set(key, !isExpanded(step, index))
   triggerRef(expandedMap)
 }
 
-// Transition hooks
-const onEnter = (el: Element, done: () => void) => {
-  const h = el as HTMLElement
-  h.style.overflow = 'hidden'
-  h.style.height = '0'
-  requestAnimationFrame(() => {
-    h.style.transition = 'height 280ms cubic-bezier(0.4, 0, 0.2, 1)'
-    h.style.height = h.scrollHeight + 'px'
-    h.addEventListener('transitionend', () => { done() }, { once: true })
-  })
+const isShowingChevron = (step: ChainOfThoughtStep, index: number): boolean => {
+  if (!isExpandable(step)) return false
+  const key = getStepKey(step, index)
+  return isExpanded(step, index) || hoveredId.value === key
 }
 
-const onAfterEnter = (el: Element) => {
-  const h = el as HTMLElement
-  h.style.height = ''
-  h.style.overflow = ''
-  h.style.transition = ''
-
-  // 初始化代码块滚动状态
-  const codeBlocks = h.querySelectorAll('.cot-code-shell__body')
-  codeBlocks.forEach((codeBlock) => {
-    const event = new Event('scroll')
-    codeBlock.dispatchEvent(event)
-  })
-}
-
-const onLeave = (el: Element, done: () => void) => {
-  const h = el as HTMLElement
-  h.style.height = h.scrollHeight + 'px'
-  h.style.overflow = 'hidden'
-
-  requestAnimationFrame(() => {
-    h.style.transition = 'height 280ms cubic-bezier(0.4, 0, 0.2, 1)'
-    h.style.height = '0'
-
-    h.addEventListener('transitionend', () => {
-      done()
-    }, { once: true })
-  })
-}
-
-const onAfterLeave = (el: Element) => {
-  const h = el as HTMLElement
-  h.style.height = ''
-  h.style.overflow = ''
-  h.style.transition = ''
-}
-
-// 图标显示逻辑
-const getAdvancedIcon = (step: ChainOfThoughtStep, index: number): string => {
-  if (step.status === 'done') return CheckmarkCircleFillIcon
-  if (step.status === 'failed') return XmarkFillIcon
-  if (step.status === 'processing') return step.icon || ''
-  if (isExpanded(step, index) || (hoveredIndex.value === index && isExpandable(step))) {
-    return ChevronDownIcon
-  }
-  return step.icon || ''
-}
-
-// Class 计算函数
 const cotTitleClasses = (step: ChainOfThoughtStep, index: number) => {
+  const key = getStepKey(step, index)
   return [
     'cot-title',
     isExpandable(step) && 'cot-title--expandable',
-    hoveredIndex.value === index && isExpandable(step) && 'cot-title--hover',
+    hoveredId.value === key && isExpandable(step) && 'cot-title--hover',
   ].filter(Boolean).join(' ')
 }
 
 const cotIconClasses = (step: ChainOfThoughtStep, index: number) => {
+  const key = getStepKey(step, index)
   return [
     'cot-title__icon-wrap',
-    hoveredIndex.value === index && isExpandable(step) ? 'cot-title__icon-wrap--hover'
+    hoveredId.value === key && isExpandable(step) ? 'cot-title__icon-wrap--hover'
       : ['error', 'failed'].includes(step.status) ? 'cot-title__icon-wrap--error'
       : 'cot-title__icon-wrap--normal',
   ].filter(Boolean).join(' ')
 }
 
 const cotTextClasses = (step: ChainOfThoughtStep, index: number) => {
+  const key = getStepKey(step, index)
   return [
     'cot-title__text',
     step.status === 'processing' && 'cot-title__text--processing',
     ['error', 'failed'].includes(step.status) && 'cot-title__text--error',
-    hoveredIndex.value === index && isExpandable(step) && 'cot-title__text--hover',
+    hoveredId.value === key && isExpandable(step) && 'cot-title__text--hover',
   ].filter(Boolean).join(' ')
 }
 
@@ -250,14 +240,6 @@ const cotLabelClasses = (step: ChainOfThoughtStep) => {
   return ['cot-label', `cot-label--${labelStatus}`].filter(Boolean).join(' ')
 }
 
-const cotDetailLineClasses = (step: ChainOfThoughtStep, index: number) => {
-  return [
-    'cot-detail__line',
-    !isExpanded(step, index) && step.detail?.type === 'content' && 'cot-detail__line--short',
-  ].filter(Boolean).join(' ')
-}
-
-// Label 文字
 const labelText = (status: StepStatus) => {
   if (status === 'completed' || status === 'done') return 'Completed'
   if (status === 'processing') return 'Processing'
@@ -265,7 +247,6 @@ const labelText = (status: StepStatus) => {
   return ''
 }
 
-// 处理代码块滚动
 const handleCodeScroll = (event: Event) => {
   const el = event.target as HTMLElement
   const wrapper = el.parentElement
@@ -275,23 +256,12 @@ const handleCodeScroll = (event: Event) => {
   const isScrolledFromTop = scrollTop > 0
   const isScrolledFromBottom = scrollTop < scrollHeight - clientHeight - 1
 
-  if (isScrolledFromTop) {
-    wrapper.classList.add('scrolled-from-top')
-  } else {
-    wrapper.classList.remove('scrolled-from-top')
-  }
-
-  if (isScrolledFromBottom) {
-    wrapper.classList.add('scrolled-from-bottom')
-  } else {
-    wrapper.classList.remove('scrolled-from-bottom')
-  }
+  wrapper.classList.toggle('scrolled-from-top', isScrolledFromTop)
+  wrapper.classList.toggle('scrolled-from-bottom', isScrolledFromBottom)
 }
-
 </script>
 
 <style scoped>
-/* 整体容器 */
 .chain-of-thought {
   display: flex;
   flex-direction: column;
@@ -299,12 +269,35 @@ const handleCodeScroll = (event: Event) => {
   width: 100%;
 }
 
-/* Title 行 */
+.cot-step {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* TransitionGroup fade animation */
+.step-fade-enter-active {
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.step-fade-leave-active {
+  transition: opacity 200ms ease;
+}
+
+.step-fade-enter-from {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.step-fade-leave-to {
+  opacity: 0;
+}
+
 .cot-title {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-size-s-8);
-  padding: 2px var(--spacing-padding-xs-4); /* 2px no token */
+  padding: 2px var(--spacing-padding-xs-4);
   border-radius: var(--radius-s-8);
   transition: background-color 150ms ease, opacity 200ms ease;
   user-select: none;
@@ -318,7 +311,6 @@ const handleCodeScroll = (event: Event) => {
   background-color: var(--color-mask-overlays);
 }
 
-/* 图标区 */
 .cot-title__icon-wrap {
   display: flex;
   align-items: center;
@@ -353,28 +345,28 @@ const handleCodeScroll = (event: Event) => {
   justify-content: center;
   width: 16px;
   height: 16px;
-  transition: transform 200ms ease;
 }
 
-.cot-title__icon--expanded {
-  transform: rotate(180deg);
+/* 只有 chevron 状态加 transition */
+.cot-title__icon--chevron {
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cot-title__icon :deep(svg) {
   width: 100%;
   height: 100%;
   color: currentColor;
+  transition: opacity 200ms ease;
 }
 
-/* 文字 */
 .cot-title__text {
   font-size: var(--typo-markdown-paragraph-default-size);
   line-height: var(--typo-markdown-paragraph-default-lh);
   letter-spacing: var(--typo-markdown-paragraph-default-ls);
   color: var(--color-text-tertiary);
+  transition: opacity 200ms ease;
 }
 
-/* Chevron（basic 类型折叠图标） */
 .cot-title__chevron {
   display: flex;
   align-items: center;
@@ -383,11 +375,7 @@ const handleCodeScroll = (event: Event) => {
   height: 26px;
   flex-shrink: 0;
   color: var(--color-icon-tertiary);
-  transition: transform 200ms ease;
-}
-
-.cot-title__chevron--expanded {
-  transform: rotate(180deg);
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cot-title__chevron :deep(svg) {
@@ -430,11 +418,10 @@ const handleCodeScroll = (event: Event) => {
   }
 }
 
-/* Label 标签 */
 .cot-label__wrap {
   display: flex;
   align-items: center;
-  height: 26px; /* 与 icon-wrap 行高一致，no token */
+  height: 26px;
   flex-shrink: 0;
 }
 
@@ -478,7 +465,7 @@ const handleCodeScroll = (event: Event) => {
   height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
-  border: 1.5px solid var(--color-text-tertiary); /* no token */
+  border: 1.5px solid var(--color-text-tertiary);
   border-top-color: transparent;
   animation: cot-dot-spin 0.8s linear infinite;
 }
@@ -493,34 +480,74 @@ const handleCodeScroll = (event: Event) => {
   line-height: var(--typo-markdown-caption-default-lh);
   font-weight: var(--typo-markdown-caption-default-weight);
   letter-spacing: var(--typo-markdown-caption-default-ls);
-  transition: color 200ms ease;
+  transition: color 200ms ease, opacity 200ms ease;
 }
 
-/* Detail 区 */
 .cot-detail {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   gap: var(--spacing-size-m-16);
   padding-left: var(--spacing-padding-m-12);
 }
 
-.cot-detail__line {
+.cot-detail__rail {
   width: 1px;
-  border-radius: 2px;
-  background: var(--color-border-translucent);
-  align-self: stretch;
+  display: flex;
+  flex-direction: column;
   flex-shrink: 0;
 }
 
-.cot-detail__line--short {
-  height: 12px; /* no token */
-  align-self: auto;
-  transition: height 280ms cubic-bezier(0.4, 0, 0.2, 1);
+.cot-detail__line {
+  width: 1px;
+  flex: 1 1 auto;
+  min-height: 100%;
+  border-radius: 2px;
+  background: var(--color-border-translucent);
 }
 
-/* Content 类型 */
-.cot-detail__content {
+.cot-detail__line--short {
+  flex: none;
+  min-height: 12px;
+  height: 12px;
+}
+
+.cot-detail__line--medium {
+  flex: none;
+  min-height: 51px; /* no token, matches Script capsule height */
+  height: 51px; /* no token, matches Script capsule height */
+}
+
+.cot-detail__body {
   flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cot-detail__summary {
+  min-height: 12px;
+}
+
+.cot-detail__summary--code {
+  min-height: 51px; /* no token, matches Script capsule height */
+}
+
+.cot-detail__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cot-detail__panel--expanded {
+  grid-template-rows: 1fr;
+}
+
+.cot-detail__inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.cot-detail__content {
   padding-top: var(--spacing-padding-s-8);
   padding-bottom: var(--spacing-padding-l-16);
   font-size: var(--typo-markdown-caption-default-size);
@@ -531,21 +558,14 @@ const handleCodeScroll = (event: Event) => {
   word-break: break-word;
 }
 
-/* ========== Detail body ========== */
-.cot-detail__body {
-  flex: 1;
-  min-width: 0;
-}
-
-/* ========== Code 类型单容器 ========== */
 .cot-code-shell {
   min-width: 0;
   display: flex;
   flex-direction: column;
 }
 
-/* collapsed 状态 - Script 胶囊样式 */
 .cot-code-shell--collapsed {
+  display: inline-flex;
   align-self: flex-start;
   padding-top: var(--spacing-padding-s-8);
   padding-bottom: var(--spacing-padding-l-16);
@@ -565,7 +585,6 @@ const handleCodeScroll = (event: Event) => {
   color: var(--color-text-tertiary);
 }
 
-/* expanded 状态 - 代码块样式 */
 .cot-code-shell--expanded {
   flex: 1;
   gap: var(--spacing-size-s-8);
@@ -593,12 +612,10 @@ const handleCodeScroll = (event: Event) => {
   color: var(--color-text-tertiary);
 }
 
-/* 代码滚动容器 */
 .cot-code-shell__scroll-wrapper {
   position: relative;
 }
 
-/* 顶部渐变遮罩 - 默认隐藏 */
 .cot-code-shell__scroll-wrapper::before {
   content: '';
   position: absolute;
@@ -613,7 +630,6 @@ const handleCodeScroll = (event: Event) => {
   transition: opacity 150ms ease;
 }
 
-/* 底部渐变遮罩 - 默认隐藏 */
 .cot-code-shell__scroll-wrapper::after {
   content: '';
   position: absolute;
@@ -628,12 +644,10 @@ const handleCodeScroll = (event: Event) => {
   transition: opacity 150ms ease;
 }
 
-/* 从顶部滚动后显示顶部渐变 */
 .cot-code-shell__scroll-wrapper.scrolled-from-top::before {
   opacity: 1;
 }
 
-/* 还有内容可滚动时显示底部渐变 */
 .cot-code-shell__scroll-wrapper.scrolled-from-bottom::after {
   opacity: 1;
 }
@@ -651,10 +665,8 @@ const handleCodeScroll = (event: Event) => {
   white-space: pre-wrap;
   word-break: break-word;
   background: transparent;
-  /* 最大高度 + 滚动 */
-  max-height: 200px; /* no token，可根据实际调整 */
+  max-height: 200px;
   overflow-y: auto;
-  /* 滚动条样式 */
   scrollbar-width: thin;
   scrollbar-color: var(--color-border-default) transparent;
 }
