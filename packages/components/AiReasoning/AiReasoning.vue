@@ -2,7 +2,7 @@
   <div class="ai-reasoning">
     <!-- Trigger Title Row -->
     <div
-      class="ai-reasoning__trigger"
+      :class="['ai-reasoning__trigger', !props.reasoning && 'ai-reasoning__trigger--interactive']"
       @click="toggle"
     >
       <!-- Text: reasoning=gradient, done=normal -->
@@ -79,6 +79,7 @@ watch(() => props.reasoning, (newReasoning, oldReasoning) => {
 })
 
 const toggle = () => {
+  if (props.reasoning) return
   isExpanded.value = !isExpanded.value
 }
 
@@ -104,12 +105,16 @@ const triggerTextClasses = computed(() => [
   gap: var(--spacing-size-s-8);
   padding: 2px var(--spacing-padding-xs-4); /* vertical 2px no token */
   border-radius: var(--radius-s-8);
-  cursor: pointer;
+  cursor: default;
   user-select: none;
   width: fit-content;
 }
 
-.ai-reasoning__trigger:hover {
+.ai-reasoning__trigger--interactive {
+  cursor: pointer;
+}
+
+.ai-reasoning__trigger--interactive:hover {
   background-color: var(--color-mask-overlays);
 }
 
