@@ -243,10 +243,10 @@ onBeforeUnmount(() => {
 
 /* ===== 无序列表 ===== */
 .ai-markdown :deep(ul) {
-  padding-left: var(--spacing-padding-xl-20);
+  padding-left: 0;
   margin-top: 0 !important;
   margin-bottom: var(--spacing-padding-l-16) !important;
-  list-style: disc;
+  list-style: none;
 }
 
 /* 段内元素后接列表，补充 8px 使总间距达到 16px */
@@ -260,7 +260,8 @@ onBeforeUnmount(() => {
 }
 
 .ai-markdown :deep(ul li) {
-  padding-left: var(--spacing-padding-m-12);
+  position: relative;
+  padding-left: var(--spacing-padding-3xl-32);
   margin-bottom: var(--spacing-size-xs-4);
   font-size: var(--typo-markdown-paragraph-default-size);
   line-height: var(--typo-markdown-paragraph-default-lh);
@@ -272,11 +273,16 @@ onBeforeUnmount(() => {
   margin-bottom: 0;
 }
 
-/* ::marker 控制圆点颜色和大小 */
-.ai-markdown :deep(ul li::marker) {
-  color: var(--color-icon-quaternary);
-  font-size: 8px; /* no token */
-  line-height: 0;
+/* 圆点：absolute 定位 */
+.ai-markdown :deep(ul li::before) {
+  content: '';
+  position: absolute;
+  left: var(--spacing-padding-m-12);
+  top: 11px; /* no token */
+  width: 4px;  /* no token */
+  height: 4px; /* no token */
+  border-radius: 50%;
+  background: var(--color-icon-quaternary);
 }
 
 /* ===== 有序列表 ===== */
@@ -322,7 +328,7 @@ onBeforeUnmount(() => {
 .ai-markdown :deep(li > ol) {
   margin-top: var(--spacing-padding-s-8) !important;
   margin-bottom: var(--spacing-padding-m-12) !important; /* 覆盖外层 ul/ol 的 margin-bottom */
-  padding-left: var(--spacing-padding-s-8) !important;
+  margin-left: -12px; /* no token */
 }
 
 /* ===== Blockquote ===== */
