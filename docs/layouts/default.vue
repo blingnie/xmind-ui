@@ -32,6 +32,7 @@ const nav = [
     items: [
       { label: 'Chain of Thought', to: '/components/ai-chain-of-thought' },
       { label: 'Reasoning', to: '/components/ai-reasoning' },
+      { label: 'Markdown', to: '/components/ai-markdown' },
       // 后续新增 AI 组件在这里追加
     ],
   },
