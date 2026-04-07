@@ -63,17 +63,16 @@ main strong {
   color: var(--color-text-primary);
 }
 
-/* Unordered lists - only apply to lists without specific classes */
-main ul:not([class]) {
+/* Unordered lists - only apply to lists without specific classes, but exclude .ai-markdown */
+main ul:not([class]):not(.ai-markdown ul):not(.ai-markdown *) {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-padding-xs-4);
 }
 
-main ul:not([class]) li {
+main ul:not([class]):not(.ai-markdown ul):not(.ai-markdown *) li {
   display: block;
   padding-left: 1em;
   position: relative;
@@ -84,7 +83,7 @@ main ul:not([class]) li {
   color: var(--color-text-primary);
 }
 
-main ul:not([class]) li::before {
+main ul:not([class]):not(.ai-markdown ul):not(.ai-markdown *) li::before {
   content: '•';
   position: absolute;
   left: 0;

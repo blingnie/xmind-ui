@@ -6,5 +6,9 @@
     "build": "pnpm --filter docs build",
     "build:tokens": "pnpm --filter @xmind-ui/tokens build",
     "preview": "pnpm --filter docs preview"
+  },
+  "devDependencies": {
+    "@types/marked": "^5.0.2",
+    "marked": "^17.0.6"
   }
 }

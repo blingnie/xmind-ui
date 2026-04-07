@@ -17,15 +17,12 @@
 
     <button
       @click="copy"
-      class="absolute top-3 right-3 p-1.5 rounded hover:bg-[var(--color-mask-overlays)] transition-colors"
+      class="copy-button"
+      :class="{ 'copy-button--copied': copied }"
       :title="'Copy code'"
     >
-      <svg v-if="!copied" class="w-4 h-4 text-[var(--color-text-tertiary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-      </svg>
-      <svg v-else class="w-4 h-4 text-[var(--color-icon-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-      </svg>
+      <span class="copy-icon" v-html="CopyTextIcon"></span>
+      <span class="tick-icon" v-html="TickIcon"></span>
     </button>
   </div>
 </template>
@@ -33,6 +30,8 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import { useShiki } from '~/composables/useShiki'
+import CopyTextIcon from '~/components/icon/fw-icons/copy-text.svg?raw'
+import TickIcon from '~/components/icon/fw-icons/tick.svg?raw'
 
 interface Props {
   code: string
@@ -91,5 +90,69 @@ async function copy() {
   background-color: transparent;
   white-space: pre-wrap !important;
   word-break: break-all !important;
+}
+
+/* 复制按钮 */
+.copy-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-s-8);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-icon-tertiary);
+  flex-shrink: 0;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.copy-button:hover {
+  background: var(--color-mask-overlays);
+  color: var(--color-icon-secondary);
+}
+
+.copy-button--copied {
+  color: var(--color-icon-secondary);
+}
+
+/* 图标容器 */
+.copy-icon,
+.tick-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+}
+
+.copy-icon :deep(svg),
+.tick-icon :deep(svg) {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 默认状态：显示 copy icon，隐藏 tick icon */
+.copy-icon {
+  display: flex;
+}
+
+.tick-icon {
+  display: none;
+}
+
+/* 复制成功状态：隐藏 copy icon，显示 tick icon */
+.copy-button--copied .copy-icon {
+  display: none;
+}
+
+.copy-button--copied .tick-icon {
+  display: flex;
 }
 </style>
