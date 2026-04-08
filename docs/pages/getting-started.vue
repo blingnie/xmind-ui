@@ -140,6 +140,41 @@
         </div>
       </section>
 
+      <!-- Using in Host Projects -->
+      <section id="host-project-integration" class="doc-section">
+        <h2 id="host-project-integration">Using in Host Projects</h2>
+        <p class="section-description">If you're integrating Xmind UI components into an existing project, a one-time token mapping file is required to bridge the design system's CSS variables with your project's token system.</p>
+
+        <div class="example-block">
+          <h3 id="token-mapping">Token Mapping</h3>
+          <p class="section-description">Create a mapping CSS file in your project that maps Xmind UI's CSS variables to your local Tailwind theme tokens. This only needs to be done once — no component code changes are required.</p>
+          <SimpleCodeBlock
+            :code="tokenMappingCode"
+            language="css"
+            height="180px"
+          />
+        </div>
+
+        <div class="example-block">
+          <h3 id="dark-mode-compat">Dark Mode Compatibility</h3>
+          <p class="section-description">Xmind UI uses <code>data-theme="dark"</code> to switch CSS variables. If your project uses Tailwind's <code>.dark</code> class instead, support both in the mapping file — component code stays unchanged.</p>
+          <SimpleCodeBlock
+            :code="darkModeCompatCode"
+            language="css"
+            height="200px"
+          />
+        </div>
+
+        <div class="note-block note-block--warning">
+          <h4><span class="icon icon--warning" v-html="TriangleIcon"></span>Token Semantic Mismatch</h4>
+          <ul class="requirements-list">
+            <li>Verify that token semantics align before mapping — e.g. <code>--color-text-primary</code> in Xmind UI may not match the same name in your project under dark mode</li>
+            <li>Spacing and radius token names may differ — map them explicitly (e.g. <code>--spacing-size-l-16</code> → <code>spacing.4</code>)</li>
+            <li>When in doubt, check the token reference tables in the <NuxtLink to="/tokens/colors" class="text-link">Colors</NuxtLink> and <NuxtLink to="/tokens/spacing" class="text-link">Spacing</NuxtLink> pages</li>
+          </ul>
+        </div>
+      </section>
+
       <!-- Design Tokens -->
       <section id="tokens" class="doc-section">
         <h2 id="tokens">Using Design Tokens</h2>
@@ -293,7 +328,7 @@
 
         <div class="note-block note-block--warning">
           <h4><span class="icon icon--warning" v-html="TriangleIcon"></span>Style Guidelines</h4>
-          <ul>
+          <ul class="requirements-list">
             <li>All colors, spacing, and radius must use Design Tokens</li>
             <li>Never hardcode any style values</li>
             <li>Never use Tailwind built-in color classes (e.g., <code>bg-gray-500</code>, <code>text-zinc-700</code>)</li>
@@ -303,7 +338,7 @@
 
         <div class="note-block note-block--info">
           <h4><span class="icon icon--brand" v-html="InformationFillIcon"></span>Development Tips</h4>
-          <ul>
+          <ul class="requirements-list">
             <li>Prefer using existing components to avoid duplication</li>
             <li>New components must follow design specifications and token system</li>
             <li>Ensure components work correctly in both light mode and dark mode</li>
@@ -406,6 +441,9 @@ const tocItems = ref([
   { id: 'import', text: 'Import', level: 2 },
   { id: 'import-components', text: 'Import Components', level: 3 },
   { id: 'import-tokens', text: 'Import Design Tokens', level: 3 },
+  { id: 'host-project-integration', text: 'Using in Host Projects', level: 2 },
+  { id: 'token-mapping', text: 'Token Mapping', level: 3 },
+  { id: 'dark-mode-compat', text: 'Dark Mode Compatibility', level: 3 },
   { id: 'tokens', text: 'Using Design Tokens', level: 2 },
   { id: 'use-tokens', text: 'Use Tokens in Custom Styles', level: 3 },
   { id: 'token-reference', text: 'Common Tokens Reference', level: 2 },
@@ -463,6 +501,28 @@ import type { ButtonVariant, ButtonSize } from '@xmind-ui/components'
 
 const tokensImportCode = `// main.ts or app.vue
 import '@xmind-ui/tokens/dist/tokens.css'`
+
+const tokenMappingCode = `/* xmind-ui-token-bridge.css — add to your project entry */
+:root {
+  --color-text-primary: theme('colors.grey.900');
+  --color-text-secondary: theme('colors.grey.700');
+  --color-icon-quaternary: theme('colors.grey.400');
+  /* ... map remaining tokens */
+}`
+
+const darkModeCompatCode = `/* Support both switching mechanisms in the same file */
+
+/* Xmind UI's method */
+[data-theme="dark"] {
+  --color-text-primary: theme('colors.grey.100');
+  --color-bg-primary: theme('colors.grey.900');
+}
+
+/* Tailwind dark: prefix method */
+.dark {
+  --color-text-primary: theme('colors.grey.100');
+  --color-bg-primary: theme('colors.grey.900');
+}`
 
 const fontCode = `@theme {
   --font-family-base: 'NeverMind UI', system-ui, sans-serif;
