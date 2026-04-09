@@ -21,7 +21,7 @@
                 type="template"
                 title="Illumination"
                 subtitle="Template"
-                thumbnailUrl="/images/attachment-placeholder.png"
+                :thumbnailUrl="placeholderImg"
               />
               <Attachment
                 type="file"
@@ -56,7 +56,7 @@
                 type="template"
                 title="Illumination"
                 subtitle="Template"
-                thumbnailUrl="/images/attachment-placeholder.png"
+                :thumbnailUrl="placeholderImg"
               />
             </PreviewArea>
           </div>
@@ -125,7 +125,7 @@
                   type="template"
                   title="Illumination"
                   subtitle="Template"
-                  thumbnailUrl="/images/attachment-placeholder.png"
+                  :thumbnailUrl="placeholderImg"
                   :closable="true"
                   @close="() => {}"
                 />
@@ -246,6 +246,9 @@ const FigmaIcon = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" x
 </svg>`
 
 definePageMeta({ layout: 'default' })
+
+const { baseURL } = useRuntimeConfig().app
+const placeholderImg = `${baseURL}images/attachment-placeholder.png`
 
 const activeTab = ref('Usage')
 
