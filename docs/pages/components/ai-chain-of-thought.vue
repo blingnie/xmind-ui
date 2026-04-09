@@ -650,63 +650,59 @@ const componentSource = `<template>
 
         <div v-if="step.detail" class="cot-detail">
           <div class="cot-detail__rail" aria-hidden="true">
-            <div
-              :class="[
-                'cot-detail__line',
-                !isExpanded(step, index) && step.detail?.type === 'content' && 'cot-detail__line--short',
-                !isExpanded(step, index) && step.detail?.type === 'code' && 'cot-detail__line--medium'
-              ]"
-            />
+            <div class="cot-detail__line" />
           </div>
 
           <div class="cot-detail__body">
+            <!-- Collapse panel: shrinks when expanding (grid 1fr → 0fr) -->
             <div
-              v-if="!isExpanded(step, index)"
               :class="[
-                'cot-detail__summary',
-                step.detail?.type === 'code' && 'cot-detail__summary--code'
+                'cot-detail__collapse-panel',
+                isExpanded(step, index) && 'cot-detail__collapse-panel--hidden'
               ]"
             >
-              <div
-                v-if="step.detail.type === 'code'"
-                class="cot-code-shell cot-code-shell--collapsed"
-                @click.stop="toggleExpand(step, index)"
-              >
-                <span class="cot-code-shell__label">Script</span>
+              <div class="cot-detail__collapse-inner">
+                <div
+                  v-if="step.detail.type === 'code'"
+                  class="cot-code-shell cot-code-shell--collapsed"
+                  @click.stop="toggleExpand(step, index)"
+                >
+                  <span class="cot-code-shell__label">Script</span>
+                </div>
+                <div v-else class="cot-detail__spacer" />
               </div>
             </div>
 
+            <!-- Expand panel: grows when expanding (grid 0fr → 1fr) -->
             <div
               :class="[
-                'cot-detail__panel',
-                isExpanded(step, index) && 'cot-detail__panel--expanded'
+                'cot-detail__expand-panel',
+                isExpanded(step, index) && 'cot-detail__expand-panel--visible'
               ]"
             >
-              <div class="cot-detail__inner">
-                <template v-if="isExpanded(step, index)">
-                  <div
-                    v-if="step.detail.type === 'content'"
-                    class="cot-detail__content"
-                  >
-                    {{ step.detail?.content || '' }}
-                  </div>
+              <div class="cot-detail__expand-inner">
+                <div
+                  v-if="step.detail.type === 'content'"
+                  class="cot-detail__content"
+                >
+                  {{ step.detail?.content || '' }}
+                </div>
 
+                <div
+                  v-else-if="step.detail.type === 'code'"
+                  class="cot-code-shell cot-code-shell--expanded"
+                >
                   <div
-                    v-else-if="step.detail.type === 'code'"
-                    class="cot-code-shell cot-code-shell--expanded"
+                    v-for="(block, bi) in step.detail.blocks"
+                    :key="bi"
+                    class="cot-code-shell__block"
                   >
-                    <div
-                      v-for="(block, bi) in step.detail.blocks"
-                      :key="bi"
-                      class="cot-code-shell__block"
-                    >
-                      <span class="cot-code-shell__lang">{{ block.lang }}</span>
-                      <div class="cot-code-shell__scroll-wrapper">
-                        <pre class="cot-code-shell__body" @scroll="handleCodeScroll">{{ block.code }}</pre>
-                      </div>
+                    <span class="cot-code-shell__lang">{{ block.lang }}</span>
+                    <div class="cot-code-shell__scroll-wrapper">
+                      <pre class="cot-code-shell__body" @scroll="handleCodeScroll">{{ block.code }}</pre>
                     </div>
                   </div>
-                </template>
+                </div>
               </div>
             </div>
           </div>

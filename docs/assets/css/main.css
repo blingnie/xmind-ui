@@ -283,6 +283,10 @@ main .border-b button {
   margin-bottom: var(--spacing-margin-margin-xxxl-48);
 }
 
+.doc-section:first-of-type {
+  margin-top: var(--spacing-margin-margin-l-24);
+}
+
 .doc-section h2 {
   margin: 0 0 var(--spacing-margin-margin-l-24) 0;
   font-size: var(--typo-markdown-h2-default-size);

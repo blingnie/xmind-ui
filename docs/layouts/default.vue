@@ -12,27 +12,30 @@ const nav = [
     group: 'Foundation',
     items: [
       { label: 'Colors', to: '/tokens/colors' },
-      { label: 'Typography', to: '/tokens/typography' },
-      { label: 'Spacing', to: '/tokens/spacing' },
-      { label: 'Radius', to: '/tokens/radius' },
       { label: 'Elevation', to: '/tokens/effects' },
       { label: 'Icons', to: '/tokens/icons' },
+      { label: 'Radius', to: '/tokens/radius' },
+      { label: 'Spacing', to: '/tokens/spacing' },
+      { label: 'Typography', to: '/tokens/typography' },
     ],
   },
   {
     group: 'Components',
     items: [
       { label: 'Button', to: '/components/button' },
-      { label: 'Badge', to: '/components/badge' },
       // 后续新增组件在这里追加
     ],
   },
   {
     group: 'AI Components',
     items: [
+      { label: 'AI Button', to: '/components/ai-button' },
+      { label: 'Attachment', to: '/components/attachment-card' },
       { label: 'Chain of Thought', to: '/components/ai-chain-of-thought' },
-      { label: 'Reasoning', to: '/components/ai-reasoning' },
+      { label: 'Chat Container', to: '/components/chat-container' },
       { label: 'Markdown', to: '/components/ai-markdown' },
+      { label: 'Reasoning', to: '/components/ai-reasoning' },
+      { label: 'Reference', to: '/components/ai-reference' },
       // 后续新增 AI 组件在这里追加
     ],
   },

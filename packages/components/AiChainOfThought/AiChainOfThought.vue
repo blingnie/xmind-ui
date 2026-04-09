@@ -66,42 +66,49 @@
           </div>
         </div>
 
-        <div v-if="step.detail" class="cot-detail">
+        <div v-if="index < props.steps.length - 1 || step.detail" class="cot-detail">
         <div class="cot-detail__rail" aria-hidden="true">
-          <div
-            :class="[
-              'cot-detail__line',
-              !isExpanded(step, index) && step.detail?.type === 'content' && 'cot-detail__line--short',
-              !isExpanded(step, index) && step.detail?.type === 'code' && 'cot-detail__line--medium'
-            ]"
-          />
+          <div class="cot-detail__line" />
         </div>
 
         <div class="cot-detail__body">
-          <div
-            v-if="!isExpanded(step, index)"
-            :class="[
-              'cot-detail__summary',
-              step.detail?.type === 'code' && 'cot-detail__summary--code'
-            ]"
-          >
-            <div
-              v-if="step.detail.type === 'code'"
-              class="cot-code-shell cot-code-shell--collapsed"
-              @click.stop="toggleExpand(step, index)"
-            >
-              <span class="cot-code-shell__label">Script</span>
+          <!-- No detail: just show a short spacer for the connecting line -->
+          <template v-if="!step.detail">
+            <div class="cot-detail__collapse-panel">
+              <div class="cot-detail__collapse-inner">
+                <div class="cot-detail__spacer" />
+              </div>
             </div>
-          </div>
+          </template>
 
-          <div
-            :class="[
-              'cot-detail__panel',
-              isExpanded(step, index) && 'cot-detail__panel--expanded'
-            ]"
-          >
-            <div class="cot-detail__inner">
-              <template v-if="isExpanded(step, index)">
+          <template v-else>
+            <!-- Collapse panel: shrinks when expanding (grid 1fr → 0fr) -->
+            <div
+              :class="[
+                'cot-detail__collapse-panel',
+                isExpanded(step, index) && 'cot-detail__collapse-panel--hidden'
+              ]"
+            >
+              <div class="cot-detail__collapse-inner">
+                <div
+                  v-if="step.detail.type === 'code'"
+                  class="cot-code-shell cot-code-shell--collapsed"
+                  @click.stop="toggleExpand(step, index)"
+                >
+                  <span class="cot-code-shell__label">Script</span>
+                </div>
+                <div v-else class="cot-detail__spacer" />
+              </div>
+            </div>
+
+            <!-- Expand panel: grows when expanding (grid 0fr → 1fr) -->
+            <div
+              :class="[
+                'cot-detail__expand-panel',
+                isExpanded(step, index) && 'cot-detail__expand-panel--visible'
+              ]"
+            >
+              <div class="cot-detail__expand-inner">
                 <div
                   v-if="step.detail.type === 'content'"
                   class="cot-detail__content"
@@ -128,9 +135,9 @@
                     </div>
                   </div>
                 </div>
-              </template>
+              </div>
             </div>
-          </div>
+          </template>
         </div>
       </div>
       </div>
@@ -500,21 +507,9 @@ const handleCodeScroll = (event: Event) => {
 .cot-detail__line {
   width: 1px;
   flex: 1 1 auto;
-  min-height: 100%;
+  min-height: 0;
   border-radius: 2px;
   background: var(--color-border-translucent);
-}
-
-.cot-detail__line--short {
-  flex: none;
-  min-height: 12px;
-  height: 12px;
-}
-
-.cot-detail__line--medium {
-  flex: none;
-  min-height: 51px; /* no token, matches Script capsule height */
-  height: 51px; /* no token, matches Script capsule height */
 }
 
 .cot-detail__body {
@@ -524,27 +519,54 @@ const handleCodeScroll = (event: Event) => {
   flex-direction: column;
 }
 
-.cot-detail__summary {
-  min-height: 12px;
+/* ── Collapse panel: reverse grid, 1fr → 0fr ── */
+.cot-detail__collapse-panel {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 380ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.cot-detail__summary--code {
-  min-height: 51px; /* no token, matches Script capsule height */
+.cot-detail__collapse-panel--hidden {
+  grid-template-rows: 0fr;
 }
 
-.cot-detail__panel {
+.cot-detail__collapse-inner {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 1;
+  transition: opacity 200ms ease 60ms;
+}
+
+.cot-detail__collapse-panel--hidden .cot-detail__collapse-inner {
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.cot-detail__spacer {
+  height: 12px;
+}
+
+/* ── Expand panel: grid 0fr → 1fr ── */
+.cot-detail__expand-panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: grid-template-rows 380ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.cot-detail__panel--expanded {
+.cot-detail__expand-panel--visible {
   grid-template-rows: 1fr;
 }
 
-.cot-detail__inner {
+.cot-detail__expand-inner {
   overflow: hidden;
   min-height: 0;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.cot-detail__expand-panel--visible .cot-detail__expand-inner {
+  opacity: 1;
+  transition: opacity 250ms ease 80ms;
 }
 
 .cot-detail__content {
@@ -591,7 +613,7 @@ const handleCodeScroll = (event: Event) => {
   padding: var(--spacing-padding-s-8);
   margin-top: var(--spacing-padding-s-8);
   margin-bottom: var(--spacing-padding-l-16);
-  background: var(--color-fill-surfacedark);
+  background: var(--color-fill-surfacedim);
   border-radius: var(--radius-m-12);
 }
 
@@ -600,7 +622,7 @@ const handleCodeScroll = (event: Event) => {
   flex-direction: column;
   gap: var(--spacing-size-s-8);
   padding: var(--spacing-padding-m-12);
-  background: var(--color-fill-surfacedim);
+  background: var(--color-fill-surface-desktop);
   border-radius: var(--radius-xs-6);
 }
 
@@ -623,7 +645,7 @@ const handleCodeScroll = (event: Event) => {
   left: 0;
   right: 0;
   height: 20px;
-  background: linear-gradient(to bottom, var(--color-fill-surfacedim), transparent);
+  background: linear-gradient(to bottom, var(--color-fill-surface-desktop), transparent);
   pointer-events: none;
   z-index: 1;
   opacity: 0;
@@ -637,7 +659,7 @@ const handleCodeScroll = (event: Event) => {
   left: 0;
   right: 0;
   height: 20px;
-  background: linear-gradient(to top, var(--color-fill-surfacedim), transparent);
+  background: linear-gradient(to top, var(--color-fill-surface-desktop), transparent);
   pointer-events: none;
   z-index: 1;
   opacity: 0;

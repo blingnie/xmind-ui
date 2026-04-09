@@ -5,7 +5,7 @@ const variablesData = JSON.parse(readFileSync('./component.json', 'utf-8'))
 const elevationData = JSON.parse(readFileSync('./elevation.json', 'utf-8'))
 
 function nameToVar(name) {
-  return name.replace(/\//g, '-').replace(/ /g, '-').replace(/_/g, '-').toLowerCase()
+  return name.replace(/\([^)]*\)/g, '').replace(/\//g, '-').replace(/ /g, '-').replace(/_/g, '-').toLowerCase()
 }
 
 function stripPrefix(name, prefix) {
@@ -195,9 +195,31 @@ if (specificCol) {
   }
 }
 
-// ── 9. AI Specific Token (skipped for now - these are AI theme variants) ──
-// const aiSpecificCol = variablesData.collections.find(c => c.name === 'AI Specific Token')
-// TODO: Handle AI Specific Token as a separate theme variant (e.g., .ai-mode class)
+// ── 9. AI Specific Token ──
+// These tokens reference Alias Token vars (which already switch light/dark) or palette colors,
+// so they go into :root alongside other Specific Tokens.
+const aiSpecificCol = variablesData.collections.find(c => c.name === 'AI Specific Token')
+if (aiSpecificCol) {
+  for (const mode of aiSpecificCol.modes) {
+    for (const v of mode.variables) {
+      const varName = `--ai-${nameToVar(v.name)}`
+      let val = v.value
+
+      if (typeof val === 'object' && val !== null) {
+        if (val.collection === 'Alias Token') {
+          val = `var(--color-${nameToVar(stripPrefix(val.name, 'color'))})`
+        } else {
+          // Palette reference (e.g. ai-purple/400) — always use --palette- prefix
+          val = `var(--palette-${nameToVar(val.name)})`
+        }
+      } else if (v.type === 'number') {
+        val = `${val}px`
+      }
+
+      linesSpecific.push(`  ${varName}: ${val};`)
+    }
+  }
+}
 
 // ── 10. Common Aliases for easier usage ──
 linesLight.push(`  --color-text-oncolor: var(--color-text-oncolor-default);`)

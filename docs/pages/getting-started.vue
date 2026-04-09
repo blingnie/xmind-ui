@@ -609,35 +609,14 @@ const wrongTokensCode = `<style scoped>
 /* ========== Requirements List ========== */
 .requirements-list {
   margin: 0 0 var(--spacing-margin-margin-l-24) 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-padding-xs-4);
 }
 
 .requirements-list li {
-  position: relative;
-  padding-left: calc(20px + var(--spacing-padding-xs-4));
-  min-height: 26px;
   font-size: var(--typo-markdown-paragraph-default-size);
   line-height: var(--typo-markdown-paragraph-default-lh);
   font-weight: var(--typo-markdown-paragraph-default-weight);
   letter-spacing: var(--typo-markdown-paragraph-default-ls);
   color: var(--color-text-primary);
-}
-
-.requirements-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 20px;
-  height: 26px;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23666666'/%3E%3C/svg%3E");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .token-note {
@@ -823,37 +802,12 @@ const wrongTokensCode = `<style scoped>
   color: var(--color-text-primary);
 }
 
-.note-block ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-padding-xs-4);
-}
-
 .note-block li {
-  position: relative;
-  padding-left: calc(20px + var(--spacing-padding-xs-4));
-  min-height: 26px;
   font-size: var(--typo-markdown-paragraph-default-size);
   line-height: var(--typo-markdown-paragraph-default-lh);
   font-weight: var(--typo-markdown-paragraph-default-weight);
   letter-spacing: var(--typo-markdown-paragraph-default-ls);
   color: var(--color-text-primary);
-}
-
-.note-block li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 20px;
-  height: 26px;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='2' fill='%23666666'/%3E%3C/svg%3E");
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 /* ========== Icons ========== */

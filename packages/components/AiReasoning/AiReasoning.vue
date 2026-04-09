@@ -6,7 +6,7 @@
       @click="toggle"
     >
       <!-- Text: reasoning=gradient, done=normal -->
-      <span :class="triggerTextClasses">Show AI reasoning</span>
+      <span :class="triggerTextClasses">{{ displayTitle }}</span>
 
       <!-- Chevron: expanded=upward, collapsed=downward -->
       <span
@@ -57,6 +57,7 @@ export type ReasoningContent =
 interface AiReasoningProps {
   reasoning: boolean        // true=thinking (title gradient animation), false=done (normal text)
   content: ReasoningContent // content: full steps or plain text
+  title?: string            // explicit title override; omit to auto-generate from content
   defaultExpanded?: boolean // default expanded, defaults to false
 }
 
@@ -87,6 +88,16 @@ const triggerTextClasses = computed(() => [
   'ai-reasoning__title',
   props.reasoning ? 'ai-reasoning__title--reasoning' : 'ai-reasoning__title--done',
 ])
+
+const displayTitle = computed(() => {
+  // 显式传入 title 时直接使用
+  if (props.title) return props.title
+
+  // thinking 中显示动画文案，结束后显示静态文案
+  if (props.reasoning) return 'Thinking...'
+
+  return 'Show AI reasoning'
+})
 </script>
 
 <style scoped>
