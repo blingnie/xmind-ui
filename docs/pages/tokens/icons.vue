@@ -15,7 +15,7 @@ const icons = computed(() => {
     const isColorful = fileName.includes('-color') ||
                        ['xmind', 'xmind-ai-colorful', 'googledrive-color',
                         'facebook-color', 'linkedin-color', 'twitter-color',
-                        'slack', 'onedrive-color', 'tiktok'].includes(fileName)
+                        'slack', 'onedrive-color'].includes(fileName)
     return {
       name: fileName,
       content: content as string,

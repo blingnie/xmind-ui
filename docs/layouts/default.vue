@@ -32,8 +32,10 @@ const nav = [
       { label: 'AI Button', to: '/components/ai-button' },
       { label: 'Attachment', to: '/components/attachment-card' },
       { label: 'Chain of Thought', to: '/components/ai-chain-of-thought' },
+      { label: 'Chat Container', to: '/components/chat-container' },
       { label: 'Markdown', to: '/components/ai-markdown' },
       { label: 'Reasoning', to: '/components/ai-reasoning' },
+      { label: 'Reference', to: '/components/ai-reference' },
       // 后续新增 AI 组件在这里追加
     ],
   },

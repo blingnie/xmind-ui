@@ -17,8 +17,10 @@ const TickIcon = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xm
 const renderer = new Renderer()
 
 // h1 → h2 标签（降级标题）
-renderer.heading = ({ text, depth }) => {
+// 必须用 function() 而非箭头函数，以获取 this.parser
+renderer.heading = function ({ tokens, depth }) {
   const visualLevel = Math.min(depth + 1, 4) // h1→h2, h2→h3, h3→h4, h4+→h4
+  const text = this.parser.parseInline(tokens)
   return `<h${visualLevel}>${text}</h${visualLevel}>`
 }
 
@@ -76,10 +78,28 @@ renderer.hr = () => {
 
 // 列表使用浏览器原生 ::marker 渲染，不需要自定义 renderer
 
+// 预处理：修复 LLM 输出的常见 markdown 格式问题
+const normalizeMarkdown = (raw: string): string => {
+  return raw
+    // 修复行内出现的标题标记：在非行首的 #{1,6} 前插入换行
+    .replace(/([^\n])(#{1,6})(\s)/g, '$1\n$2$3')
+    .replace(/([^\n])(#{1,6})([^\s#])/g, '$1\n$2 $3')
+    // 修复标题标记后缺少空格：###Title → ### Title
+    .replace(/^(#{1,6})([^\s#])/gm, '$1 $2')
+    // 修复标题末尾多余的 **：### Title** → ### Title
+    .replace(/^(#{1,6}\s+.*?)\*{2,}\s*$/gm, '$1')
+    // 修复行首多余的 **（未闭合的粗体标记开头）：**Title → **Title**
+    .replace(/^(\*{2})([^*\n]+)$/gm, (match, stars, text) => {
+      if (!text.includes('**')) return `${stars}${text}${stars}`
+      return match
+    })
+}
+
 // 解析 Markdown
 const parsedHtml = computed(() => {
   if (!props.content) return ''
-  return marked.parse(props.content, { renderer }) as string
+  const normalized = normalizeMarkdown(props.content)
+  return marked.parse(normalized, { renderer }) as string
 })
 
 // 复制按钮事件委托
