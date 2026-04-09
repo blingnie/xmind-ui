@@ -8,7 +8,7 @@ const modelValue = defineModel<string>()
 </script>
 
 <template>
-  <div class="flex gap-1 border-b border-[var(--color-border-translucent)] mb-2">
+  <div class="flex gap-1 border-b border-[var(--color-border-translucent)] mb-6">
     <button
       v-for="tab in tabs"
       :key="tab"

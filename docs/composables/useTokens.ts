@@ -213,9 +213,75 @@ export function useTokens() {
     return elevationRaw.elevations as ElevationToken[]
   }
 
+  // Specific Token (component-level tokens like button/*, input/*, etc.)
+  function getSpecificTokens(): AliasToken[] {
+    const col = getCollection(variablesRaw, 'Specific Token')
+    if (!col) return []
+    const tokens: AliasToken[] = []
+    for (const mode of col.modes) {
+      for (const v of mode.variables) {
+        const val = v.value
+        let refVar = ''
+        if (typeof val === 'object' && val !== null) {
+          if (val.collection === 'Alias Token') {
+            const cleanRef = val.name.startsWith('color/') ? val.name.slice(6) : val.name
+            refVar = `var(--color-${nameToVar(cleanRef)})`
+          } else {
+            refVar = `var(--${nameToVar(val.name)})`
+          }
+        } else if (v.type === 'number') {
+          refVar = `${val}px`
+        } else {
+          refVar = String(val)
+        }
+        tokens.push({
+          name: v.name,
+          varName: `--${nameToVar(v.name)}`,
+          refVar,
+          rawValue: refVar,
+        })
+      }
+    }
+    return tokens
+  }
+
+  // AI Specific Token
+  function getAiSpecificTokens(): AliasToken[] {
+    const col = getCollection(variablesRaw, 'AI Specific Token')
+    if (!col) return []
+    const tokens: AliasToken[] = []
+    for (const mode of col.modes) {
+      for (const v of mode.variables) {
+        const val = v.value
+        let refVar = ''
+        if (typeof val === 'object' && val !== null) {
+          if (val.collection === 'Alias Token') {
+            const cleanRef = val.name.startsWith('color/') ? val.name.slice(6) : val.name
+            refVar = `var(--color-${nameToVar(cleanRef)})`
+          } else {
+            refVar = `var(--palette-${nameToVar(val.name)})`
+          }
+        } else if (v.type === 'number') {
+          refVar = `${val}px`
+        } else {
+          refVar = String(val)
+        }
+        tokens.push({
+          name: v.name,
+          varName: `--ai-${nameToVar(v.name)}`,
+          refVar,
+          rawValue: refVar,
+        })
+      }
+    }
+    return tokens
+  }
+
   return {
     getColorGroups,
     getAliasTokens,
+    getSpecificTokens,
+    getAiSpecificTokens,
     getSpacingTokens,
     getRadiusTokens,
     getTypoGroups,

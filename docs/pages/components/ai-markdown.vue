@@ -14,7 +14,6 @@
 
       <!-- Default preview -->
       <section id="default" class="doc-section">
-        <h2>Default</h2>
         <div class="preview-card">
           <PreviewArea align="left" class="preview-area--markdown">
             <AiMarkdown :content="defaultContent" />
@@ -163,7 +162,6 @@ const activeTab = ref('Usage')
 
 // Table of Contents items
 const tocItems = ref([
-  { id: 'default', text: 'Default', level: 2 },
   { id: 'elements', text: 'Elements', level: 2 },
   { id: 'headings', text: 'Headings', level: 3 },
   { id: 'paragraph', text: 'Paragraph', level: 3 },
