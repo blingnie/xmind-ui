@@ -613,7 +613,7 @@ const handleCodeScroll = (event: Event) => {
   padding: var(--spacing-padding-s-8);
   margin-top: var(--spacing-padding-s-8);
   margin-bottom: var(--spacing-padding-l-16);
-  background: var(--color-fill-surfacedim);
+  background: var(--color-fill-surfacedark);
   border-radius: var(--radius-m-12);
 }
 
@@ -622,7 +622,7 @@ const handleCodeScroll = (event: Event) => {
   flex-direction: column;
   gap: var(--spacing-size-s-8);
   padding: var(--spacing-padding-m-12);
-  background: var(--color-fill-surface-desktop);
+  background: var(--color-fill-surfacedim);
   border-radius: var(--radius-xs-6);
 }
 
@@ -645,7 +645,7 @@ const handleCodeScroll = (event: Event) => {
   left: 0;
   right: 0;
   height: 20px;
-  background: linear-gradient(to bottom, var(--color-fill-surface-desktop), transparent);
+  background: linear-gradient(to bottom, var(--color-fill-surfacedim), transparent);
   pointer-events: none;
   z-index: 1;
   opacity: 0;
@@ -659,7 +659,7 @@ const handleCodeScroll = (event: Event) => {
   left: 0;
   right: 0;
   height: 20px;
-  background: linear-gradient(to top, var(--color-fill-surface-desktop), transparent);
+  background: linear-gradient(to top, var(--color-fill-surfacedim), transparent);
   pointer-events: none;
   z-index: 1;
   opacity: 0;
